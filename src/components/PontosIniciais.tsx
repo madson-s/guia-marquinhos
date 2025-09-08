@@ -66,7 +66,7 @@ export default function PontosInicias() {
         className="bg-[#F2F1E0] h-[60px] w-full sm:w-[530px] mt-2 rounded-[100px] flex items-center justify-center gap-4 text-[15px] sm:text-2xl lg:text-[28px] text-black border-2 border-[#322F30]"
         href={"/aventuras"}
       >
-        <span className="underline">Confira Todos Os Destinos</span>
+        <span className="underline">Confira todos os destinos</span>
         <Image src={Seta} alt="Orçamento" className="sm:w-auto w-9"/>
       </Link>
     </div>

@@ -34,7 +34,7 @@ export default function Navbar() {
         </div>
 
         <div className="flex items-center gap-4 ms-10">
-          <a href="https://instagram.com/guiamarquinhos" target="_blank" rel="noreferrer">
+          <a href="https://instagram.com/chapadadiamantinaguiamarcos" target="_blank" rel="noreferrer">
             <Image src={Insta} alt="Instagram" className="w-6 h-6" />
           </a>
           <a href="mailto:contato@guiamarquinhos.com">
@@ -83,7 +83,7 @@ export default function Navbar() {
 
           <div className="flex items-center gap-6 mt-4">
             <a
-              href="https://instagram.com/guiamarquinhos"
+              href="https://instagram.com/chapadadiamantinaguiamarcos"
               target="_blank"
               rel="noreferrer"
             >

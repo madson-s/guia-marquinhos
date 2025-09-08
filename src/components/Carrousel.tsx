@@ -106,7 +106,7 @@ const Carousel = () => {
 
   return (
     <div
-      className="w-full min-h-[500px] bg-cover bg-center flex flex-col items-center justify-center px-4 py-10 sm:py-14"
+      className="w-full max-h-[490px] !h-full bg-cover bg-center flex flex-col items-center justify-center px-4 py-10 sm:py-14"
       style={{ backgroundImage: `url(${BackgroundExp.src})` }} id="avaliacoes"
     >
       <h2 className="text-white text-[32px] sm:text-[42px] lg:text-[56px] font-bold mb-6 sm:mb-8 text-center">

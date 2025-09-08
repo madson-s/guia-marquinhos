@@ -38,7 +38,7 @@ export default function Footer() {
           <ul className="space-y-2 text-white/80 text-base">
             <li>
               <a
-                href="https://wa.me/5575999990090"
+                href="https://wa.me/5575998859612"
                 target="_blank"
                 rel="noreferrer"
               >
@@ -49,11 +49,11 @@ export default function Footer() {
               <a href="mailto:contato@guiamarquinhos.com">E-Mail</a>
             </li>
             <li>
-              <a href="tel:+557599999-0090">Telefone</a>
+              <a href="tel:+557599885-9612">Telefone</a>
             </li>
             <li>
               <a
-                href="https://instagram.com/guiamarquinhos"
+                href="https://instagram.com/chapadadiamantinaguiamarcos"
                 target="_blank"
                 rel="noreferrer"
               >
