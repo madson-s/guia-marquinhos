@@ -187,7 +187,7 @@ export default function Aventuras() {
 
               <Link
                 className="bg-[#F2F1E0] h-[45px] sm:h-[65px] lg:h-[70px] w-[320px] sm:w-[350px] lg:w-[484px] mt-6 rounded-[100px] flex items-center justify-center gap-3 sm:gap-4 text-[14px] sm:text-xl lg:text-[28px] text-black"
-                href={"/orcamento"}
+                href={"/#orcamento"}
               >
                 <span className="underline">Monte seu roteiro ideal</span>
                 <Image

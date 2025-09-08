@@ -10,8 +10,8 @@ import { useState } from "react";
 export default function Form() {
   const iconesContato = [
     { src: Local, alt: "Rua José Florêncio, 230 - Lençóis / BA" },
-    { src: Whatsapp, alt: "75 9 9999-0090" },
-    { src: Insta, alt: "@guiamarquinhos" },
+    { src: Whatsapp, alt: "75 9 9885-9612" },
+    { src: Insta, alt: "@chapadadiamantinaguiamarcos" },
     { src: Gmail, alt: "contato@guiamarquinhos.com" },
   ];
 

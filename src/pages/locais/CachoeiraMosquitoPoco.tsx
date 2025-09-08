@@ -76,7 +76,7 @@ export default function CachoeiraMosquitoPoco() {
 
             <Link
               className="bg-[#F2F1E0] h-[50px] sm:h-[65px] lg:h-[70px] w-[260px] sm:w-[350px] lg:w-[484px] my-10 rounded-[100px] flex items-center justify-center gap-3 sm:gap-4 text-base sm:text-xl lg:text-[28px] border-2 text-black"
-              href={"/orcamento"}
+              href={"/#orcamento"}
             >
               <span className="underline">Monte seu roteiro ideal</span>
               <Image
