@@ -1,5 +1,5 @@
 import Link from "next/link";
-import Grutas from "./../../public/imgs/grutas.png";
+import Grutas from "./../../public/imgs/gruta-da-lapa-doce-att.jpeg";
 import ValeDoPati from "./../../public/imgs/vale-do-pati.png";
 import Seta from "./../../public/imgs/seta-orcamento.svg";
 import Image from "next/image";

@@ -2,7 +2,7 @@ import Navbar from "@/components/Navbar";
 import Car from "./../../../public/imgs/car.png";
 import Montain from "./../../../public/imgs/montain.png";
 import Escalando from "./../../../public/imgs/escalando.png";
-import Grutas1 from "./../../../public/imgs/grutas.png";
+import Grutas1 from "./../../../public/imgs/gruta-da-lapa-doce-att.jpeg";
 import Grutas2 from "./../../../public/imgs/grutas2.png";
 import Grutas3 from "./../../../public/imgs/grutas3.png";
 import Grutas4 from "./../../../public/imgs/grutas4.png";

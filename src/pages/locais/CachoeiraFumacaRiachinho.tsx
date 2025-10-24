@@ -2,7 +2,7 @@ import Navbar from "@/components/Navbar";
 import Car from "./../../../public/imgs/car.png";
 import Montain from "./../../../public/imgs/montain.png";
 import Escalando from "./../../../public/imgs/escalando.png";
-import Fumaca from "./../../../public/imgs/cachoeira-da-fumaca.png";
+import Fumaca from "./../../../public/imgs/cachoeira-da-fumaca-att.jpeg";
 import Fumaca2 from "./../../../public/imgs/cachoeira-fumaca2.png";
 import Riachinho from "./../../../public/imgs/riachinho2.png";
 import Riachinho2 from "./../../../public/imgs/riachinho3.png";
