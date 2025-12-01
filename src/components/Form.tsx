@@ -17,7 +17,7 @@ export default function Form() {
 
   const [nome, setNome] = useState("");
   const [email, setEmail] = useState("");
-  const [celular, setCelular] = useState("");
+  const [celular, ] = useState("");
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     console.log({ nome, email, celular });
