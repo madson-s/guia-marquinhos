@@ -34,7 +34,9 @@ export default function Home() {
           </p>
           <Link
             className="bg-[#F2F1E0] h-[70px] sm:w-[484px] w-[350px] mt-10 rounded-[100px] flex items-center justify-center gap-4 sm:text-[28px] text-[20px] text-black hover:bg-[#FFC738]"
-            href={"https://wa.me/5575998859612"}
+            href={"https://wa.me/5575998859612?text=" + encodeURIComponent("Olá! Gostaria de solicitar um orçamento para conhecer a Chapada Diamantina. Aguardo retorno!")}
+            target="_blank"
+            rel="noreferrer"
           >
             <span className="underline">Solicite seu orçamento</span>
             <Image src={Seta} alt="Orçamento" />
@@ -114,7 +116,9 @@ export default function Home() {
             </p>
             <Link
               className="bg-[#F2F1E0] h-[60px] sm:h-[65px] md:h-[70px] w-full sm:w-[360px] md:w-[420px] lg:w-[484px] mt-2 rounded-[100px] flex items-center justify-center gap-4 text-[18px] sm:text-[22px] md:text-[24px] lg:text-[28px] text-black border-2 border-[#322F30]"
-              href={"https://wa.me/5575998859612"}
+              href={"https://wa.me/5575998859612?text=" + encodeURIComponent("Olá! Gostaria de solicitar um orçamento para conhecer a Chapada Diamantina. Aguardo retorno!")}
+              target="_blank"
+              rel="noreferrer"
             >
               <span className="underline">Solicite seu orçamento</span>
               <Image src={Seta} alt="Orçamento" />

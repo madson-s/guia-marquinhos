@@ -38,7 +38,7 @@ export default function Footer() {
           <ul className="space-y-2 text-white/80 text-base">
             <li>
               <a
-                href="https://wa.me/5575998859612"
+                href={"https://wa.me/5575998859612?text=" + encodeURIComponent("Olá! Gostaria de solicitar um orçamento para conhecer a Chapada Diamantina. Aguardo retorno!")}
                 target="_blank"
                 rel="noreferrer"
               >
