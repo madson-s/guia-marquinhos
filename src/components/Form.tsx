@@ -22,14 +22,20 @@ export default function Form() {
     e.preventDefault();
     
     // Formata a mensagem para o WhatsApp usando formatação de texto simples
-    const mensagem = `Olá! Gostaria de solicitar um orçamento.
+    let mensagem = `Olá! Gostaria de solicitar um orçamento.
 
 *Dados do contato:*
-*Nome:* ${nome}
-*E-mail:* ${email}
-*Celular:* ${celular}
+*Nome:* ${nome}`;
 
-Aguardo retorno!`;
+    if (email) {
+      mensagem += `\n*E-mail:* ${email}`;
+    }
+    
+    if (celular) {
+      mensagem += `\n*Celular:* ${celular}`;
+    }
+
+    mensagem += `\n\nAguardo retorno!`;
 
     // Codifica a mensagem para URL
     const mensagemEncoded = encodeURIComponent(mensagem);
@@ -87,7 +93,6 @@ Aguardo retorno!`;
               onChange={(e) => setEmail(e.target.value)}
               placeholder="seu_melhor@email.com"
               className="mt-1 px-4 py-2 border-2 border-[#322F30] rounded-full text-[#322F30]"
-              required
             />
           </div>
 
@@ -105,7 +110,6 @@ Aguardo retorno!`;
               onChange={(e) => setCelular(e.target.value)}
               placeholder="(99) 9 9999-9999"
               className="mt-1 px-4 py-2 border-2 border-[#322F30] rounded-full text-[#322F30]"
-              required
             />
           </div>
 
