@@ -1,8 +1,7 @@
-import Link from "next/link";
 import Grutas from "./../../public/imgs/gruta-da-lapa-doce-att.jpeg";
 import ValeDoPati from "./../../public/imgs/vale-do-pati.png";
-import Seta from "./../../public/imgs/seta-orcamento.svg";
 import Image from "next/image";
+import Button from "./Button";
 
 export default function PontosInicias() {
   const pontos = [
@@ -45,13 +44,14 @@ export default function PontosInicias() {
             <p className="text-[#888888] text-lg sm:text-xl lg:text-2xl font-normal">
               {ponto.description}
             </p>
-            <Link
-              className="bg-[#F2F1E0] h-[60px] w-[200px] sm:h-[70px] sm:w-[230px] mt-2 rounded-[100px] flex items-center justify-center gap-4 text-[15px] sm:text-lg lg:text-[20px] text-black border-2 border-[#322F30]"
-              href={`${ponto.href}`}
+            <Button
+              href={ponto.href}
+              variant="secondary"
+              size="sm"
+              className="mt-2 w-[200px] sm:w-[230px] h-[60px] sm:h-[70px] text-[15px] sm:text-lg lg:text-[20px]"
             >
-              <span className="underline">Saiba Mais</span>
-              <Image src={Seta} alt="Orçamento" className="sm:w-auto w-8"/>
-            </Link>
+              Saiba Mais
+            </Button>
           </div>
 
           <Image
@@ -62,13 +62,14 @@ export default function PontosInicias() {
         </div>
       ))}
 
-      <Link
-        className="bg-[#F2F1E0] h-[60px] w-full sm:w-[530px] mt-2 rounded-[100px] flex items-center justify-center gap-4 text-[15px] sm:text-2xl lg:text-[28px] text-black border-2 border-[#322F30]"
-        href={"/aventuras"}
+      <Button
+        href="/aventuras"
+        variant="secondary"
+        size="lg"
+        className="mt-2 w-full sm:w-[530px] h-[60px] text-[15px] sm:text-2xl lg:text-[28px]"
       >
-        <span className="underline">Confira todos os destinos</span>
-        <Image src={Seta} alt="Orçamento" className="sm:w-auto w-9"/>
-      </Link>
+        Confira todos os destinos
+      </Button>
     </div>
   );
 }

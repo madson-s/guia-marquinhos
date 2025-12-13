@@ -2,10 +2,10 @@ import Whatsapp from "./../../public/imgs/whatsapp.png";
 import Local from "./../../public/imgs/local.png";
 import Insta from "./../../public/imgs/insta-guia.png";
 import Gmail from "./../../public/imgs/contato-gmail.png";
-import Seta from "./../../public/imgs/seta-orcamento.svg";
 import Image from "next/image";
 import { useState } from "react";
 import { pushGTMEvent } from "./GTM";
+import Button from "./Button";
 
 export default function Form() {
   const iconesContato = [
@@ -37,14 +37,6 @@ export default function Form() {
     }
 
     mensagem += `\n\nAguardo retorno!`;
-
-    // Evento GTM - Form Submit
-    pushGTMEvent("form_submit", {
-      form_location: "home",
-      has_email: !!email,
-      has_phone: !!celular,
-      page: window.location.pathname,
-    });
 
     // Codifica a mensagem para URL
     const mensagemEncoded = encodeURIComponent(mensagem);
@@ -128,13 +120,24 @@ export default function Form() {
             />
           </div>
 
-          <button
+          <Button
+            as="button"
             type="submit"
-            className="bg-[#F2F1E0] h-[42px] w-[173px] mt-6 rounded-[100px] flex items-center justify-center gap-4 text-[18px] md:text-[20px] text-black border-2 border-[#322F30] self-center md:self-start cursor-pointer hover:bg-[#FFC738] transition-colors"
+            variant="secondary"
+            size="sm"
+            className="mt-6 w-[173px] h-[42px] text-[18px] md:text-[20px] self-center md:self-start"
+            gtmEvent={{
+              eventName: "form_submit",
+              eventData: {
+                form_location: "home",
+                has_email: !!email,
+                has_phone: !!celular,
+                source: "form",
+              },
+            }}
           >
-            <span className="underline">Enviar</span>
-            <Image src={Seta} alt="Orçamento" className="w-8 sm:w-6 lg:w-auto" />
-          </button>
+            Enviar
+          </Button>
         </form>
       </div>
     </div>

@@ -10,8 +10,7 @@ import Sossego from "./../../public/imgs/sossego.png";
 import RibeiraoDoMeio from "./../../public/imgs/ribeirao-do-meio.png";
 import Pantanal from "./../../public/imgs/pantanal.png";
 import Roncador from "./../../public/imgs/cachoeira-do-roncador-att.jpeg";
-import Link from "next/link";
-import Seta from "./../../public/imgs/seta-orcamento.svg";
+import Button from "@/components/Button";
 import BgTrilha from "./../../public/imgs/bg-trilha.png";
 import Bg1Descubra from "./../../public/imgs/bg-1-descubra.png";
 import Bg2Descubra from "./../../public/imgs/bg-2-descubra.png";
@@ -152,17 +151,14 @@ export default function Aventuras() {
                     {dest.description}
                   </p>
 
-                  <Link
-                    className="bg-[#F2F1E0] h-[48px] sm:h-[50px] w-[200px] sm:w-[230px] sm:mt-6 mt-4 rounded-[100px] border-2 border-[#322F30] flex items-center justify-center gap-3 sm:gap-4 text-lg sm:text-[20px] text-black"
-                    href={`${dest.href}`}
+                  <Button
+                    href={dest.href}
+                    variant="secondary"
+                    size="sm"
+                    className="sm:mt-6 mt-4"
                   >
-                    <span className="underline">Saiba mais</span>
-                    <Image
-                      src={Seta}
-                      alt="Orçamento"
-                      className="w-5 sm:w-6 lg:w-auto"
-                    />
-                  </Link>
+                    Saiba mais
+                  </Button>
                 </div>
 
                 <div className="w-full lg:w-[650px] flex justify-center">
@@ -204,17 +200,14 @@ export default function Aventuras() {
                 <div className="absolute w-16 h-16 sm:w-24 sm:h-24 lg:w-32 lg:h-32 bg-yellow-400 rounded-full top-[140px] sm:top-[160px] lg:top-[180px] right-[20px] sm:right-[40px] lg:right-[170px] -translate-y-1/2 z-0 sm:flex hidden"></div>
               </div>
 
-              <Link
-                className="bg-[#F2F1E0] h-[45px] sm:h-[65px] lg:h-[70px] w-[320px] sm:w-[350px] lg:w-[484px] mt-6 rounded-[100px] flex items-center justify-center gap-3 sm:gap-4 text-[14px] sm:text-xl lg:text-[28px] text-black"
-                href={"/#orcamento"}
+              <Button
+                href="/#orcamento"
+                variant="primary"
+                size="md"
+                className="mt-6 w-[320px] sm:w-[350px] lg:w-[484px]"
               >
-                <span className="underline">Monte seu roteiro ideal</span>
-                <Image
-                  src={Seta}
-                  alt="Orçamento"
-                  className="w-5 sm:w-6 lg:w-auto"
-                />
-              </Link>
+                Monte seu roteiro ideal
+              </Button>
             </div>
 
             <div className="flex flex-col justify-end sm:mt-10 gap-6 sm:gap-10 w-full lg:w-auto">

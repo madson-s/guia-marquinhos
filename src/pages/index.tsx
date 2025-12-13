@@ -1,7 +1,6 @@
 import Image from "next/image";
 import Background from "./../../public/imgs/bg-inicio.png";
 import Navbar from "@/components/Navbar";
-import Seta from "./../../public/imgs/seta-orcamento.svg";
 import Link from "next/link";
 import Dobra from "@/components/Dobra";
 import Aceito from "./../../public/imgs/aceito.png";
@@ -18,7 +17,7 @@ import Footer from "@/components/Footer";
 import SEO from "@/components/SEO";
 import { LocalBusinessSchema, PersonSchema, OrganizationSchema, WebSiteSchema } from "@/components/Schema";
 import { useScrollDepth, useTimeOnPage } from "@/hooks/useGTMEvents";
-import { pushGTMEvent } from "@/components/GTM";
+import Button from "@/components/Button";
 
 export default function Home() {
   useScrollDepth();
@@ -49,23 +48,18 @@ export default function Home() {
             Trilhas personalizadas, acolhimento e histórias únicas guiadas por
             quem nasceu e vive a <strong>Chapada Diamantina</strong>
           </p>
-          <Link
-            className="bg-[#F2F1E0] h-[70px] sm:w-[484px] w-[350px] mt-10 rounded-[100px] flex items-center justify-center gap-4 sm:text-[28px] text-[20px] text-black hover:bg-[#FFC738]"
+          <Button
             href={"https://wa.me/5575998859612?text=" + encodeURIComponent("Olá! Gostaria de solicitar um orçamento para conhecer a Chapada Diamantina. Aguardo retorno!")}
-            target="_blank"
-            rel="noreferrer"
-            onClick={() => {
-              if (typeof window !== "undefined") {
-                pushGTMEvent("whatsapp_click", {
-                  source: "hero",
-                  page: window.location.pathname,
-                });
-              }
+            variant="primary"
+            size="lg"
+            className="mt-10 sm:w-[484px] w-[350px]"
+            gtmEvent={{
+              eventName: "whatsapp_click",
+              eventData: { source: "hero" },
             }}
           >
-            <span className="underline">Solicite seu orçamento</span>
-            <Image src={Seta} alt="Orçamento" />
-          </Link>
+            Solicite seu orçamento
+          </Button>
         </div>
       </div>
       <Dobra />
@@ -111,24 +105,21 @@ export default function Home() {
                 className="w-[250px] sm:w-auto"
               />
             </div>
-            <Link
-              className="bg-[#F2F1E0] h-[60px] sm:h-[70px] w-full sm:w-[484px] mt-6 rounded-[100px] flex items-center justify-center gap-4 text-[20px] sm:text-[28px] text-black border-[3px] border-[#322F30] text-center hover:bg-[#FFC738]"
-              href={"https://instagram.com/chapadadiamantinaguiamarcos"}
-              target="_blank"
-              rel="noreferrer"
-              onClick={() => {
-                if (typeof window !== "undefined") {
-                  pushGTMEvent("external_link_click", {
-                    link_type: "instagram",
-                    link_url: "https://instagram.com/chapadadiamantinaguiamarcos",
-                    page: window.location.pathname,
-                  });
-                }
+            <Button
+              href="https://instagram.com/chapadadiamantinaguiamarcos"
+              variant="with-border"
+              size="lg"
+              className="mt-6 w-full sm:w-[484px]"
+              gtmEvent={{
+                eventName: "external_link_click",
+                eventData: {
+                  link_type: "instagram",
+                  link_url: "https://instagram.com/chapadadiamantinaguiamarcos",
+                },
               }}
             >
-              <span className="underline">Conheça meu trabalho</span>
-              <Image src={Seta} alt="Orçamento" />
-            </Link>
+              Conheça meu trabalho
+            </Button>
           </div>
         </div>
       </div>
@@ -150,23 +141,18 @@ export default function Home() {
               Das trilhas clássicas às experiências exclusivas, encontre o
               roteiro que combina com você.
             </p>
-            <Link
-              className="bg-[#F2F1E0] h-[60px] sm:h-[65px] md:h-[70px] w-full sm:w-[360px] md:w-[420px] lg:w-[484px] mt-2 rounded-[100px] flex items-center justify-center gap-4 text-[18px] sm:text-[22px] md:text-[24px] lg:text-[28px] text-black border-2 border-[#322F30]"
+            <Button
               href={"https://wa.me/5575998859612?text=" + encodeURIComponent("Olá! Gostaria de solicitar um orçamento para conhecer a Chapada Diamantina. Aguardo retorno!")}
-              target="_blank"
-              rel="noreferrer"
-              onClick={() => {
-                if (typeof window !== "undefined") {
-                  pushGTMEvent("whatsapp_click", {
-                    source: "destinations",
-                    page: window.location.pathname,
-                  });
-                }
+              variant="secondary"
+              size="lg"
+              className="mt-2"
+              gtmEvent={{
+                eventName: "whatsapp_click",
+                eventData: { source: "destinations" },
               }}
             >
-              <span className="underline">Solicite seu orçamento</span>
-              <Image src={Seta} alt="Orçamento" />
-            </Link>
+              Solicite seu orçamento
+            </Button>
           </div>
         </div>
 
@@ -200,17 +186,14 @@ export default function Home() {
               <div className="absolute w-16 h-16 sm:w-24 sm:h-24 lg:w-32 lg:h-32 bg-yellow-400 rounded-full top-[140px] sm:top-[160px] lg:top-[180px] right-[20px] sm:right-[40px] lg:right-[170px] -translate-y-1/2 z-0 sm:flex hidden"></div>
             </div>
 
-            <Link
-              className="bg-[#F2F1E0] h-[45px] sm:h-[65px] lg:h-[70px] w-[320px] sm:w-[350px] lg:w-[484px] mt-6 rounded-[100px] flex items-center justify-center gap-3 sm:gap-4 text-[18px] sm:text-xl lg:text-[28px] text-black"
-              href={"/#orcamento"}
+            <Button
+              href="/#orcamento"
+              variant="primary"
+              size="md"
+              className="mt-6 w-[320px] sm:w-[350px] lg:w-[484px]"
             >
-              <span className="underline">Monte seu roteiro ideal</span>
-              <Image
-                src={Seta}
-                alt="Orçamento"
-                className="w-8 sm:w-6 lg:w-auto"
-              />
-            </Link>
+              Monte seu roteiro ideal
+            </Button>
           </div>
 
           <div className="flex flex-col justify-end sm:mt-10 gap-6 sm:gap-10 w-full lg:w-auto">

@@ -6,10 +6,9 @@ import PocoAzul1 from "./../../../public/imgs/poco-azul.png";
 import PocoAzul2 from "./../../../public/imgs/poco-azul2.png";
 import PocoAzul3 from "./../../../public/imgs/poco-azul3.png";
 import PocoAzul4 from "./../../../public/imgs/poco-azul4.png";
-import Seta from "./../../../public/imgs/seta-orcamento.svg";
 import Image from "next/image";
 import Footer from "@/components/Footer";
-import Link from "next/link";
+import Button from "@/components/Button";
 import SEO from "@/components/SEO";
 import { TouristAttractionSchema, OrganizationSchema, BreadcrumbListSchema } from "@/components/Schema";
 import { useScrollDepth, useTimeOnPage, trackDestinationView } from "@/hooks/useGTMEvents";
@@ -115,17 +114,14 @@ export default function PocoAzulEncantado() {
               </div>
             </div>
 
-            <Link
-              className="bg-[#F2F1E0] h-[50px] sm:h-[65px] lg:h-[70px] w-[260px] sm:w-[350px] lg:w-[484px] my-10 rounded-[100px] flex items-center justify-center gap-3 sm:gap-4 text-base sm:text-xl lg:text-[28px] border-2 text-black"
-              href={"/#orcamento"}
+            <Button
+              href="/#orcamento"
+              variant="secondary"
+              size="md"
+              className="my-10"
             >
-              <span className="underline">Monte seu roteiro ideal</span>
-              <Image
-                src={Seta}
-                alt="Orçamento"
-                className="w-5 sm:w-6 lg:w-auto"
-              />
-            </Link>
+              Monte seu roteiro ideal
+            </Button>
           </div>
         </div>
 
