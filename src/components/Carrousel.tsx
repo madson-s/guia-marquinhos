@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import Image from "next/image";
 import BackgroundExp from "./../../public/imgs/bg-exp.svg";
 import Aspas from "./../../public/imgs/aspas.png";
 import Tripadvisor from "./../../public/imgs/tripadvisor.png";
@@ -137,7 +138,7 @@ const Carousel = () => {
               key={index}
               className="min-w-[260px] sm:min-w-[280px] max-w-[300px] bg-white rounded-2xl p-5 sm:p-6 shadow-lg relative flex flex-col justify-between"
             >
-              <img src={Aspas.src} alt="Aspas" className="w-10 h-10 sm:w-14 sm:h-14 mb-4" />
+              <Image src={Aspas} alt="Aspas" className="w-10 h-10 sm:w-14 sm:h-14 mb-4" />
 
               <p className="text-gray-800 mb-2 text-[14px] sm:text-[16px] text-start">
                 <span className="font-bold">{t.text.split("!")[0]}!</span>
@@ -146,8 +147,8 @@ const Carousel = () => {
               </p>
 
               <div className="flex items-center mt-auto">
-                <img
-                  src={Tripadvisor.src}
+                <Image
+                  src={Tripadvisor}
                   alt="Tripadvisor"
                   className="w-10 h-10 sm:w-14 sm:h-14 mr-2"
                 />

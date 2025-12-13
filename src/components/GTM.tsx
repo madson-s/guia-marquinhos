@@ -36,12 +36,22 @@ export default function GTM({ gtmId }: GTMProps) {
   );
 }
 
+// Type definition for GTM dataLayer
+type DataLayer = Array<Record<string, unknown>>;
+
+interface WindowWithDataLayer extends Window {
+  dataLayer?: DataLayer;
+}
+
 // Helper function to push events to GTM
-export const pushGTMEvent = (eventName: string, eventData?: Record<string, any>) => {
-  if (typeof window !== "undefined" && (window as any).dataLayer) {
-    (window as any).dataLayer.push({
-      event: eventName,
-      ...eventData,
-    });
+export const pushGTMEvent = (eventName: string, eventData?: Record<string, unknown>) => {
+  if (typeof window !== "undefined") {
+    const windowWithDataLayer = window as WindowWithDataLayer;
+    if (windowWithDataLayer.dataLayer) {
+      windowWithDataLayer.dataLayer.push({
+        event: eventName,
+        ...eventData,
+      });
+    }
   }
 };

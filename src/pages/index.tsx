@@ -18,6 +18,7 @@ import Footer from "@/components/Footer";
 import SEO from "@/components/SEO";
 import { LocalBusinessSchema, PersonSchema, OrganizationSchema, WebSiteSchema } from "@/components/Schema";
 import { useScrollDepth, useTimeOnPage } from "@/hooks/useGTMEvents";
+import { pushGTMEvent } from "@/components/GTM";
 
 export default function Home() {
   useScrollDepth();
@@ -55,7 +56,6 @@ export default function Home() {
             rel="noreferrer"
             onClick={() => {
               if (typeof window !== "undefined") {
-                const { pushGTMEvent } = require("@/components/GTM");
                 pushGTMEvent("whatsapp_click", {
                   source: "hero",
                   page: window.location.pathname,
@@ -118,7 +118,6 @@ export default function Home() {
               rel="noreferrer"
               onClick={() => {
                 if (typeof window !== "undefined") {
-                  const { pushGTMEvent } = require("@/components/GTM");
                   pushGTMEvent("external_link_click", {
                     link_type: "instagram",
                     link_url: "https://instagram.com/chapadadiamantinaguiamarcos",
@@ -158,7 +157,6 @@ export default function Home() {
               rel="noreferrer"
               onClick={() => {
                 if (typeof window !== "undefined") {
-                  const { pushGTMEvent } = require("@/components/GTM");
                   pushGTMEvent("whatsapp_click", {
                     source: "destinations",
                     page: window.location.pathname,
