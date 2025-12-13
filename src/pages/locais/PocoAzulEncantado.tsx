@@ -10,10 +10,42 @@ import Seta from "./../../../public/imgs/seta-orcamento.svg";
 import Image from "next/image";
 import Footer from "@/components/Footer";
 import Link from "next/link";
+import SEO from "@/components/SEO";
+import { TouristAttractionSchema, OrganizationSchema, BreadcrumbListSchema } from "@/components/Schema";
+import { useScrollDepth, useTimeOnPage, trackDestinationView } from "@/hooks/useGTMEvents";
+import { useEffect } from "react";
 
 export default function PocoAzulEncantado() {
+  useScrollDepth();
+  useTimeOnPage();
+
+  useEffect(() => {
+    trackDestinationView("Poço Encantado e Poço Azul", "gruta");
+  }, []);
   return (
-    <div className="min-h-screen bg-[#f6f6ee]">
+    <>
+      <SEO
+        title="Poço Encantado e Poço Azul | Chapada Diamantina"
+        description="Poço Encantado e Poço Azul revelam águas cristalinas em tons de azul surreal, grutas impressionantes e um espetáculo de luz único na Chapada Diamantina. Melhor época: abril a setembro."
+        url="/locais/PocoAzulEncantado"
+        image="/imgs/poco-azul.png"
+        keywords="Poço Encantado, Poço Azul, Chapada Diamantina, grutas, Lençóis, Bahia, flutuação"
+      />
+      <OrganizationSchema />
+      <TouristAttractionSchema
+        name="Poço Encantado e Poço Azul"
+        description="Poço Encantado e Poço Azul revelam águas cristalinas em tons de azul surreal, grutas impressionantes e um espetáculo de luz único na Chapada Diamantina. O Poço Encantado é uma caverna de contemplação e fotos com 61 metros de profundidade, enquanto o Poço Azul oferece contemplação e flutuação em águas de 4 a 21 metros de profundidade."
+        image="https://guiamarquinhos.com/imgs/poco-azul.png"
+        url="https://guiamarquinhos.com/locais/PocoAzulEncantado"
+      />
+      <BreadcrumbListSchema
+        items={[
+          { name: "Início", url: "https://guiamarquinhos.com" },
+          { name: "Aventuras", url: "https://guiamarquinhos.com/aventuras" },
+          { name: "Poço Encantado e Poço Azul", url: "https://guiamarquinhos.com/locais/PocoAzulEncantado" },
+        ]}
+      />
+      <div className="min-h-screen bg-[#f6f6ee]">
       <div className="flex flex-col h-full">
         <div className="w-full bg-[#36322B] h-[128px]">
           <Navbar />
@@ -102,5 +134,6 @@ export default function PocoAzulEncantado() {
         </div>
       </div>
     </div>
+    </>
   );
 }

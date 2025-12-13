@@ -10,10 +10,42 @@ import Seta from "./../../../public/imgs/seta-orcamento.svg";
 import Image from "next/image";
 import Footer from "@/components/Footer";
 import Link from "next/link";
+import SEO from "@/components/SEO";
+import { TouristAttractionSchema, OrganizationSchema, BreadcrumbListSchema } from "@/components/Schema";
+import { useScrollDepth, useTimeOnPage, trackDestinationView } from "@/hooks/useGTMEvents";
+import { useEffect } from "react";
 
 export default function CachoeiraFumacaRiachinho() {
+  useScrollDepth();
+  useTimeOnPage();
+
+  useEffect(() => {
+    trackDestinationView("Cachoeira da Fumaça e Riachinho", "cachoeira");
+  }, []);
   return (
-    <div className="min-h-screen bg-[#f6f6ee]">
+    <>
+      <SEO
+        title="Cachoeira da Fumaça e Riachinho | Chapada Diamantina"
+        description="Descubra a imponente Cachoeira da Fumaça com 380m de queda livre, a maior do Brasil, e relaxe na Cachoeira do Riachinho. Trilha moderada de 12km com guia experiente."
+        url="/locais/CachoeiraFumacaRiachinho"
+        image="/imgs/cachoeira-da-fumaca-att.jpeg"
+        keywords="Cachoeira da Fumaça, Cachoeira Riachinho, Chapada Diamantina, maior cachoeira Brasil, Lençóis, Bahia"
+      />
+      <OrganizationSchema />
+      <TouristAttractionSchema
+        name="Cachoeira da Fumaça e Cachoeira do Riachinho"
+        description="Descubra a imponente Cachoeira da Fumaça, com quase 400 metros de altura e um visual de tirar o fôlego, cercada pela natureza exuberante. Relaxe na Cachoeira do Riachinho, com quedas d'água suaves e poços perfeitos para um banho refrescante."
+        image="https://guiamarquinhos.com/imgs/cachoeira-da-fumaca-att.jpeg"
+        url="https://guiamarquinhos.com/locais/CachoeiraFumacaRiachinho"
+      />
+      <BreadcrumbListSchema
+        items={[
+          { name: "Início", url: "https://guiamarquinhos.com" },
+          { name: "Aventuras", url: "https://guiamarquinhos.com/aventuras" },
+          { name: "Cachoeira da Fumaça e Riachinho", url: "https://guiamarquinhos.com/locais/CachoeiraFumacaRiachinho" },
+        ]}
+      />
+      <div className="min-h-screen bg-[#f6f6ee]">
       <div className="flex flex-col h-full">
         <div className="w-full bg-[#36322B] h-[128px]">
           <Navbar />
@@ -93,5 +125,6 @@ export default function CachoeiraFumacaRiachinho() {
         </div>
       </div>
     </div>
+    </>
   );
 }

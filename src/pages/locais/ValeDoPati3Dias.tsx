@@ -10,8 +10,18 @@ import Seta from "./../../../public/imgs/seta-orcamento.svg";
 import Image from "next/image";
 import Footer from "@/components/Footer";
 import Link from "next/link";
+import SEO from "@/components/SEO";
+import { TouristAttractionSchema, OrganizationSchema, BreadcrumbListSchema } from "@/components/Schema";
+import { useScrollDepth, useTimeOnPage, trackDestinationView } from "@/hooks/useGTMEvents";
+import { useEffect } from "react";
 
 export default function ValeDoPati3Dias() {
+  useScrollDepth();
+  useTimeOnPage();
+
+  useEffect(() => {
+    trackDestinationView("Vale do Pati 3 dias", "trekking");
+  }, []);
   const dias = [
     {
       dia: "1º dia de trekking",
@@ -31,7 +41,29 @@ export default function ValeDoPati3Dias() {
   ];
 
   return (
-    <div className="min-h-screen bg-[#f6f6ee]">
+    <>
+      <SEO
+        title="Vale do Pati 3 Dias | Trekking na Chapada Diamantina"
+        description="Vale do Pati em 3 dias - A trilha mais bonita do Brasil. Trekking de 38km com paisagens surreais, cachoeiras e pernoites em casas de moradores locais. Guia experiente."
+        url="/locais/ValeDoPati3Dias"
+        image="/imgs/vale-do-pati.png"
+        keywords="Vale do Pati, trekking 3 dias, Chapada Diamantina, trilha, Lençóis, Bahia, ecoturismo"
+      />
+      <OrganizationSchema />
+      <TouristAttractionSchema
+        name="Vale do Pati - Trekking 3 Dias"
+        description="Considerado um dos trekkings mais bonitos do país, o Vale do Pati é uma travessia de 3 dias por montanhas, cachoeiras e vilas escondidas na Chapada Diamantina."
+        image="https://guiamarquinhos.com/imgs/vale-do-pati.png"
+        url="https://guiamarquinhos.com/locais/ValeDoPati3Dias"
+      />
+      <BreadcrumbListSchema
+        items={[
+          { name: "Início", url: "https://guiamarquinhos.com" },
+          { name: "Aventuras", url: "https://guiamarquinhos.com/aventuras" },
+          { name: "Vale do Pati 3 Dias", url: "https://guiamarquinhos.com/locais/ValeDoPati3Dias" },
+        ]}
+      />
+      <div className="min-h-screen bg-[#f6f6ee]">
       <div className="flex flex-col h-full">
 
         <div className="w-full bg-[#36322B] h-[128px]">
@@ -148,5 +180,6 @@ export default function ValeDoPati3Dias() {
         </div>
       </div>
     </div>
+    </>
   );
 }

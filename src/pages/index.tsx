@@ -15,10 +15,26 @@ import Bg1Descubra from "./../../public/imgs/bg-1-descubra.png";
 import Bg2Descubra from "./../../public/imgs/bg-2-descubra.png";
 import Form from "@/components/Form";
 import Footer from "@/components/Footer";
+import SEO from "@/components/SEO";
+import { LocalBusinessSchema, PersonSchema, OrganizationSchema, WebSiteSchema } from "@/components/Schema";
+import { useScrollDepth, useTimeOnPage } from "@/hooks/useGTMEvents";
 
 export default function Home() {
+  useScrollDepth();
+  useTimeOnPage();
   return (
-    <main className="min-h-screen flex flex-col items-center justify-center bg-[#f6f6ee]">
+    <>
+      <SEO
+        title="Guia Marquinhos | Chapada Diamantina - Trilhas e Aventuras"
+        description="Trilhas personalizadas na Chapada Diamantina com guia experiente há mais de 19 anos. Vale do Pati, cachoeiras, grutas e aventuras únicas. Solicite seu orçamento!"
+        url="/"
+        image="/imgs/logo.svg"
+      />
+      <OrganizationSchema />
+      <WebSiteSchema />
+      <LocalBusinessSchema />
+      <PersonSchema />
+      <main className="min-h-screen flex flex-col items-center justify-center bg-[#f6f6ee]">
       <div
         className="w-full h-screen bg-cover bg-center flex flex-col items-center justify-around"
         style={{ backgroundImage: `url(${Background.src})` }}
@@ -37,6 +53,15 @@ export default function Home() {
             href={"https://wa.me/5575998859612?text=" + encodeURIComponent("Olá! Gostaria de solicitar um orçamento para conhecer a Chapada Diamantina. Aguardo retorno!")}
             target="_blank"
             rel="noreferrer"
+            onClick={() => {
+              if (typeof window !== "undefined") {
+                const { pushGTMEvent } = require("@/components/GTM");
+                pushGTMEvent("whatsapp_click", {
+                  source: "hero",
+                  page: window.location.pathname,
+                });
+              }
+            }}
           >
             <span className="underline">Solicite seu orçamento</span>
             <Image src={Seta} alt="Orçamento" />
@@ -89,6 +114,18 @@ export default function Home() {
             <Link
               className="bg-[#F2F1E0] h-[60px] sm:h-[70px] w-full sm:w-[484px] mt-6 rounded-[100px] flex items-center justify-center gap-4 text-[20px] sm:text-[28px] text-black border-[3px] border-[#322F30] text-center hover:bg-[#FFC738]"
               href={"https://instagram.com/chapadadiamantinaguiamarcos"}
+              target="_blank"
+              rel="noreferrer"
+              onClick={() => {
+                if (typeof window !== "undefined") {
+                  const { pushGTMEvent } = require("@/components/GTM");
+                  pushGTMEvent("external_link_click", {
+                    link_type: "instagram",
+                    link_url: "https://instagram.com/chapadadiamantinaguiamarcos",
+                    page: window.location.pathname,
+                  });
+                }
+              }}
             >
               <span className="underline">Conheça meu trabalho</span>
               <Image src={Seta} alt="Orçamento" />
@@ -119,6 +156,15 @@ export default function Home() {
               href={"https://wa.me/5575998859612?text=" + encodeURIComponent("Olá! Gostaria de solicitar um orçamento para conhecer a Chapada Diamantina. Aguardo retorno!")}
               target="_blank"
               rel="noreferrer"
+              onClick={() => {
+                if (typeof window !== "undefined") {
+                  const { pushGTMEvent } = require("@/components/GTM");
+                  pushGTMEvent("whatsapp_click", {
+                    source: "destinations",
+                    page: window.location.pathname,
+                  });
+                }
+              }}
             >
               <span className="underline">Solicite seu orçamento</span>
               <Image src={Seta} alt="Orçamento" />
@@ -203,5 +249,6 @@ export default function Home() {
         <Footer />
       </div>
     </main>
+    </>
   );
 }

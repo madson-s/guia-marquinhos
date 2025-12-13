@@ -10,10 +10,42 @@ import Seta from "./../../../public/imgs/seta-orcamento.svg";
 import Image from "next/image";
 import Footer from "@/components/Footer";
 import Link from "next/link";
+import SEO from "@/components/SEO";
+import { TouristAttractionSchema, OrganizationSchema, BreadcrumbListSchema } from "@/components/Schema";
+import { useScrollDepth, useTimeOnPage, trackDestinationView } from "@/hooks/useGTMEvents";
+import { useEffect } from "react";
 
 export default function PantanalRoncador() {
+  useScrollDepth();
+  useTimeOnPage();
+
+  useEffect(() => {
+    trackDestinationView("Mini Pantanal e Cachoeira do Roncador", "cachoeira");
+  }, []);
   return (
-    <div className="min-h-screen bg-[#f6f6ee]">
+    <>
+      <SEO
+        title="Mini Pantanal e Cachoeira do Roncador | Chapada Diamantina"
+        description="Descubra o Mini Pantanal, um recanto único na Chapada Diamantina, e encante-se com a Cachoeira do Roncador. Passeio de barco de 7km e caminhada até a cachoeira com piscinas naturais."
+        url="/locais/PantanalRoncador"
+        image="/imgs/pantanal.png"
+        keywords="Mini Pantanal, Cachoeira do Roncador, Chapada Diamantina, Remanso, Lençóis, Bahia"
+      />
+      <OrganizationSchema />
+      <TouristAttractionSchema
+        name="Mini Pantanal e Cachoeira do Roncador"
+        description="Descubra o Mini Pantanal, um recanto único na Chapada Diamantina, onde lagoas, rios e vegetação exuberante criam um cenário perfeito para quem ama a natureza e a tranquilidade. Encante-se com a Cachoeira do Roncador, onde águas cristalinas caem em meio a cânions, oferecendo um cenário selvagem e perfeito para quem busca aventura."
+        image="https://guiamarquinhos.com/imgs/pantanal.png"
+        url="https://guiamarquinhos.com/locais/PantanalRoncador"
+      />
+      <BreadcrumbListSchema
+        items={[
+          { name: "Início", url: "https://guiamarquinhos.com" },
+          { name: "Aventuras", url: "https://guiamarquinhos.com/aventuras" },
+          { name: "Mini Pantanal e Cachoeira do Roncador", url: "https://guiamarquinhos.com/locais/PantanalRoncador" },
+        ]}
+      />
+      <div className="min-h-screen bg-[#f6f6ee]">
       <div className="flex flex-col h-full">
         <div className="w-full bg-[#36322B] h-[128px]">
           <Navbar />
@@ -93,5 +125,6 @@ export default function PantanalRoncador() {
         </div>
       </div>
     </div>
+    </>
   );
 }

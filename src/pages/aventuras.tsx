@@ -18,8 +18,13 @@ import Bg2Descubra from "./../../public/imgs/bg-2-descubra.png";
 import Image from "next/image";
 import Dobra from "@/components/Dobra";
 import Footer from "@/components/Footer";
+import SEO from "@/components/SEO";
+import { OrganizationSchema, BreadcrumbListSchema } from "@/components/Schema";
+import { useScrollDepth, useTimeOnPage } from "@/hooks/useGTMEvents";
 
 export default function Aventuras() {
+  useScrollDepth();
+  useTimeOnPage();
   const destinos = [
     {
       img: ValeDoPati,
@@ -108,17 +113,31 @@ export default function Aventuras() {
   ];
 
   return (
-    <div className="min-h-screen bg-[#f6f6ee]">
-      <div className="flex flex-col h-full">
-        <div className="w-full bg-[#36322B] h-[128px]">
-          <Navbar />
-        </div>
-        <div className="flex flex-col items-center justify-center text-center mt-20 mb-10 px-4">
-          <h1 className="text-4xl sm:text-6xl lg:text-[88px] font-bold text-[#322F30] leading-tight">
-            Escolha a sua aventura
-          </h1>
+    <>
+      <SEO
+        title="Aventuras na Chapada Diamantina | Guia Marquinhos"
+        description="Descubra todas as aventuras disponíveis na Chapada Diamantina: Vale do Pati, cachoeiras, grutas e muito mais. Escolha sua próxima experiência!"
+        url="/aventuras"
+        image="/imgs/logo.svg"
+      />
+      <OrganizationSchema />
+      <BreadcrumbListSchema
+        items={[
+          { name: "Início", url: "https://guiamarquinhos.com" },
+          { name: "Aventuras", url: "https://guiamarquinhos.com/aventuras" },
+        ]}
+      />
+      <div className="min-h-screen bg-[#f6f6ee]">
+        <div className="flex flex-col h-full">
+          <div className="w-full bg-[#36322B] h-[128px]">
+            <Navbar />
+          </div>
+          <div className="flex flex-col items-center justify-center text-center mt-20 mb-10 px-4">
+            <h1 className="text-4xl sm:text-6xl lg:text-[88px] font-bold text-[#322F30] leading-tight">
+              Escolha a sua aventura
+            </h1>
 
-          <div className="flex flex-col items-center justify-center max-w-[1138px] w-full mt-12 sm:mt-20 sm:gap-16 gap-8">
+            <div className="flex flex-col items-center justify-center max-w-[1138px] w-full mt-12 sm:mt-20 sm:gap-16 gap-8">
             {destinos.map((dest, index) => (
               <div
                 className="flex flex-col-reverse sm:flex-col lg:flex-row gap-6 lg:gap-8 items-center lg:items-start w-full"
@@ -159,11 +178,11 @@ export default function Aventuras() {
                 </div>
               </div>
             ))}
+            </div>
           </div>
-        </div>
 
-        <div
-          className="relative w-full flex items-center justify-center min-h-[500px] sm:min-h-[600px] lg:min-h-[700px]"
+          <div
+            className="relative w-full flex items-center justify-center min-h-[500px] sm:min-h-[600px] lg:min-h-[700px]"
           style={{
             backgroundImage: `url(${BgTrilha.src})`,
             backgroundSize: "cover",
@@ -218,12 +237,13 @@ export default function Aventuras() {
               </div>
             </div>
           </div>
-        </div>
-        <Dobra />
-        <div className="w-full bg-[#36322B] pt-10">
-          <Footer />
+          </div>
+          <Dobra />
+          <div className="w-full bg-[#36322B] pt-10">
+            <Footer />
+          </div>
         </div>
       </div>
-    </div>
+    </>
   );
 }

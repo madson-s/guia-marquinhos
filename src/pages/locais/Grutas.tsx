@@ -10,10 +10,42 @@ import Seta from "./../../../public/imgs/seta-orcamento.svg";
 import Image from "next/image";
 import Footer from "@/components/Footer";
 import Link from "next/link";
+import SEO from "@/components/SEO";
+import { TouristAttractionSchema, OrganizationSchema, BreadcrumbListSchema } from "@/components/Schema";
+import { useScrollDepth, useTimeOnPage, trackDestinationView } from "@/hooks/useGTMEvents";
+import { useEffect } from "react";
 
 export default function Grutas() {
+  useScrollDepth();
+  useTimeOnPage();
+
+  useEffect(() => {
+    trackDestinationView("Grutas", "gruta");
+  }, []);
   return (
-    <div className="min-h-screen bg-[#f6f6ee]">
+    <>
+      <SEO
+        title="Roteiro das Grutas | Chapada Diamantina - Guia Marquinhos"
+        description="Roteiro das grutas na Chapada Diamantina: Gruta da Lapa Doce, Pratinha, Gruta Azul e Morro do Pai Inácio. Passeio de 1 dia com guia experiente."
+        url="/locais/Grutas"
+        image="/imgs/gruta-da-lapa-doce-att.jpeg"
+        keywords="Grutas Chapada Diamantina, Gruta Lapa Doce, Pratinha, Gruta Azul, Morro Pai Inácio, Lençóis, Bahia"
+      />
+      <OrganizationSchema />
+      <TouristAttractionSchema
+        name="Roteiro das Grutas - Chapada Diamantina"
+        description="Explore os cartões-postais da Chapada Diamantina em um único roteiro. Visite a Gruta da Lapa Doce, as águas cristalinas da Pratinha e Gruta Azul, e finalize com a vista deslumbrante do Morro do Pai Inácio."
+        image="https://guiamarquinhos.com/imgs/gruta-da-lapa-doce-att.jpeg"
+        url="https://guiamarquinhos.com/locais/Grutas"
+      />
+      <BreadcrumbListSchema
+        items={[
+          { name: "Início", url: "https://guiamarquinhos.com" },
+          { name: "Aventuras", url: "https://guiamarquinhos.com/aventuras" },
+          { name: "Grutas", url: "https://guiamarquinhos.com/locais/Grutas" },
+        ]}
+      />
+      <div className="min-h-screen bg-[#f6f6ee]">
       <div className="flex flex-col h-full">
         <div className="w-full bg-[#36322B] h-[128px]">
           <Navbar />
@@ -103,5 +135,6 @@ export default function Grutas() {
         </div>
       </div>
     </div>
+    </>
   );
 }

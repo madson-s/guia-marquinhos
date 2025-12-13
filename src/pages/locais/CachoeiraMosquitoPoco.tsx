@@ -10,10 +10,42 @@ import Seta from "./../../../public/imgs/seta-orcamento.svg";
 import Image from "next/image";
 import Footer from "@/components/Footer";
 import Link from "next/link";
+import SEO from "@/components/SEO";
+import { TouristAttractionSchema, OrganizationSchema, BreadcrumbListSchema } from "@/components/Schema";
+import { useScrollDepth, useTimeOnPage, trackDestinationView } from "@/hooks/useGTMEvents";
+import { useEffect } from "react";
 
 export default function CachoeiraMosquitoPoco() {
+  useScrollDepth();
+  useTimeOnPage();
+
+  useEffect(() => {
+    trackDestinationView("Cachoeira do Mosquito e Poço do Diabo", "cachoeira");
+  }, []);
   return (
-    <div className="min-h-screen bg-[#f6f6ee]">
+    <>
+      <SEO
+        title="Cachoeira do Mosquito e Poço do Diabo | Chapada Diamantina"
+        description="Viva a experiência da Cachoeira do Mosquito com 40m de queda e mergulhe no Poço do Diabo com suas águas escuras e fortes corredeiras. Passeio leve de 3km com guia experiente."
+        url="/locais/CachoeiraMosquitoPoco"
+        image="/imgs/mosquito.png"
+        keywords="Cachoeira do Mosquito, Poço do Diabo, Chapada Diamantina, Lençóis, Bahia, ecoturismo"
+      />
+      <OrganizationSchema />
+      <TouristAttractionSchema
+        name="Cachoeira do Mosquito e Poço do Diabo"
+        description="Viva a experiência da Cachoeira do Mosquito, uma queda d'água imponente cercada por paredões rochosos e vegetação exuberante, perfeita para um banho revigorante. Mergulhe na aventura do Poço do Diabo, com suas águas escuras e fortes corredeiras, rodeado por formações rochosas impressionantes."
+        image="https://guiamarquinhos.com/imgs/mosquito.png"
+        url="https://guiamarquinhos.com/locais/CachoeiraMosquitoPoco"
+      />
+      <BreadcrumbListSchema
+        items={[
+          { name: "Início", url: "https://guiamarquinhos.com" },
+          { name: "Aventuras", url: "https://guiamarquinhos.com/aventuras" },
+          { name: "Cachoeira do Mosquito e Poço do Diabo", url: "https://guiamarquinhos.com/locais/CachoeiraMosquitoPoco" },
+        ]}
+      />
+      <div className="min-h-screen bg-[#f6f6ee]">
       <div className="flex flex-col h-full">
         <div className="w-full bg-[#36322B] h-[128px]">
           <Navbar />
@@ -93,5 +125,6 @@ export default function CachoeiraMosquitoPoco() {
         </div>
       </div>
     </div>
+    </>
   );
 }

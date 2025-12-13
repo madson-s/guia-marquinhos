@@ -5,6 +5,7 @@ import Gmail from "./../../public/imgs/contato-gmail.png";
 import Seta from "./../../public/imgs/seta-orcamento.svg";
 import Image from "next/image";
 import { useState } from "react";
+import { pushGTMEvent } from "./GTM";
 
 export default function Form() {
   const iconesContato = [
@@ -37,8 +38,22 @@ export default function Form() {
 
     mensagem += `\n\nAguardo retorno!`;
 
+    // Evento GTM - Form Submit
+    pushGTMEvent("form_submit", {
+      form_location: "home",
+      has_email: !!email,
+      has_phone: !!celular,
+      page: window.location.pathname,
+    });
+
     // Codifica a mensagem para URL
     const mensagemEncoded = encodeURIComponent(mensagem);
+    
+    // Evento GTM - WhatsApp Click (via form)
+    pushGTMEvent("whatsapp_click", {
+      source: "form",
+      page: window.location.pathname,
+    });
     
     // Redireciona para o WhatsApp
     window.open(`https://wa.me/5575998859612?text=${mensagemEncoded}`, '_blank');

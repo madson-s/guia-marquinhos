@@ -9,10 +9,42 @@ import Seta from "./../../../public/imgs/seta-orcamento.svg";
 import Image from "next/image";
 import Footer from "@/components/Footer";
 import Link from "next/link";
+import SEO from "@/components/SEO";
+import { TouristAttractionSchema, OrganizationSchema, BreadcrumbListSchema } from "@/components/Schema";
+import { useScrollDepth, useTimeOnPage, trackDestinationView } from "@/hooks/useGTMEvents";
+import { useEffect } from "react";
 
 export default function CachoeiraSossegoRibeirao() {
+  useScrollDepth();
+  useTimeOnPage();
+
+  useEffect(() => {
+    trackDestinationView("Cachoeira do Sossego e Ribeirão do Meio", "cachoeira");
+  }, []);
   return (
-    <div className="min-h-screen bg-[#f6f6ee]">
+    <>
+      <SEO
+        title="Cachoeira do Sossego e Ribeirão do Meio | Chapada Diamantina"
+        description="Relaxe na tranquila Cachoeira do Sossego e explore o Ribeirão do Meio, conhecido como Tobogã Natural da Chapada. Trilha difícil de 14km a pé, sem necessidade de transporte."
+        url="/locais/CachoeiraSossegoRibeirao"
+        image="/imgs/sossego.png"
+        keywords="Cachoeira do Sossego, Ribeirão do Meio, Tobogã Natural, Chapada Diamantina, Lençóis, Bahia"
+      />
+      <OrganizationSchema />
+      <TouristAttractionSchema
+        name="Cachoeira do Sossego e Ribeirão do Meio"
+        description="Relaxe na tranquila Cachoeira do Sossego, um refúgio escondido na Chapada Diamantina, perfeito para momentos de paz e banho em águas frescas rodeadas pela natureza. Explore o Ribeirão do Meio, um paraíso natural com águas cristalinas, poços tranquilos e uma paisagem preservada que convida ao banho e à contemplação."
+        image="https://guiamarquinhos.com/imgs/sossego.png"
+        url="https://guiamarquinhos.com/locais/CachoeiraSossegoRibeirao"
+      />
+      <BreadcrumbListSchema
+        items={[
+          { name: "Início", url: "https://guiamarquinhos.com" },
+          { name: "Aventuras", url: "https://guiamarquinhos.com/aventuras" },
+          { name: "Cachoeira do Sossego e Ribeirão do Meio", url: "https://guiamarquinhos.com/locais/CachoeiraSossegoRibeirao" },
+        ]}
+      />
+      <div className="min-h-screen bg-[#f6f6ee]">
       <div className="flex flex-col h-full">
         <div className="w-full bg-[#36322B] h-[128px]">
           <Navbar />
@@ -89,5 +121,6 @@ export default function CachoeiraSossegoRibeirao() {
         </div>
       </div>
     </div>
+    </>
   );
 }
