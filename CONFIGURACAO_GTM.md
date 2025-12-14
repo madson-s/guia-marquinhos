@@ -253,3 +253,4 @@ Após configurar, você pode criar funnels no GA4:
 1. Page View (página inicial)
 2. Scroll Depth 75% (chegou ao formulário)
 3. Form Submit (conversão)
+

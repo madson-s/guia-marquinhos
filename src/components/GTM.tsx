@@ -49,9 +49,9 @@ export const pushGTMEvent = (eventName: string, eventData?: Record<string, unkno
     const windowWithDataLayer = window as WindowWithDataLayer;
     if (windowWithDataLayer.dataLayer) {
       windowWithDataLayer.dataLayer.push({
-        event: eventName,
-        ...eventData,
-      });
+      event: eventName,
+      ...eventData,
+    });
     }
   }
 };

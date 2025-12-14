@@ -113,8 +113,8 @@ export default function Home() {
               gtmEvent={{
                 eventName: "external_link_click",
                 eventData: {
-                  link_type: "instagram",
-                  link_url: "https://instagram.com/chapadadiamantinaguiamarcos",
+                    link_type: "instagram",
+                    link_url: "https://instagram.com/chapadadiamantinaguiamarcos",
                 },
               }}
             >
