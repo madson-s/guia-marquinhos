@@ -71,7 +71,7 @@ export default function Button({
       {showArrow && (
         <div className="relative">
           <Image src={Seta} alt="Orçamento" className="z-10 relative" />
-          <span className="text-black w-6 h-6 bg-[#FFC738] rounded-full absolute right-3 top-1/2 z-0 -translate-y-1/2 translate-x-1/2 transition-all duration-300 ease-in-out group-hover:w-202 group-hover:h-202"></span>
+          <span className="text-black w-6 h-6 bg-[#FFC738] rounded-full absolute right-3 top-1/2 z-0 -translate-y-1/2 translate-x-1/2 transition-all duration-300 ease-in-out group-hover:w-220 group-hover:h-220"></span>
         </div>
       )}
     </>

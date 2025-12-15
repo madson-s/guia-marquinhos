@@ -1,15 +1,25 @@
 @import "tailwindcss";
 
-/* Bumstad Display Font */
+/* JustSans Font - Fonte padrão para textos */
 @font-face {
-  font-family: 'Bumstad';
-  src: url('/fonts/BomstadDisplay-Regular.woff2') format('woff2'),
-       url('/fonts/BomstadDisplay-Regular.woff') format('woff');
+  font-family: 'JustSans';
+  src: url('/fonts/JustSans-Regular.woff2') format('woff2'),
+       url('/fonts/JustSans-Regular.woff') format('woff');
   font-weight: 400;
   font-style: normal;
   font-display: swap;
 }
 
+@font-face {
+  font-family: 'JustSans';
+  src: url('/fonts/JustSans-Extrabold.woff2') format('woff2'),
+       url('/fonts/JustSans-Extrabold.woff') format('woff');
+  font-weight: 800;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Bumstad Display Font - Apenas para títulos em bold */
 @font-face {
   font-family: 'Bumstad';
   src: url('/fonts/BomstadDisplay-Bold.woff2') format('woff2'),
@@ -29,6 +39,7 @@
   --color-foreground: var(--foreground);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
+  --font-justsans: 'JustSans', Arial, Helvetica, sans-serif;
   --font-bumstad: 'Bumstad', Arial, Helvetica, sans-serif;
 }
 
@@ -42,7 +53,27 @@
 body {
   background: var(--background);
   color: var(--foreground);
+  font-family: 'JustSans', Arial, Helvetica, sans-serif;
+}
+
+/* Títulos em bold usam Bumstad */
+h1.font-bold,
+h2.font-bold,
+h3.font-bold,
+h4.font-bold,
+h5.font-bold,
+h6.font-bold {
   font-family: 'Bumstad', Arial, Helvetica, sans-serif;
+}
+
+/* Elementos não-título com font-bold usam JustSans Extrabold */
+span.font-bold,
+p.font-bold,
+div.font-bold,
+button.font-bold,
+a.font-bold,
+label.font-bold {
+  font-weight: 800;
 }
 
 @keyframes marquee {
