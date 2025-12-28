@@ -12,7 +12,8 @@ export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
-    <nav className="w-full flex items-center justify-between px-6 md:px-20 h-[128px] absolute top-0 left-0 z-50 bg-transparent">
+    <nav className="w-full flex items-center justify-center h-[128px] absolute top-0 left-0 z-50 bg-transparent">
+      <div className="max-w-[1138px] w-full flex items-center justify-between px-6">
       <Link href="/">
         <Image src={logo} alt="Logo" className="w-auto h-10" />
       </Link>
@@ -95,6 +96,7 @@ export default function Navbar() {
           </div>
         </div>
       )}
+      </div>
     </nav>
   );
 }

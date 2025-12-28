@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import Image from "next/image";
-import BackgroundExp from "./../../public/imgs/bg-exp.svg";
 import Aspas from "./../../public/imgs/aspas.png";
 import Tripadvisor from "./../../public/imgs/tripadvisor.png";
 import { pushGTMEvent } from "./GTM";
@@ -115,14 +114,22 @@ const Carousel = () => {
 
   return (
     <div
-      className="w-full max-h-[490px] !h-full bg-cover bg-center flex flex-col items-center justify-center px-4 py-10 sm:py-14"
-      style={{ backgroundImage: `url(${BackgroundExp.src})` }} id="avaliacoes"
+      className="w-full max-h-[490px] !h-full relative flex flex-col items-center justify-center px-4 py-10 sm:py-14"
+      id="avaliacoes"
     >
-      <h2 className="text-white text-[32px] sm:text-[42px] lg:text-[56px] font-bold mb-6 sm:mb-8 text-center">
+      <Image
+        src="/images/testimonials_background.webp"
+        alt="Background"
+        fill
+        className="object-cover"
+        loading="lazy"
+        priority={false}
+      />
+      <h2 className="relative text-white text-[32px] sm:text-[42px] lg:text-[56px] font-bold mb-6 sm:mb-8 text-center z-10">
         Experiências reais
       </h2>
 
-      <div className="w-full max-w-6xl flex items-center justify-center relative">
+      <div className="relative w-full max-w-6xl flex items-center justify-center z-10">
         {/* Botão Prev */}
         <button
           onClick={prev}
@@ -187,7 +194,7 @@ const Carousel = () => {
       </div>
 
       {/* Indicadores */}
-      <div className="flex mt-6 space-x-2">
+      <div className="relative flex mt-6 space-x-2 z-10">
         {Array.from({
           length: Math.ceil(testimonials.length / cardsPerPage),
         }).map((_, index) => (

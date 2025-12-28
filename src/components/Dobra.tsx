@@ -3,7 +3,7 @@ import Image from "next/image";
 
 export default function Dobra() {
   return (
-    <div className="h-[63px] w-full bg-[#FFC737] flex items-center overflow-hidden">
+    <div className="h-[64px] w-full bg-[#FFC737] flex items-center overflow-hidden">
       <div className="flex animate-marquee whitespace-nowrap">
         <Content />
         <Content />
