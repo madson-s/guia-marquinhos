@@ -32,8 +32,7 @@ export default function Home() {
             alt="Background"
             fill
             className="object-cover"
-            loading="lazy"
-            priority={false}
+            priority={true}
           />
           <Navbar />
           <div className="relative flex flex-col items-center justify-center mt-[120px] text-white text-center max-w-[1206px]">
