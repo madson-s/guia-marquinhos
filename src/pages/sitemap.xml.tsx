@@ -12,14 +12,14 @@ export const getServerSideProps: GetServerSideProps = async ({ res }) => {
   ];
 
   const destinationPages = [
-    { url: "/locais/ValeDoPati3Dias", priority: "0.9", changefreq: "monthly" },
-    { url: "/locais/ValeDoPati5Dias", priority: "0.9", changefreq: "monthly" },
-    { url: "/locais/Grutas", priority: "0.8", changefreq: "monthly" },
-    { url: "/locais/PocoAzulEncantado", priority: "0.8", changefreq: "monthly" },
-    { url: "/locais/CachoeiraFumacaRiachinho", priority: "0.8", changefreq: "monthly" },
-    { url: "/locais/CachoeiraMosquitoPoco", priority: "0.8", changefreq: "monthly" },
-    { url: "/locais/CachoeiraSossegoRibeirao", priority: "0.8", changefreq: "monthly" },
-    { url: "/locais/PantanalRoncador", priority: "0.8", changefreq: "monthly" },
+    { url: "/aventuras/vale-do-pati-3-dias", priority: "0.9", changefreq: "monthly" },
+    { url: "/aventuras/vale-do-pati-5-dias", priority: "0.9", changefreq: "monthly" },
+    { url: "/aventuras/grutas", priority: "0.8", changefreq: "monthly" },
+    { url: "/aventuras/poco-azul-encantado", priority: "0.8", changefreq: "monthly" },
+    { url: "/aventuras/cachoeira-fumaca-riachinho", priority: "0.8", changefreq: "monthly" },
+    { url: "/aventuras/cachoeira-mosquito-poco", priority: "0.8", changefreq: "monthly" },
+    { url: "/aventuras/cachoeira-sossego-ribeirao", priority: "0.8", changefreq: "monthly" },
+    { url: "/aventuras/pantanal-roncador", priority: "0.8", changefreq: "monthly" },
   ];
 
   const allPages = [...staticPages, ...destinationPages];

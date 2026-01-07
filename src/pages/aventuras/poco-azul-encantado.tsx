@@ -2,46 +2,46 @@ import Navbar from "@/components/Navbar";
 import Car from "./../../../public/imgs/car.png";
 import Montain from "./../../../public/imgs/montain.png";
 import Escalando from "./../../../public/imgs/escalando.png";
-import Fumaca from "./../../../public/imgs/cachoeira-da-fumaca-att.jpeg";
-import Fumaca2 from "./../../../public/imgs/cachoeira-fumaca2.png";
-import Riachinho from "./../../../public/imgs/riachinho2.png";
-import Riachinho2 from "./../../../public/imgs/riachinho3.png";
+import PocoAzul1 from "./../../../public/imgs/poco-azul.png";
+import PocoAzul2 from "./../../../public/imgs/poco-azul2.png";
+import PocoAzul3 from "./../../../public/imgs/poco-azul3.png";
+import PocoAzul4 from "./../../../public/imgs/poco-azul4.png";
 import Image from "next/image";
 import Footer from "@/components/Footer";
+import Button from "@/components/Button";
 import SEO from "@/components/SEO";
 import { TouristAttractionSchema, OrganizationSchema, BreadcrumbListSchema } from "@/components/Schema";
 import { useScrollDepth, useTimeOnPage, trackDestinationView } from "@/hooks/useGTMEvents";
 import { useEffect } from "react";
-import Button from "@/components/Button";
 
-export default function CachoeiraFumacaRiachinho() {
+export default function PocoAzulEncantado() {
   useScrollDepth();
   useTimeOnPage();
 
   useEffect(() => {
-    trackDestinationView("Cachoeira da Fumaça e Riachinho", "cachoeira");
+    trackDestinationView("Poço Encantado e Poço Azul", "gruta");
   }, []);
   return (
     <>
       <SEO
-        title="Cachoeira da Fumaça e Riachinho | Chapada Diamantina"
-        description="Descubra a imponente Cachoeira da Fumaça com 380m de queda livre, a maior do Brasil, e relaxe na Cachoeira do Riachinho. Trilha moderada de 12km com guia experiente."
-        url="/locais/CachoeiraFumacaRiachinho"
-        image="/imgs/cachoeira-da-fumaca-att.jpeg"
-        keywords="Cachoeira da Fumaça, Cachoeira Riachinho, Chapada Diamantina, maior cachoeira Brasil, Lençóis, Bahia"
+        title="Poço Encantado e Poço Azul | Chapada Diamantina"
+        description="Poço Encantado e Poço Azul revelam águas cristalinas em tons de azul surreal, grutas impressionantes e um espetáculo de luz único na Chapada Diamantina. Melhor época: abril a setembro."
+        url="/aventuras/poco-azul-encantado"
+        image="/imgs/poco-azul.png"
+        keywords="Poço Encantado, Poço Azul, Chapada Diamantina, grutas, Lençóis, Bahia, flutuação"
       />
       <OrganizationSchema />
       <TouristAttractionSchema
-        name="Cachoeira da Fumaça e Cachoeira do Riachinho"
-        description="Descubra a imponente Cachoeira da Fumaça, com quase 400 metros de altura e um visual de tirar o fôlego, cercada pela natureza exuberante. Relaxe na Cachoeira do Riachinho, com quedas d'água suaves e poços perfeitos para um banho refrescante."
-        image="https://guiamarquinhos.com/imgs/cachoeira-da-fumaca-att.jpeg"
-        url="https://guiamarquinhos.com/locais/CachoeiraFumacaRiachinho"
+        name="Poço Encantado e Poço Azul"
+        description="Poço Encantado e Poço Azul revelam águas cristalinas em tons de azul surreal, grutas impressionantes e um espetáculo de luz único na Chapada Diamantina. O Poço Encantado é uma caverna de contemplação e fotos com 61 metros de profundidade, enquanto o Poço Azul oferece contemplação e flutuação em águas de 4 a 21 metros de profundidade."
+        image="https://guiamarquinhos.com/imgs/poco-azul.png"
+        url="https://guiamarquinhos.com/aventuras/poco-azul-encantado"
       />
       <BreadcrumbListSchema
         items={[
           { name: "Início", url: "https://guiamarquinhos.com" },
           { name: "Aventuras", url: "https://guiamarquinhos.com/aventuras" },
-          { name: "Cachoeira da Fumaça e Riachinho", url: "https://guiamarquinhos.com/locais/CachoeiraFumacaRiachinho" },
+          { name: "Poço Encantado e Poço Azul", url: "https://guiamarquinhos.com/aventuras/poco-azul-encantado" },
         ]}
       />
       <div className="min-h-screen bg-[#f6f6ee]">
@@ -51,31 +51,40 @@ export default function CachoeiraFumacaRiachinho() {
         </div>
 
         <div className="flex flex-col items-center justify-center text-center mt-12 sm:mt-20 px-4 gap-6">
-          <h1 className="text-4xl sm:text-6xl lg:text-[68px] font-bold text-[#322F30] leading-tight">
-            Cachoeira da fumaça e cachoeira do riachinho.
+          <h1 className="text-4xl sm:text-6xl lg:text-[88px] font-bold text-[#322F30] leading-tight">
+            Poço encantado e Poço azul
           </h1>
 
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-6 mt-4">
             <div className="w-[173px] h-[61px] rounded-[100px] bg-[#FFC737] text-lg sm:text-[22px] text-[#322F30] flex items-center justify-center gap-3">
-              <Image src={Montain} alt="Montain" /> Moderado
+              <Image src={Montain} alt="Montain" /> Fácil
             </div>
             <div className="w-[173px] h-[61px] rounded-[100px] bg-[#FFC737] text-lg sm:text-[22px] text-[#322F30] flex items-center justify-center gap-3">
-              <Image src={Car} alt="car" /> 140 km
+              <Image src={Car} alt="car" /> 280 km
             </div>
             <div className="w-[173px] h-[61px] rounded-[100px] bg-[#FFC737] text-lg sm:text-[22px] text-[#322F30] flex items-center justify-center gap-3">
-              <Image src={Escalando} alt="Escalando" /> 12.0 km
+              <Image src={Escalando} alt="Escalando" /> 1.0 km
             </div>
           </div>
 
           <div className="max-w-[1143px] w-full flex flex-col items-center justify-center gap-6 my-10">
             <div className="flex flex-col-reverse lg:flex-row sm:flex-row items-center lg:items-start justify-between w-full gap-8">
               <p className="text-[#4F4A4C] text-base sm:text-lg lg:text-[26px] leading-relaxed max-w-[600px] text-center lg:text-left">
-                Saída da cidade de Lençóis sentido ao Vale do Capão, no início da caminhada teremos uma subida por 2 km, são quase 1 hora de subida depois mais 4 km no plano até chegar na Cachoeira da Fumaça com seus 380m de queda livre, a maior Cachoeiras do Brasil em queda livre. Durante a caminhada, teremos mirantes privilegiadas do Vale do Capão e do morrão. Após o lanche na cachoeira da fumaça faremos o retorno pelo mesmo caminho até o carro de onde iremos até início da trilha que da acesso a Cachoeira do Riachinho, a caminhada é bem leve e o banho é revigorante. Após a aventura, voltaremos para Lençóis.
+                Saindo de lençóis partindo primeiro para o atrativo do Poço
+                Encantado que fica a 150 km de lençóis, a visitação nesse poço é
+                o ano inteiro mais a melhor época é de abril a setembro, período
+                que está entrando o fecho de luz e deixando ainda mais lindo o
+                atrativo com seus 61 metros de profundidade. O poço encantado é
+                uma caverna de contemplação e fotos. Após a visita ao Poço
+                Encantado, fazemos um percurso de 24 km de carro até o poço
+                azul, onde fazemos contemplação e flutuação no poço. O poço azul
+                também tem o mesmo período de feito de luz iluminado seu fundo
+                de 4 a 21 metros de profundidade.
               </p>
               <div className="w-full lg:w-[579px] aspect-[4/3] rounded-[42px] overflow-hidden">
                 <Image
-                  src={Fumaca}
-                  alt="Fumaca"
+                  src={PocoAzul1}
+                  alt="PocoAzul"
                   className="w-full h-full object-cover rounded-[42px]"
                 />
               </div>
@@ -84,22 +93,22 @@ export default function CachoeiraFumacaRiachinho() {
             <div className="flex flex-col sm:flex-row flex-wrap gap-6 justify-center mt-10 w-full">
               <div className="w-full sm:flex-1 min-w-[250px] aspect-[16/10] rounded-[42px] overflow-hidden">
                 <Image
-                  src={Fumaca2}
-                  alt="Fumaca2"
+                  src={PocoAzul2}
+                  alt="PocoAzul"
                   className="w-full h-full object-cover"
                 />
               </div>
               <div className="w-full sm:flex-1 min-w-[250px] aspect-[16/10] rounded-[42px] overflow-hidden">
                 <Image
-                  src={Riachinho}
-                  alt="Riachinho"
+                  src={PocoAzul3}
+                  alt="PocoAzul"
                   className="w-full h-full object-cover"
                 />
               </div>
               <div className="w-full sm:flex-1 min-w-[250px] aspect-[16/10] rounded-[42px] overflow-hidden">
                 <Image
-                  src={Riachinho2}
-                  alt="Riachinho2"
+                  src={PocoAzul4}
+                  alt="PocoAzul"
                   className="w-full h-full object-cover"
                 />
               </div>

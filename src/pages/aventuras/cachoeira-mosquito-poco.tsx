@@ -1,10 +1,11 @@
 import Navbar from "@/components/Navbar";
+import Car from "./../../../public/imgs/car.png";
 import Montain from "./../../../public/imgs/montain.png";
 import Escalando from "./../../../public/imgs/escalando.png";
-import Sossego from "./../../../public/imgs/sossego.png";
-import Sossego2 from "./../../../public/imgs/sossego2.png";
-import Ribeirao from "./../../../public/imgs/ribeirao-do-meio.png";
-import Ribeirao2 from "./../../../public/imgs/ribeirao-do-meio2.png";
+import Mosquito from "./../../../public/imgs/mosquito.png";
+import Mosquito2 from "./../../../public/imgs/mosquito2.png";
+import PocoDiabo from "./../../../public/imgs/poco-do-diabo2.png";
+import PocoDiabo2 from "./../../../public/imgs/poco-do-diabo3.png";
 import Image from "next/image";
 import Footer from "@/components/Footer";
 import Button from "@/components/Button";
@@ -13,34 +14,34 @@ import { TouristAttractionSchema, OrganizationSchema, BreadcrumbListSchema } fro
 import { useScrollDepth, useTimeOnPage, trackDestinationView } from "@/hooks/useGTMEvents";
 import { useEffect } from "react";
 
-export default function CachoeiraSossegoRibeirao() {
+export default function CachoeiraMosquitoPoco() {
   useScrollDepth();
   useTimeOnPage();
 
   useEffect(() => {
-    trackDestinationView("Cachoeira do Sossego e Ribeirão do Meio", "cachoeira");
+    trackDestinationView("Cachoeira do Mosquito e Poço do Diabo", "cachoeira");
   }, []);
   return (
     <>
       <SEO
-        title="Cachoeira do Sossego e Ribeirão do Meio | Chapada Diamantina"
-        description="Relaxe na tranquila Cachoeira do Sossego e explore o Ribeirão do Meio, conhecido como Tobogã Natural da Chapada. Trilha difícil de 14km a pé, sem necessidade de transporte."
-        url="/locais/CachoeiraSossegoRibeirao"
-        image="/imgs/sossego.png"
-        keywords="Cachoeira do Sossego, Ribeirão do Meio, Tobogã Natural, Chapada Diamantina, Lençóis, Bahia"
+        title="Cachoeira do Mosquito e Poço do Diabo | Chapada Diamantina"
+        description="Viva a experiência da Cachoeira do Mosquito com 40m de queda e mergulhe no Poço do Diabo com suas águas escuras e fortes corredeiras. Passeio leve de 3km com guia experiente."
+        url="/aventuras/cachoeira-mosquito-poco"
+        image="/imgs/mosquito.png"
+        keywords="Cachoeira do Mosquito, Poço do Diabo, Chapada Diamantina, Lençóis, Bahia, ecoturismo"
       />
       <OrganizationSchema />
       <TouristAttractionSchema
-        name="Cachoeira do Sossego e Ribeirão do Meio"
-        description="Relaxe na tranquila Cachoeira do Sossego, um refúgio escondido na Chapada Diamantina, perfeito para momentos de paz e banho em águas frescas rodeadas pela natureza. Explore o Ribeirão do Meio, um paraíso natural com águas cristalinas, poços tranquilos e uma paisagem preservada que convida ao banho e à contemplação."
-        image="https://guiamarquinhos.com/imgs/sossego.png"
-        url="https://guiamarquinhos.com/locais/CachoeiraSossegoRibeirao"
+        name="Cachoeira do Mosquito e Poço do Diabo"
+        description="Viva a experiência da Cachoeira do Mosquito, uma queda d'água imponente cercada por paredões rochosos e vegetação exuberante, perfeita para um banho revigorante. Mergulhe na aventura do Poço do Diabo, com suas águas escuras e fortes corredeiras, rodeado por formações rochosas impressionantes."
+        image="https://guiamarquinhos.com/imgs/mosquito.png"
+        url="https://guiamarquinhos.com/aventuras/cachoeira-mosquito-poco"
       />
       <BreadcrumbListSchema
         items={[
           { name: "Início", url: "https://guiamarquinhos.com" },
           { name: "Aventuras", url: "https://guiamarquinhos.com/aventuras" },
-          { name: "Cachoeira do Sossego e Ribeirão do Meio", url: "https://guiamarquinhos.com/locais/CachoeiraSossegoRibeirao" },
+          { name: "Cachoeira do Mosquito e Poço do Diabo", url: "https://guiamarquinhos.com/aventuras/cachoeira-mosquito-poco" },
         ]}
       />
       <div className="min-h-screen bg-[#f6f6ee]">
@@ -51,27 +52,30 @@ export default function CachoeiraSossegoRibeirao() {
 
         <div className="flex flex-col items-center justify-center text-center mt-12 sm:mt-20 px-4 gap-6">
           <h1 className="text-4xl sm:text-6xl lg:text-[68px] font-bold text-[#322F30] leading-tight">
-            Cachoeira do sossego e Ribeirão do meio 
+            Cachoeira do mosquito e poço do diabo 
           </h1>
 
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-6 mt-4">
             <div className="w-[173px] h-[61px] rounded-[100px] bg-[#FFC737] text-lg sm:text-[22px] text-[#322F30] flex items-center justify-center gap-3">
-              <Image src={Montain} alt="Montain" /> Difícil
+              <Image src={Montain} alt="Montain" /> Leve
             </div>
             <div className="w-[173px] h-[61px] rounded-[100px] bg-[#FFC737] text-lg sm:text-[22px] text-[#322F30] flex items-center justify-center gap-3">
-              <Image src={Escalando} alt="Escalando" /> 14.0 km
+              <Image src={Car} alt="car" /> 110 km
+            </div>
+            <div className="w-[173px] h-[61px] rounded-[100px] bg-[#FFC737] text-lg sm:text-[22px] text-[#322F30] flex items-center justify-center gap-3">
+              <Image src={Escalando} alt="Escalando" /> 3.0 km
             </div>
           </div>
 
           <div className="max-w-[1143px] w-full flex flex-col items-center justify-center gap-6 my-10">
             <div className="flex flex-col-reverse lg:flex-row sm:flex-row items-center lg:items-start justify-between w-full gap-8">
-              <p className="text-[#4F4A4C] text-base sm:text-lg lg:text-[32px] leading-relaxed max-w-[600px] text-center lg:text-left">
-                A Cachoeira do Sossego é uma cachoeira localizada em Lençóis de nível difícil com obstáculos quando caminhamos na parte de leito de rio, na volta do sossego passamos no Ribeirão do Meio conhecido também, como Tobogã Natural da Chapada. O passeio é feito a pé, não precisa de transporte.
+              <p className="text-[#4F4A4C] text-base sm:text-lg lg:text-[26px] leading-relaxed max-w-[600px] text-center lg:text-left">
+                Partindo de Lençóis em direção a Cachoeira do Mosquito, uma cachoeira excelente e diferente para banho, pois ela não tem piscina pra nadar e tomamos um ducha direto nela com 40 metros de queda. Após o banho e almoçamos na fazenda iremos até o Rio Mucugezinho e chegaremos ao Poço e cachoeira do Diabo, depois de curtir os banhos voltaremos para Lençóis.
               </p>
               <div className="w-full lg:w-[579px] aspect-[4/3] rounded-[42px] overflow-hidden">
                 <Image
-                  src={Sossego}
-                  alt="Sossego"
+                  src={Mosquito}
+                  alt="Mosquito"
                   className="w-full h-full object-cover rounded-[42px]"
                 />
               </div>
@@ -80,22 +84,22 @@ export default function CachoeiraSossegoRibeirao() {
             <div className="flex flex-col sm:flex-row flex-wrap gap-6 justify-center mt-10 w-full">
               <div className="w-full sm:flex-1 min-w-[250px] aspect-[16/10] rounded-[42px] overflow-hidden">
                 <Image
-                  src={Sossego2}
-                  alt="Sossego2"
+                  src={Mosquito2}
+                  alt="Mosquito2"
                   className="w-full h-full object-cover"
                 />
               </div>
               <div className="w-full sm:flex-1 min-w-[250px] aspect-[16/10] rounded-[42px] overflow-hidden">
                 <Image
-                  src={Ribeirao}
-                  alt="Ribeirao"
+                  src={PocoDiabo}
+                  alt="PocoDiabo"
                   className="w-full h-full object-cover"
                 />
               </div>
               <div className="w-full sm:flex-1 min-w-[250px] aspect-[16/10] rounded-[42px] overflow-hidden">
                 <Image
-                  src={Ribeirao2}
-                  alt="Ribeirao2"
+                  src={PocoDiabo2}
+                  alt="PocoDiabo2"
                   className="w-full h-full object-cover"
                 />
               </div>

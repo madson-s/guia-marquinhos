@@ -9,6 +9,7 @@ import SEO from "@/components/SEO";
 import { LocalBusinessSchema, PersonSchema, OrganizationSchema, WebSiteSchema } from "@/components/Schema";
 import { useScrollDepth, useTimeOnPage } from "@/hooks/useGTMEvents";
 import Button from "@/components/Button";
+import { WHATSAPP_LINK } from "@/constants";
 
 export default function Home() {
   useScrollDepth();
@@ -44,7 +45,7 @@ export default function Home() {
               quem nasceu e vive a <strong>Chapada Diamantina</strong>
             </p>
             <Button
-              href={"https://wa.me/5575998859612?text=" + encodeURIComponent("Olá! Gostaria de solicitar um orçamento para conhecer a Chapada Diamantina. Aguardo retorno!")}
+              href={WHATSAPP_LINK}
               variant="primary"
               size="lg"
               className="mt-10 sm:w-[484px] w-[350px]"
@@ -160,7 +161,7 @@ export default function Home() {
                 roteiro que combina com você.
               </p>
               <Button
-                href={"https://wa.me/5575998859612?text=" + encodeURIComponent("Olá! Gostaria de solicitar um orçamento para conhecer a Chapada Diamantina. Aguardo retorno!")}
+                href={WHATSAPP_LINK}
                 variant="secondary"
                 size="lg"
                 className="mt-2"

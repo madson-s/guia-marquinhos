@@ -14,7 +14,7 @@ export default function PontosInicias() {
             Considerado um dos trekkings mais bonitos do país, o Vale do Pati é uma travessia de vários dias por montanhas, cachoeiras e vilas escondidas. Roteiro completo com pernoites em casas de moradores locais e paisagens de tirar o fôlego.
           </p>
           <Button
-            href="/locais/ValeDoPati3Dias"
+            href="/aventuras/vale-do-pati-3-dias"
             variant="secondary"
             size="sm"
             className="mt-2 w-[200px] sm:w-[230px] h-[60px] sm:h-[70px] text-[15px] sm:text-lg lg:text-[20px]"
@@ -42,7 +42,7 @@ export default function PontosInicias() {
             Considerado um dos trekkings mais bonitos do país, o Vale do Pati é uma travessia de vários dias por montanhas, cachoeiras e vilas escondidas. Roteiro completo com pernoites em casas de moradores locais e paisagens de tirar o fôlego.
           </p>
           <Button
-            href="/locais/ValeDoPati5Dias"
+            href="/aventuras/vale-do-pati-5-dias"
             variant="secondary"
             size="sm"
             className="mt-2 w-[200px] sm:w-[230px] h-[60px] sm:h-[70px] text-[15px] sm:text-lg lg:text-[20px]"
@@ -70,7 +70,7 @@ export default function PontosInicias() {
             Explore os cartões-postais da Chapada Diamantina em um único roteiro. Visite a Gruta da Lapa Doce, as águas cristalinas da Pratinha e Gruta Azul, e finalize com a vista deslumbrante do Morro do Pai Inácio.
           </p>
           <Button
-            href="/locais/Grutas"
+            href="/aventuras/grutas"
             variant="secondary"
             size="sm"
             className="mt-2 w-[200px] sm:w-[230px] h-[60px] sm:h-[70px] text-[15px] sm:text-lg lg:text-[20px]"

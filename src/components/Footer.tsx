@@ -1,6 +1,7 @@
 import Image from "next/image";
 import logo from "./../../public/imgs/logo.svg";
 import Link from "next/link";
+import { WHATSAPP_LINK } from "@/constants";
 
 export default function Footer() {
   return (
@@ -38,7 +39,7 @@ export default function Footer() {
           <ul className="space-y-2 text-white/80 text-base">
             <li>
               <a
-                href={"https://wa.me/5575998859612?text=" + encodeURIComponent("Olá! Gostaria de solicitar um orçamento para conhecer a Chapada Diamantina. Aguardo retorno!")}
+                href={WHATSAPP_LINK}
                 target="_blank"
                 rel="noreferrer"
               >
@@ -66,16 +67,16 @@ export default function Footer() {
           <h4 className="text-white font-bold text-[20px] mb-3">Destinos</h4>
           <ul className="space-y-2 text-white/80 text-base">
             <li>
-              <Link href="/locais/ValeDoPati5Dias">Vale do Pati</Link>
+              <Link href="/aventuras/vale-do-pati-5-dias">Vale do Pati</Link>
             </li>
             <li>
-              <Link href="/locais/CachoeiraFumacaRiachinho">Cachoeira da Fumaça</Link>
+              <Link href="/aventuras/cachoeira-fumaca-riachinho">Cachoeira da Fumaça</Link>
             </li>
             <li>
-              <Link href="/locais/Grutas">Grutas</Link>
+              <Link href="/aventuras/grutas">Grutas</Link>
             </li>
             <li>
-              <Link href="/locais/PantanalRoncador">Pantanal</Link>
+              <Link href="/aventuras/pantanal-roncador">Pantanal</Link>
             </li>
           </ul>
         </div>

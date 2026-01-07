@@ -30,84 +30,84 @@ export default function Aventuras() {
       title: "Vale do Pati 3 dias",
       description:
         "Considerado um dos trekkings mais bonitos do país, o Vale do Pati é uma travessia de vários dias por montanhas, cachoeiras e vilas escondidas. Roteiro completo com pernoites em casas de moradores locais e paisagens de tirar o fôlego.",
-      href: "/locais/ValeDoPati3Dias",
+      href: "/aventuras/vale-do-pati-3-dias",
     },
     {
       img: ValeDoPati,
       title: "Vale do Pati 5 dias",
       description:
         "Considerado um dos trekkings mais bonitos do país, o Vale do Pati é uma travessia de vários dias por montanhas, cachoeiras e vilas escondidas. Roteiro completo com pernoites em casas de moradores locais e paisagens de tirar o fôlego.",
-      href: "/locais/ValeDoPati5Dias",
+      href: "/aventuras/vale-do-pati-5-dias",
     },
     {
       img: Grutas,
       title: "Grutas",
       description:
         "Trilhas que revelam as maravilhas da Chapada Diamantina, passando pela imensa Gruta da Lapa Doce, as águas cristalinas da Pratinha, o encanto da Gruta Azul e o visual inesquecível do Morro do Pai Inácio.",
-      href: "/locais/Grutas",
+      href: "/aventuras/grutas",
     },
     {
       img: PocoAzul,
       title: "Poço encantado e Poço azul",
       description:
         "Poço Encantado e Poço Azul revelam águas cristalinas em tons de azul surreal, grutas impressionantes e um espetáculo de luz único na Chapada Diamantina.",
-      href: "/locais/PocoAzulEncantado"
+      href: "/aventuras/poco-azul-encantado"
     },
     {
       img: CachoeiraFumaca,
       title: "Cachoeira da fumaça",
       description:
         "Descubra a imponente Cachoeira da Fumaça, com quase 400 metros de altura e um visual de tirar o fôlego, cercada pela natureza exuberante. ",
-      href: "/locais/CachoeiraFumacaRiachinho"
+      href: "/aventuras/cachoeira-fumaca-riachinho"
     },
     {
       img: Riachinho,
       title: "Cachoeira do Riachinho",
       description:
         "Relaxe na Cachoeira do Riachinho, com quedas d’água suaves e poços perfeitos para um banho refrescante em meio à natureza.",
-      href: "/locais/CachoeiraFumacaRiachinho"
+      href: "/aventuras/cachoeira-fumaca-riachinho"
     },
     {
       img: Mosquito,
       title: "Cachoeira do mosquito",
       description:
         "Viva a experiência da Cachoeira do Mosquito, uma queda d’água imponente cercada por paredões rochosos e vegetação exuberante, perfeita para um banho revigorante ",
-      href: "/locais/CachoeiraMosquitoPoco"
+      href: "/aventuras/cachoeira-mosquito-poco"
     },
     {
       img: PocoDoDiabo,
       title: "Poço do diabo",
       description:
         "Mergulhe na aventura do Poço do Diabo, com suas águas escuras e fortes corredeiras, rodeado por formações rochosas impressionantes e cenários selvagens da Chapada Diamantina.",
-      href: "/locais/CachoeiraMosquitoPoco"
+      href: "/aventuras/cachoeira-mosquito-poco"
     },
     {
       img: Sossego,
       title: "Cachoeira do sossego",
       description:
         "Relaxe na tranquila Cachoeira do Sossego, um refúgio escondido na Chapada Diamantina, perfeito para momentos de paz e banho em águas frescas rodeadas pela natureza.",
-      href: "/locais/CachoeiraSossegoRibeirao"
+      href: "/aventuras/cachoeira-sossego-ribeirao"
     },
     {
       img: RibeiraoDoMeio,
       title: "Ribeirão do meio",
       description:
         "Explore o Ribeirão do Meio, um paraíso natural com águas cristalinas, poços tranquilos e uma paisagem preservada que convida ao banho e à contemplação na Chapada Diamantina.",
-      href: "/locais/CachoeiraSossegoRibeirao"
+      href: "/aventuras/cachoeira-sossego-ribeirao"
     },
     {
       img: Pantanal,
       title: "Mini pantanal",
       description:
         "Descubra o Mini Pantanal, um recanto único na Chapada Diamantina, onde lagoas, rios e vegetação exuberante criam um cenário perfeito para quem ama a natureza e a tranquilidade.",
-      href: "/locais/PantanalRoncador"
+      href: "/aventuras/pantanal-roncador"
     },
     {
       img: Roncador,
       title: "Cachoeira do roncador",
       description:
         "Encante-se com a Cachoeira do Roncador, onde águas cristalinas caem em meio a cânions, oferecendo um cenário selvagem e perfeito para quem busca aventura.",
-      href: "/locais/PantanalRoncador"
+      href: "/aventuras/pantanal-roncador"
     },
   ];
 

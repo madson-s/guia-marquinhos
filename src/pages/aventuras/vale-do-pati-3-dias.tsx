@@ -1,11 +1,6 @@
 import Navbar from "@/components/Navbar";
 import Montain from "./../../../public/imgs/mountain-hard.png";
 import Escalando from "./../../../public/imgs/escalando.png";
-import Pati1 from "./../../../public/imgs/pati1.png";
-import Pati2 from "./../../../public/imgs/pati2.png";
-import Pati3 from "./../../../public/imgs/pati3.png";
-import Pati4 from "./../../../public/imgs/pati4.png";
-import Pati5 from "./../../../public/imgs/pati5.png";
 import Image from "next/image";
 import Footer from "@/components/Footer";
 import Button from "@/components/Button";
@@ -21,45 +16,28 @@ export default function ValeDoPati3Dias() {
   useEffect(() => {
     trackDestinationView("Vale do Pati 3 dias", "trekking");
   }, []);
-  const dias = [
-    {
-      dia: "1º dia de trekking",
-      text: "Subida do Aleixo, gerais do rio preto, mirante da rampa e pernoite.",
-      km: "8 km",
-    },
-    {
-      dia: "2º dia de trekking",
-      text: "Gruta da lapinha, mirante do morro do castelo, cachoeira das bananeiras, cachoeira do funil, cachoeira das lajes e pernoite.",
-      km: "12 km",
-    },
-    {
-      dia: "3º dia de trekking",
-      text: "Mirante do cachoeirão e saída do Vale do Pati.",
-      km: "18 km",
-    },
-  ];
 
   return (
     <>
       <SEO
         title="Vale do Pati 3 Dias | Trekking na Chapada Diamantina"
         description="Vale do Pati em 3 dias - A trilha mais bonita do Brasil. Trekking de 38km com paisagens surreais, cachoeiras e pernoites em casas de moradores locais. Guia experiente."
-        url="/locais/ValeDoPati3Dias"
-        image="/imgs/vale-do-pati.png"
+        url="/aventuras/vale-do-pati-3-dias"
+        image="/images/vale_do_pati/vale_do_pati_01.webp"
         keywords="Vale do Pati, trekking 3 dias, Chapada Diamantina, trilha, Lençóis, Bahia, ecoturismo"
       />
       <OrganizationSchema />
       <TouristAttractionSchema
         name="Vale do Pati - Trekking 3 Dias"
         description="Considerado um dos trekkings mais bonitos do país, o Vale do Pati é uma travessia de 3 dias por montanhas, cachoeiras e vilas escondidas na Chapada Diamantina."
-        image="https://guiamarquinhos.com/imgs/vale-do-pati.png"
-        url="https://guiamarquinhos.com/locais/ValeDoPati3Dias"
+        image="https://guiamarquinhos.com/images/vale_do_pati/vale_do_pati_01.webp"
+        url="https://guiamarquinhos.com/aventuras/vale-do-pati-3-dias"
       />
       <BreadcrumbListSchema
         items={[
           { name: "Início", url: "https://guiamarquinhos.com" },
           { name: "Aventuras", url: "https://guiamarquinhos.com/aventuras" },
-          { name: "Vale do Pati 3 Dias", url: "https://guiamarquinhos.com/locais/ValeDoPati3Dias" },
+          { name: "Vale do Pati 3 Dias", url: "https://guiamarquinhos.com/aventuras/vale-do-pati-3-dias" },
         ]}
       />
       <div className="min-h-screen bg-[#f6f6ee]">
@@ -113,50 +91,86 @@ export default function ValeDoPati3Dias() {
               </div>
               <div className="w-full flex flex-col gap-6">
                 <Image
-                  src={Pati1}
-                  alt="Pati1"
+                  src="/images/vale_do_pati/vale_do_pati_01.webp"
+                  alt="Vale do Pati - Paisagem 1"
+                  width={600}
+                  height={400}
                   className="w-full h-auto rounded-[42px]"
                 />
                 <Image
-                  src={Pati2}
-                  alt="Pati2"
+                  src="/images/vale_do_pati/vale_do_pati_02.webp"
+                  alt="Vale do Pati - Paisagem 2"
+                  width={600}
+                  height={400}
                   className="w-full h-auto rounded-[42px]"
                 />
               </div>
             </div>
 
             <div className="mt-10 flex flex-col sm:flex-row flex-wrap items-center justify-center gap-6 w-full">
-              {dias.map((dia, index) => (
-                <div
-                  key={index}
-                  className="bg-[#e8e8de] flex-1 min-w-[280px] max-w-[367px] min-h-[400px] rounded-[40px] flex flex-col items-start justify-start gap-6 p-8 shadow-2xl"
-                >
-                  <h3 className="text-[#322F30] text-2xl sm:text-[32px] font-bold">
-                    {dia.dia}
-                  </h3>
-                  <div className="px-6 h-[61px] rounded-[100px] bg-[#FFC737] text-lg sm:text-[22px] text-[#322F30] flex items-center justify-center gap-3">
-                    <Image src={Escalando} alt="Escalando" /> {dia.km}
-                  </div>
-                  <p className="text-start text-[#888888] text-lg sm:text-[22px]">
-                    {dia.text}
-                  </p>
+              <div className="bg-[#e8e8de] flex-1 min-w-[280px] max-w-[367px] min-h-[400px] rounded-[40px] flex flex-col items-start justify-start gap-6 p-8 shadow-2xl">
+                <h3 className="text-[#322F30] text-2xl sm:text-[32px] font-bold">
+                  1º dia de trekking
+                </h3>
+                <div className="px-6 h-[61px] rounded-[100px] bg-[#FFC737] text-lg sm:text-[22px] text-[#322F30] flex items-center justify-center gap-3">
+                  <Image src={Escalando} alt="Escalando" /> 8 km
                 </div>
-              ))}
+                <p className="text-start text-[#888888] text-lg sm:text-[22px]">
+                  Subida do Aleixo, gerais do rio preto, mirante da rampa e pernoite.
+                </p>
+              </div>
+              <div className="bg-[#e8e8de] flex-1 min-w-[280px] max-w-[367px] min-h-[400px] rounded-[40px] flex flex-col items-start justify-start gap-6 p-8 shadow-2xl">
+                <h3 className="text-[#322F30] text-2xl sm:text-[32px] font-bold">
+                  2º dia de trekking
+                </h3>
+                <div className="px-6 h-[61px] rounded-[100px] bg-[#FFC737] text-lg sm:text-[22px] text-[#322F30] flex items-center justify-center gap-3">
+                  <Image src={Escalando} alt="Escalando" /> 12 km
+                </div>
+                <p className="text-start text-[#888888] text-lg sm:text-[22px]">
+                  Gruta da lapinha, mirante do morro do castelo, cachoeira das bananeiras, cachoeira do funil, cachoeira das lajes e pernoite.
+                </p>
+              </div>
+              <div className="bg-[#e8e8de] flex-1 min-w-[280px] max-w-[367px] min-h-[400px] rounded-[40px] flex flex-col items-start justify-start gap-6 p-8 shadow-2xl">
+                <h3 className="text-[#322F30] text-2xl sm:text-[32px] font-bold">
+                  3º dia de trekking
+                </h3>
+                <div className="px-6 h-[61px] rounded-[100px] bg-[#FFC737] text-lg sm:text-[22px] text-[#322F30] flex items-center justify-center gap-3">
+                  <Image src={Escalando} alt="Escalando" /> 18 km
+                </div>
+                <p className="text-start text-[#888888] text-lg sm:text-[22px]">
+                  Mirante do cachoeirão e saída do Vale do Pati.
+                </p>
+              </div>
             </div>
 
             <div className="flex flex-col sm:flex-row flex-wrap gap-6 mt-10 w-full">
-              {[Pati3, Pati4, Pati5].map((img, i) => (
-                <div
-                  key={i}
-                  className="flex-1 min-w-[250px] aspect-[16/10] rounded-[42px] overflow-hidden"
-                >
-                  <Image
-                    src={img}
-                    alt={`Pati${i + 3}`}
-                    className="w-full h-full object-cover"
-                  />
-                </div>
-              ))}
+              <div className="flex-1 min-w-[250px] aspect-[16/10] rounded-[42px] overflow-hidden">
+                <Image
+                  src="/images/vale_do_pati/vale_do_pati_03.webp"
+                  alt="Vale do Pati - Paisagem 3"
+                  width={400}
+                  height={250}
+                  className="w-full h-full object-cover"
+                />
+              </div>
+              <div className="flex-1 min-w-[250px] aspect-[16/10] rounded-[42px] overflow-hidden">
+                <Image
+                  src="/images/vale_do_pati/vale_do_pati_04.webp"
+                  alt="Vale do Pati - Paisagem 4"
+                  width={400}
+                  height={250}
+                  className="w-full h-full object-cover"
+                />
+              </div>
+              <div className="flex-1 min-w-[250px] aspect-[16/10] rounded-[42px] overflow-hidden">
+                <Image
+                  src="/images/vale_do_pati/vale_do_pati_05.webp"
+                  alt="Vale do Pati - Paisagem 5"
+                  width={400}
+                  height={250}
+                  className="w-full h-full object-cover"
+                />
+              </div>
             </div>
 
             <Button

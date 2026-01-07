@@ -26,7 +26,7 @@ export default function PantanalRoncador() {
       <SEO
         title="Mini Pantanal e Cachoeira do Roncador | Chapada Diamantina"
         description="Descubra o Mini Pantanal, um recanto único na Chapada Diamantina, e encante-se com a Cachoeira do Roncador. Passeio de barco de 7km e caminhada até a cachoeira com piscinas naturais."
-        url="/locais/PantanalRoncador"
+        url="/aventuras/pantanal-roncador"
         image="/imgs/pantanal.png"
         keywords="Mini Pantanal, Cachoeira do Roncador, Chapada Diamantina, Remanso, Lençóis, Bahia"
       />
@@ -35,13 +35,13 @@ export default function PantanalRoncador() {
         name="Mini Pantanal e Cachoeira do Roncador"
         description="Descubra o Mini Pantanal, um recanto único na Chapada Diamantina, onde lagoas, rios e vegetação exuberante criam um cenário perfeito para quem ama a natureza e a tranquilidade. Encante-se com a Cachoeira do Roncador, onde águas cristalinas caem em meio a cânions, oferecendo um cenário selvagem e perfeito para quem busca aventura."
         image="https://guiamarquinhos.com/imgs/pantanal.png"
-        url="https://guiamarquinhos.com/locais/PantanalRoncador"
+        url="https://guiamarquinhos.com/aventuras/pantanal-roncador"
       />
       <BreadcrumbListSchema
         items={[
           { name: "Início", url: "https://guiamarquinhos.com" },
           { name: "Aventuras", url: "https://guiamarquinhos.com/aventuras" },
-          { name: "Mini Pantanal e Cachoeira do Roncador", url: "https://guiamarquinhos.com/locais/PantanalRoncador" },
+          { name: "Mini Pantanal e Cachoeira do Roncador", url: "https://guiamarquinhos.com/aventuras/pantanal-roncador" },
         ]}
       />
       <div className="min-h-screen bg-[#f6f6ee]">

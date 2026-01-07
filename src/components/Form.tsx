@@ -6,6 +6,7 @@ import Image from "next/image";
 import { useState } from "react";
 import { pushGTMEvent } from "./GTM";
 import Button from "./Button";
+import { WHATSAPP_LINK } from "@/constants";
 
 export default function Form() {
   const iconesContato = [
@@ -47,8 +48,9 @@ export default function Form() {
       page: window.location.pathname,
     });
     
-    // Redireciona para o WhatsApp
-    window.open(`https://wa.me/5575998859612?text=${mensagemEncoded}`, '_blank');
+    // Redireciona para o WhatsApp usando a constante base e substituindo apenas o texto
+    const whatsappUrl = WHATSAPP_LINK.replace(/text=[^&]*/, `text=${mensagemEncoded}`);
+    window.open(whatsappUrl, '_blank');
   };
 
   return (

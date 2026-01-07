@@ -26,7 +26,7 @@ export default function Grutas() {
       <SEO
         title="Roteiro das Grutas | Chapada Diamantina - Guia Marquinhos"
         description="Roteiro das grutas na Chapada Diamantina: Gruta da Lapa Doce, Pratinha, Gruta Azul e Morro do Pai Inácio. Passeio de 1 dia com guia experiente."
-        url="/locais/Grutas"
+        url="/aventuras/grutas"
         image="/imgs/gruta-da-lapa-doce-att.jpeg"
         keywords="Grutas Chapada Diamantina, Gruta Lapa Doce, Pratinha, Gruta Azul, Morro Pai Inácio, Lençóis, Bahia"
       />
@@ -35,13 +35,13 @@ export default function Grutas() {
         name="Roteiro das Grutas - Chapada Diamantina"
         description="Explore os cartões-postais da Chapada Diamantina em um único roteiro. Visite a Gruta da Lapa Doce, as águas cristalinas da Pratinha e Gruta Azul, e finalize com a vista deslumbrante do Morro do Pai Inácio."
         image="https://guiamarquinhos.com/imgs/gruta-da-lapa-doce-att.jpeg"
-        url="https://guiamarquinhos.com/locais/Grutas"
+        url="https://guiamarquinhos.com/aventuras/grutas"
       />
       <BreadcrumbListSchema
         items={[
           { name: "Início", url: "https://guiamarquinhos.com" },
           { name: "Aventuras", url: "https://guiamarquinhos.com/aventuras" },
-          { name: "Grutas", url: "https://guiamarquinhos.com/locais/Grutas" },
+          { name: "Grutas", url: "https://guiamarquinhos.com/aventuras/grutas" },
         ]}
       />
       <div className="min-h-screen bg-[#f6f6ee]">
