@@ -564,7 +564,7 @@ export default function Home() {
               <div className="w-12 h-12 bg-[#F2F1E0] rounded-full flex items-center justify-center flex-shrink-0">
                 <Image src={Insta} alt="Instagram" className="w-6 h-6" style={{ filter: 'brightness(0) saturate(100%) invert(15%) sepia(4%) saturate(1000%) hue-rotate(315deg) brightness(95%) contrast(90%)' }} />
               </div>
-              <span className="text-[18px] md:text-[20px] text-[#322F30]">
+              <span className="text-[16px] md:text-[20px] text-[#322F30]">
                 @chapadadiamantinaguiamarcos
               </span>
             </a>
