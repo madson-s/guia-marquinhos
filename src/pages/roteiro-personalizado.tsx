@@ -533,13 +533,13 @@ export default function RoteiroPersonalizado() {
 
               {/* Botões de navegação */}
               {currentStep === totalSteps ? (
-                <div className="flex flex-col gap-4 mt-4">
+                <div className="flex flex-col gap-4 mt-4 sm:items-center">
                   <Button
                     type="submit"
                     as="button"
                     variant="primary"
                     size="lg"
-                    className="w-full !bg-[#FFC737] !text-[#322F30]"
+                    className="w-full sm:w-auto md:w-[420px] lg:w-[484px] !bg-[#FFC737] !text-[#322F30]"
                     disabled={!canProceedToNextStep()}
                   >
                     Quero meu roteiro
@@ -547,7 +547,7 @@ export default function RoteiroPersonalizado() {
                   <button
                     type="button"
                     onClick={handlePrevious}
-                    className="flex items-center justify-center gap-2 px-6 py-3 rounded-full border border-[#322F30] bg-transparent text-[#322F30] hover:bg-[#322F30]/5 transition"
+                    className="w-full sm:w-auto md:w-[420px] lg:w-[484px] h-[54px] flex items-center justify-center gap-2 px-6 rounded-full border border-[#322F30] bg-transparent text-[#322F30] hover:bg-[#322F30]/5 transition text-[18px] sm:text-[22px] md:text-[24px] lg:text-[28px]"
                   >
                     <ChevronLeft className="w-5 h-5" />
                     <span>Voltar</span>
