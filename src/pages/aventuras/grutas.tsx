@@ -2,10 +2,6 @@ import Navbar from "@/components/Navbar";
 import Car from "./../../../public/imgs/car.png";
 import Montain from "./../../../public/imgs/montain.png";
 import Escalando from "./../../../public/imgs/escalando.png";
-import Grutas1 from "./../../../public/imgs/gruta-da-lapa-doce-att.jpeg";
-import Grutas2 from "./../../../public/imgs/grutas2.png";
-import Grutas3 from "./../../../public/imgs/grutas3.png";
-import Grutas4 from "./../../../public/imgs/grutas4.png";
 import Image from "next/image";
 import Footer from "@/components/Footer";
 import Button from "@/components/Button";
@@ -27,14 +23,14 @@ export default function Grutas() {
         title="Roteiro das Grutas | Chapada Diamantina - Guia Marquinhos"
         description="Roteiro das grutas na Chapada Diamantina: Gruta da Lapa Doce, Pratinha, Gruta Azul e Morro do Pai Inácio. Passeio de 1 dia com guia experiente."
         url="/aventuras/grutas"
-        image="/imgs/gruta-da-lapa-doce-att.jpeg"
+        image="/images/grutas/grutas_01.webp"
         keywords="Grutas Chapada Diamantina, Gruta Lapa Doce, Pratinha, Gruta Azul, Morro Pai Inácio, Lençóis, Bahia"
       />
       <OrganizationSchema />
       <TouristAttractionSchema
         name="Roteiro das Grutas - Chapada Diamantina"
         description="Explore os cartões-postais da Chapada Diamantina em um único roteiro. Visite a Gruta da Lapa Doce, as águas cristalinas da Pratinha e Gruta Azul, e finalize com a vista deslumbrante do Morro do Pai Inácio."
-        image="https://guiamarquinhos.com/imgs/gruta-da-lapa-doce-att.jpeg"
+        image="https://guiamarquinhos.com/images/grutas/grutas_01.webp"
         url="https://guiamarquinhos.com/aventuras/grutas"
       />
       <BreadcrumbListSchema
@@ -84,8 +80,10 @@ export default function Grutas() {
               </p>
               <div className="w-full lg:w-[579px] aspect-[4/3] rounded-[42px] overflow-hidden">
                 <Image
-                  src={Grutas1}
-                  alt="Grutas1"
+                  src="/images/grutas/grutas_01.webp"
+                  alt="Gruta da Lapa Doce"
+                  width={600}
+                  height={400}
                   className="w-full h-full object-cover rounded-[42px]"
                 />
               </div>
@@ -94,29 +92,35 @@ export default function Grutas() {
             <div className="flex flex-col sm:flex-row flex-wrap gap-6 justify-center mt-10 w-full">
               <div className="w-full sm:flex-1 min-w-[250px] aspect-[16/10] rounded-[42px] overflow-hidden">
                 <Image
-                  src={Grutas2}
-                  alt="Grutas2"
+                  src="/images/grutas/grutas_02.webp"
+                  alt="Grutas - Paisagem 2"
+                  width={400}
+                  height={250}
                   className="w-full h-full object-cover"
                 />
               </div>
               <div className="w-full sm:flex-1 min-w-[250px] aspect-[16/10] rounded-[42px] overflow-hidden">
                 <Image
-                  src={Grutas3}
-                  alt="Grutas3"
+                  src="/images/grutas/grutas_03.webp"
+                  alt="Grutas - Paisagem 3"
+                  width={400}
+                  height={250}
                   className="w-full h-full object-cover"
                 />
               </div>
               <div className="w-full sm:flex-1 min-w-[250px] aspect-[16/10] rounded-[42px] overflow-hidden">
                 <Image
-                  src={Grutas4}
-                  alt="Grutas4"
+                  src="/images/grutas/grutas_04.webp"
+                  alt="Grutas - Paisagem 4"
+                  width={400}
+                  height={250}
                   className="w-full h-full object-cover"
                 />
               </div>
             </div>
 
             <Button
-              href="/#orcamento"
+              href="/roteiro-personalizado"
               variant="secondary"
               size="md"
               className="my-10"

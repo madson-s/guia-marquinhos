@@ -174,7 +174,7 @@ export default function ValeDoPati3Dias() {
             </div>
 
             <Button
-              href="/#orcamento"
+              href="/roteiro-personalizado"
               variant="secondary"
               size="md"
               className="my-10"

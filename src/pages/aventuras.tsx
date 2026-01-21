@@ -15,6 +15,7 @@ import BgTrilha from "./../../public/imgs/bg-trilha.png";
 import Bg1Descubra from "./../../public/imgs/bg-1-descubra.png";
 import Bg2Descubra from "./../../public/imgs/bg-2-descubra.png";
 import Image from "next/image";
+import Link from "next/link";
 import Dobra from "@/components/Dobra";
 import Footer from "@/components/Footer";
 import SEO from "@/components/SEO";
@@ -136,43 +137,33 @@ export default function Aventuras() {
               Escolha a sua aventura
             </h1>
 
-            <div className="flex flex-col items-center justify-center max-w-[1138px] w-full mt-12 sm:mt-20 sm:gap-16 gap-8">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8 w-full max-w-[1200px] mt-12 sm:mt-20">
             {destinos.map((dest, index) => (
-              <div
-                className="flex flex-col-reverse sm:flex-col lg:flex-row gap-6 lg:gap-8 items-center lg:items-start w-full"
+              <Link
+                href={dest.href}
                 key={index}
+                className="flex flex-col bg-white rounded-3xl overflow-hidden shadow-lg hover:shadow-xl transition-shadow cursor-pointer group"
               >
-
-                <div className="flex flex-col items-center lg:items-start sm:h-[400px] justify-between gap-4 max-w-[463px] text-center lg:text-left">
-                  <h3 className="text-[#322F30] text-3xl sm:text-4xl lg:text-5xl font-bold">
-                    {dest.title}
-                  </h3>
-                  <p className="text-lg sm:text-xl lg:text-2xl text-[#888888]">
-                    {dest.description}
-                  </p>
-
-                  <Button
-                    href={dest.href}
-                    variant="secondary"
-                    size="sm"
-                    className="sm:mt-6 mt-4"
-                  >
-                    Saiba mais
-                  </Button>
-                </div>
-
-                <div className="w-full lg:w-[650px] flex justify-center">
-                  <div className="w-full h-[220px] sm:h-[300px] lg:h-[400px] rounded-3xl overflow-hidden">
+                <div className="relative w-full h-[250px] sm:h-[300px] lg:h-[350px] p-4 sm:p-6">
+                  <div className="relative w-full h-full rounded-3xl overflow-hidden">
                     <Image
                       src={dest.img}
                       alt={dest.title}
-                      width={650}
-                      height={400}
-                      className="w-full h-full object-cover rounded-3xl"
+                      fill
+                      className="object-cover group-hover:scale-105 transition-transform duration-300 rounded-3xl"
+                      loading="lazy"
                     />
                   </div>
                 </div>
-              </div>
+                <div className="flex flex-col gap-4 p-6">
+                  <h3 className="text-[#322F30] font-bold text-2xl sm:text-3xl lg:text-4xl">
+                    {dest.title}
+                  </h3>
+                  <p className="text-[#888888] text-base sm:text-lg lg:text-xl font-normal line-clamp-3">
+                    {dest.description}
+                  </p>
+                </div>
+              </Link>
             ))}
             </div>
           </div>
@@ -201,7 +192,7 @@ export default function Aventuras() {
               </div>
 
               <Button
-                href="/#orcamento"
+                href="/roteiro-personalizado"
                 variant="primary"
                 size="md"
                 className="mt-6 w-[320px] sm:w-[350px] lg:w-[484px]"

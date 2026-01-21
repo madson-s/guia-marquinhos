@@ -2,19 +2,22 @@
 
 import { useState } from "react";
 import logo from "./../../public/imgs/logo.svg";
-import Insta from "./../../public/imgs/insta-logo.svg";
-import Gmail from "./../../public/imgs/gmail-logo.svg";
+import Insta from "./../../public/icons/instagram.svg";
+import Gmail from "./../../public/icons/mail.svg";
+import Whatsapp from "./../../public/icons/whatsapp.svg";
+import Local from "./../../public/icons/location.svg";
 import Image from "next/image";
 import { Menu, X } from "lucide-react";
 import Link from "next/link";
+import { WHATSAPP_LINK } from "@/constants";
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
-    <nav className="w-full flex items-center justify-center h-[128px] absolute top-0 left-0 z-50 bg-transparent">
+    <nav className="w-full flex items-center justify-center h-[100px] md:h-[128px] absolute top-0 left-0 z-50 bg-transparent">
       <div className="max-w-[1138px] w-full flex items-center justify-between px-6">
-      <Link href="/">
+      <Link href="/" className="relative z-[60]">
         <Image src={logo} alt="Logo" className="w-auto h-10" />
       </Link>
 
@@ -29,7 +32,7 @@ export default function Navbar() {
           <Link href="/#destinos" className="hover:underline">
             Destinos
           </Link>
-          <Link href="/#orcamento" className="hover:underline">
+          <Link href="/roteiro-personalizado" className="hover:underline">
             Orçamento
           </Link>
         </div>
@@ -46,56 +49,86 @@ export default function Navbar() {
 
       <button
         onClick={() => setIsOpen(!isOpen)}
-        className="md:hidden text-white"
+        className="md:hidden text-white relative z-[60]"
       >
         {isOpen ? <X size={32} /> : <Menu size={32} />}
       </button>
 
-      {isOpen && (
-        <div className="absolute top-[96px] left-0 w-full bg-[#36322B] flex flex-col items-center gap-6 py-8 text-white font-medium md:hidden">
-          <a
-            href="#sobre"
-            className="hover:underline"
+      <div
+        className={`absolute top-0 left-0 w-full bg-[#36322B] flex flex-col items-center gap-4 pt-[100px] pb-8 px-6 text-white font-medium md:hidden overflow-hidden transition-all duration-500 ease-out z-40 ${
+          isOpen ? "max-h-[500px] opacity-100" : "max-h-0 opacity-0 py-0"
+        }`}
+      >
+        <div className="flex flex-col items-center gap-4 w-full pt-8">
+          <Link
+            href="/#sobre"
+            className="w-full px-6 py-4 rounded-full border border-white/30 bg-transparent text-center hover:bg-white/10 transition"
             onClick={() => setIsOpen(false)}
           >
             Sobre mim
-          </a>
-          <a
-            href="#avaliacoes"
-            className="hover:underline"
+          </Link>
+        <Link
+          href="/#avaliacoes"
+          className="w-full px-6 py-4 rounded-full border border-white/30 bg-transparent text-center hover:bg-white/10 transition"
+          onClick={() => setIsOpen(false)}
+        >
+          Experiencias reais
+        </Link>
+        <Link
+          href="/#destinos"
+          className="w-full px-6 py-4 rounded-full border border-white/30 bg-transparent text-center hover:bg-white/10 transition"
+          onClick={() => setIsOpen(false)}
+        >
+          Nossos destinos
+        </Link>
+          <Link
+            href="/roteiro-personalizado"
+            className="w-full px-6 py-4 rounded-full border border-white/30 bg-transparent text-center hover:bg-white/10 transition"
             onClick={() => setIsOpen(false)}
           >
-            Avaliações
-          </a>
-          <a
-            href="#destinos"
-            className="hover:underline"
-            onClick={() => setIsOpen(false)}
-          >
-            Destinos
-          </a>
-          <a
-            href="#orcamento"
-            className="hover:underline"
-            onClick={() => setIsOpen(false)}
-          >
-            Orçamento
-          </a>
-
-          <div className="flex items-center gap-6 mt-4">
-            <a
-              href="https://instagram.com/chapadadiamantinaguiamarcos"
-              target="_blank"
-              rel="noreferrer"
-            >
-              <Image src={Insta} alt="Instagram" className="w-6 h-6" />
-            </a>
-            <a href="mailto:contato@guiamarquinhos.com">
-              <Image src={Gmail} alt="Gmail" className="w-6 h-6" />
-            </a>
-          </div>
+            Adquira seu roteiro personalizado
+          </Link>
         </div>
-      )}
+
+        <div className="flex items-center justify-center gap-4">
+          <Link
+            href="/#orcamento"
+            className="w-12 h-12 rounded-full border border-white flex items-center justify-center hover:bg-white/10 transition"
+            onClick={() => setIsOpen(false)}
+            aria-label="Localização"
+          >
+            <Image src={Local} alt="Localização" className="w-6 h-6" />
+          </Link>
+          <a
+            href={WHATSAPP_LINK}
+            target="_blank"
+            rel="noreferrer"
+            className="w-12 h-12 rounded-full border border-white flex items-center justify-center hover:bg-white/10 transition"
+            onClick={() => setIsOpen(false)}
+            aria-label="WhatsApp"
+          >
+            <Image src={Whatsapp} alt="WhatsApp" className="w-6 h-6" />
+          </a>
+          <a
+            href="https://instagram.com/chapadadiamantinaguiamarcos"
+            target="_blank"
+            rel="noreferrer"
+            className="w-12 h-12 rounded-full border border-white flex items-center justify-center hover:bg-white/10 transition"
+            onClick={() => setIsOpen(false)}
+            aria-label="Instagram"
+          >
+            <Image src={Insta} alt="Instagram" className="w-6 h-6" />
+          </a>
+          <a
+            href="mailto:contato@guiamarquinhos.com"
+            className="w-12 h-12 rounded-full border border-white flex items-center justify-center hover:bg-white/10 transition"
+            onClick={() => setIsOpen(false)}
+            aria-label="E-Mail"
+          >
+            <Image src={Gmail} alt="E-Mail" className="w-6 h-6" />
+          </a>
+        </div>
+      </div>
       </div>
     </nav>
   );

@@ -17,6 +17,7 @@ interface ButtonProps {
   showArrow?: boolean;
   as?: "link" | "button";
   type?: "button" | "submit" | "reset";
+  disabled?: boolean;
 }
 
 export default function Button({
@@ -30,11 +31,12 @@ export default function Button({
   showArrow = true,
   as = "link",
   type = "button",
+  disabled = false,
 }: ButtonProps) {
   const sizeClasses = {
     sm: "h-[45px] sm:h-[50px] text-base sm:text-lg",
     md: "h-[50px] sm:h-[65px] lg:h-[70px] text-base sm:text-xl lg:text-[28px]",
-    lg: "h-[60px] sm:h-[65px] md:h-[70px] text-[18px] sm:text-[22px] md:text-[24px] lg:text-[28px]",
+    lg: "h-[54px] text-[18px] sm:text-[22px] md:text-[24px] lg:text-[28px]",
   };
 
   const widthClasses = {
@@ -67,11 +69,11 @@ export default function Button({
 
   const content = (
     <>
-      <span className="underline z-10 relative">{children}</span>
+      <span className="z-10 relative">{children}</span>
       {showArrow && (
         <div className="relative">
           <Image src={Seta} alt="Orçamento" className="z-10 relative" />
-          <span className="text-black w-6 h-6 bg-[#FFC738] rounded-full absolute right-3 top-1/2 z-0 -translate-y-1/2 translate-x-1/2 transition-all duration-300 ease-in-out group-hover:w-220 group-hover:h-220"></span>
+          <span className="text-black w-6 h-6 bg-[#f2f1e0] rounded-full absolute right-3 top-1/2 z-0 -translate-y-1/2 translate-x-1/2 transition-all duration-300 ease-in-out group-hover:w-220 group-hover:h-220"></span>
         </div>
       )}
     </>
@@ -79,7 +81,7 @@ export default function Button({
 
   if (as === "button" || !href) {
     return (
-      <button type={type} className={baseClasses} onClick={handleClick}>
+      <button type={type} className={baseClasses} onClick={handleClick} disabled={disabled}>
         {content}
       </button>
     );
