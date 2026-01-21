@@ -21,10 +21,10 @@ export default function ValeDoPati3Dias() {
     <>
       <SEO
         title="Vale do Pati 3 Dias | Trekking na Chapada Diamantina"
-        description="Vale do Pati em 3 dias - A trilha mais bonita do Brasil. Trekking de 38km com paisagens surreais, cachoeiras e pernoites em casas de moradores locais. Guia experiente."
+        description="Vale do Pati em 3 dias - A trilha mais bonita do Brasil. Trekking de 38km com paisagens surreais, cachoeiras e pernoites em casas de moradores locais. Guia experiente há mais de 19 anos."
         url="/aventuras/vale-do-pati-3-dias"
         image="/images/vale_do_pati/vale_do_pati_01.webp"
-        keywords="Vale do Pati, trekking 3 dias, Chapada Diamantina, trilha, Lençóis, Bahia, ecoturismo"
+        keywords="Vale do Pati, trekking 3 dias, Chapada Diamantina, trilha mais bonita Brasil, Lençóis, Bahia, ecoturismo, trekking guiado, guia Vale do Pati"
       />
       <OrganizationSchema />
       <TouristAttractionSchema

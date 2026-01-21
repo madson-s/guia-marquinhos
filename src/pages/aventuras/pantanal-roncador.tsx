@@ -25,10 +25,10 @@ export default function PantanalRoncador() {
     <>
       <SEO
         title="Mini Pantanal e Cachoeira do Roncador | Chapada Diamantina"
-        description="Descubra o Mini Pantanal, um recanto único na Chapada Diamantina, e encante-se com a Cachoeira do Roncador. Passeio de barco de 7km e caminhada até a cachoeira com piscinas naturais."
+        description="Descubra o Mini Pantanal, um recanto único na Chapada Diamantina, e encante-se com a Cachoeira do Roncador. Passeio de barco de 7km e caminhada até a cachoeira com piscinas naturais. Guia experiente."
         url="/aventuras/pantanal-roncador"
-        image="/imgs/pantanal.png"
-        keywords="Mini Pantanal, Cachoeira do Roncador, Chapada Diamantina, Remanso, Lençóis, Bahia"
+        image="/images/mini_pantanal_e_roncador/mini_pantanal_e_roncador_01.webp"
+        keywords="Mini Pantanal, Cachoeira do Roncador, Chapada Diamantina, Remanso, Lençóis, Bahia, passeio barco, ecoturismo, guia turístico"
       />
       <OrganizationSchema />
       <TouristAttractionSchema

@@ -116,9 +116,10 @@ export default function Aventuras() {
     <>
       <SEO
         title="Aventuras na Chapada Diamantina | Guia Marquinhos"
-        description="Descubra todas as aventuras disponíveis na Chapada Diamantina: Vale do Pati, cachoeiras, grutas e muito mais. Escolha sua próxima experiência!"
+        description="Descubra todas as aventuras disponíveis na Chapada Diamantina: Vale do Pati, cachoeiras, grutas e muito mais. Escolha sua próxima experiência com guia experiente há mais de 19 anos!"
         url="/aventuras"
-        image="/imgs/logo.svg"
+        image="/images/adventure_01.webp"
+        keywords="Chapada Diamantina aventuras, Vale do Pati, cachoeiras Chapada, grutas Lençóis, trekking Bahia, ecoturismo, guia turístico Chapada Diamantina, trilhas guiadas"
       />
       <OrganizationSchema />
       <BreadcrumbListSchema

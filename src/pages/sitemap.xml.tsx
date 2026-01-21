@@ -9,6 +9,7 @@ export const getServerSideProps: GetServerSideProps = async ({ res }) => {
   const staticPages = [
     { url: "", priority: "1.0", changefreq: "weekly" },
     { url: "/aventuras", priority: "0.9", changefreq: "weekly" },
+    { url: "/roteiro-personalizado", priority: "0.9", changefreq: "monthly" },
   ];
 
   const destinationPages = [

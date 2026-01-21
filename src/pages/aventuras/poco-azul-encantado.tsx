@@ -25,10 +25,10 @@ export default function PocoAzulEncantado() {
     <>
       <SEO
         title="Poço Encantado e Poço Azul | Chapada Diamantina"
-        description="Poço Encantado e Poço Azul revelam águas cristalinas em tons de azul surreal, grutas impressionantes e um espetáculo de luz único na Chapada Diamantina. Melhor época: abril a setembro."
+        description="Poço Encantado e Poço Azul revelam águas cristalinas em tons de azul surreal, grutas impressionantes e um espetáculo de luz único na Chapada Diamantina. Melhor época: abril a setembro. Guia experiente."
         url="/aventuras/poco-azul-encantado"
-        image="/imgs/poco-azul.png"
-        keywords="Poço Encantado, Poço Azul, Chapada Diamantina, grutas, Lençóis, Bahia, flutuação"
+        image="/images/poco_encantado_e_poco_azul/poco_encantado_e_poco_azul_01.webp"
+        keywords="Poço Encantado, Poço Azul, Chapada Diamantina, grutas Lençóis, Bahia, flutuação, poços cristalinos, turismo Chapada, guia turístico"
       />
       <OrganizationSchema />
       <TouristAttractionSchema

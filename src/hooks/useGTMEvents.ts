@@ -90,6 +90,14 @@ export function trackWhatsAppClick(source: string) {
   });
 }
 
+// Função helper para rastrear cliques no Instagram
+export function trackInstagramClick(source: string) {
+  pushGTMEvent("instagram_click", {
+    source,
+    page: window.location.pathname,
+  });
+}
+
 // Função helper para rastrear visualização de destino
 export function trackDestinationView(destinationName: string, destinationType: string) {
   pushGTMEvent("destination_view", {

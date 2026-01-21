@@ -6,7 +6,7 @@ import Dobra from "@/components/Dobra";
 import Footer from "@/components/Footer";
 import SEO from "@/components/SEO";
 import { LocalBusinessSchema, PersonSchema, OrganizationSchema, WebSiteSchema } from "@/components/Schema";
-import { useScrollDepth, useTimeOnPage } from "@/hooks/useGTMEvents";
+import { useScrollDepth, useTimeOnPage, trackWhatsAppClick, trackInstagramClick } from "@/hooks/useGTMEvents";
 import Button from "@/components/Button";
 import { WHATSAPP_LINK } from "@/constants";
 import { Check, Flame, Mountain, Route } from "lucide-react";
@@ -49,9 +49,10 @@ export default function Home() {
     <>
       <SEO
         title="Guia Marquinhos | Chapada Diamantina - Trilhas e Aventuras"
-        description="Trilhas personalizadas na Chapada Diamantina com guia experiente há mais de 19 anos. Vale do Pati, cachoeiras, grutas e aventuras únicas. Solicite seu orçamento!"
+        description="Trilhas personalizadas na Chapada Diamantina com guia experiente há mais de 19 anos. Vale do Pati, cachoeiras, grutas e aventuras únicas. Vice-presidente da Brigada, certificado em resgate. Solicite seu orçamento!"
         url="/"
-        image="/imgs/logo.svg"
+        image="/images/main_background.webp"
+        keywords="Guia Chapada Diamantina, trilhas guiadas Lençóis, Vale do Pati guia, cachoeiras Chapada, guia nativo Bahia, trekking Chapada Diamantina, ecoturismo Bahia, guia turístico Lençóis"
       />
       <OrganizationSchema />
       <WebSiteSchema />
@@ -94,8 +95,12 @@ export default function Home() {
               size="lg"
               className="sm:w-[484px] w-full max-w-[350px] !bg-[#FFC737] !text-[#322F30]"
               gtmEvent={{
-                eventName: "whatsapp_click",
-                eventData: { source: "hero" },
+                eventName: "cta_click",
+                eventData: { 
+                  source: "hero",
+                  destination: "roteiro_personalizado",
+                  button_text: "Quero meu roteiro"
+                },
               }}
             >
               Quero meu roteiro
@@ -579,7 +584,13 @@ export default function Home() {
                 Rua José Florêncio, 230 - Lençóis / BA
               </span>
             </div>
-            <a href={WHATSAPP_LINK} target="_blank" rel="noreferrer" className="flex items-center gap-5 w-full">
+            <a 
+              href={WHATSAPP_LINK} 
+              target="_blank" 
+              rel="noreferrer" 
+              className="flex items-center gap-5 w-full"
+              onClick={() => trackWhatsAppClick("contact_section")}
+            >
               <div className="w-12 h-12 bg-[#F2F1E0] rounded-full flex items-center justify-center flex-shrink-0">
                 <Image src={Whatsapp} alt="WhatsApp" className="w-6 h-6" style={{ filter: 'brightness(0) saturate(100%) invert(15%) sepia(4%) saturate(1000%) hue-rotate(315deg) brightness(95%) contrast(90%)' }} />
               </div>
@@ -587,7 +598,13 @@ export default function Home() {
                 75 9 9885-9612
               </span>
             </a>
-            <a href="https://instagram.com/chapadadiamantinaguiamarcos" target="_blank" rel="noreferrer" className="flex items-center gap-5 w-full">
+            <a 
+              href="https://instagram.com/chapadadiamantinaguiamarcos" 
+              target="_blank" 
+              rel="noreferrer" 
+              className="flex items-center gap-5 w-full"
+              onClick={() => trackInstagramClick("contact_section")}
+            >
               <div className="w-12 h-12 bg-[#F2F1E0] rounded-full flex items-center justify-center flex-shrink-0">
                 <Image src={Insta} alt="Instagram" className="w-6 h-6" style={{ filter: 'brightness(0) saturate(100%) invert(15%) sepia(4%) saturate(1000%) hue-rotate(315deg) brightness(95%) contrast(90%)' }} />
               </div>
@@ -613,11 +630,12 @@ export default function Home() {
         {/* Botão flutuante do WhatsApp */}
         {showWhatsAppButton && (
           <a
-            href={WHATSAPP_LINK}
+            href={`https://api.whatsapp.com/send?phone=557598859612&text=${encodeURIComponent("Olá! Gostaria de solicitar um roteiro personalizado.\n\nAguardo retorno!")}`}
             target="_blank"
             rel="noreferrer"
             className="fixed bottom-6 right-6 z-50 transition-all duration-300 hover:scale-110"
             aria-label="Fale conosco no WhatsApp"
+            onClick={() => trackWhatsAppClick("floating_button")}
           >
             <Image
               src="/images/whatsapp.webp"

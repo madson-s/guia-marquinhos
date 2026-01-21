@@ -21,10 +21,10 @@ export default function Grutas() {
     <>
       <SEO
         title="Roteiro das Grutas | Chapada Diamantina - Guia Marquinhos"
-        description="Roteiro das grutas na Chapada Diamantina: Gruta da Lapa Doce, Pratinha, Gruta Azul e Morro do Pai Inácio. Passeio de 1 dia com guia experiente."
+        description="Roteiro das grutas na Chapada Diamantina: Gruta da Lapa Doce, Pratinha, Gruta Azul e Morro do Pai Inácio. Passeio de 1 dia com guia experiente há mais de 19 anos."
         url="/aventuras/grutas"
         image="/images/grutas/grutas_01.webp"
-        keywords="Grutas Chapada Diamantina, Gruta Lapa Doce, Pratinha, Gruta Azul, Morro Pai Inácio, Lençóis, Bahia"
+        keywords="Grutas Chapada Diamantina, Gruta Lapa Doce, Pratinha, Gruta Azul, Morro Pai Inácio, Lençóis, Bahia, roteiro grutas, guia turístico grutas"
       />
       <OrganizationSchema />
       <TouristAttractionSchema

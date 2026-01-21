@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 import { useRouter } from "next/router";
 import Image from "next/image";
 import SEO from "@/components/SEO";
@@ -19,6 +19,8 @@ export default function RoteiroPersonalizado() {
   const [quantidadePessoas, setQuantidadePessoas] = useState("");
   const [destinosSelecionados, setDestinosSelecionados] = useState<string[]>([]);
   const [isSubmitted, setIsSubmitted] = useState(false);
+  const hasTrackedFormStart = useRef(false);
+  const stepStartTimeRef = useRef<{ [key: number]: number }>({});
 
   const totalSteps = 4;
 
@@ -46,10 +48,47 @@ export default function RoteiroPersonalizado() {
   ];
 
   const toggleDestino = (destino: string) => {
-    if (destinosSelecionados.includes(destino)) {
-      setDestinosSelecionados(destinosSelecionados.filter((d) => d !== destino));
-    } else {
+    const isAdding = !destinosSelecionados.includes(destino);
+    if (isAdding) {
       setDestinosSelecionados([...destinosSelecionados, destino]);
+    } else {
+      setDestinosSelecionados(destinosSelecionados.filter((d) => d !== destino));
+    }
+    
+    // Rastreia seleção/deseleção de destinos
+    pushGTMEvent("custom_itinerary_destination_toggle", {
+      destination: destino,
+      action: isAdding ? "selected" : "deselected",
+      step: currentStep,
+      total_selected: isAdding ? destinosSelecionados.length + 1 : destinosSelecionados.length - 1,
+    });
+  };
+
+  const getStepName = (step: number): string => {
+    switch (step) {
+      case 1:
+        return "contact_info";
+      case 2:
+        return "trip_info";
+      case 3:
+        return "about_you";
+      case 4:
+        return "adventures";
+      default:
+        return "unknown";
+    }
+  };
+
+  const getExperienceLevelInEnglish = (level: string): string => {
+    switch (level) {
+      case "Iniciante":
+        return "beginner";
+      case "Médio":
+        return "intermediate";
+      case "Experiente":
+        return "advanced";
+      default:
+        return level;
     }
   };
 
@@ -70,13 +109,48 @@ export default function RoteiroPersonalizado() {
 
   const handleNext = () => {
     if (canProceedToNextStep() && currentStep < totalSteps) {
-      setCurrentStep(currentStep + 1);
+      // Rastreia tempo no step atual antes de avançar
+      if (stepStartTimeRef.current[currentStep]) {
+        const timeSpent = Math.round((Date.now() - stepStartTimeRef.current[currentStep]) / 1000);
+        pushGTMEvent("custom_itinerary_step_completed", {
+          step: currentStep,
+          time_seconds: timeSpent,
+          step_name: getStepName(currentStep),
+        });
+      }
+      
+      const nextStep = currentStep + 1;
+      setCurrentStep(nextStep);
+      
+      // Rastreia navegação para próximo step
+      pushGTMEvent("custom_itinerary_step_navigation", {
+        action: "next",
+        from_step: currentStep,
+        to_step: nextStep,
+        step_name: getStepName(nextStep),
+      });
+      
+      // Inicia timer do novo step
+      stepStartTimeRef.current[nextStep] = Date.now();
     }
   };
 
   const handlePrevious = () => {
     if (currentStep > 1) {
-      setCurrentStep(currentStep - 1);
+      const previousStep = currentStep - 1;
+      
+      // Rastreia navegação para step anterior
+      pushGTMEvent("custom_itinerary_step_navigation", {
+        action: "previous",
+        from_step: currentStep,
+        to_step: previousStep,
+        step_name: getStepName(previousStep),
+      });
+      
+      setCurrentStep(previousStep);
+      
+      // Reinicia timer do step anterior
+      stepStartTimeRef.current[previousStep] = Date.now();
     }
   };
 
@@ -110,12 +184,29 @@ export default function RoteiroPersonalizado() {
     const mensagemEncoded = encodeURIComponent(mensagem);
     const whatsappUrl = WHATSAPP_LINK.replace(/text=[^&]*/, `text=${mensagemEncoded}`);
 
-    pushGTMEvent("roteiro_form_submit", {
-      source: "roteiro_personalizado_page",
-      nivel_experiencia: nivelExperiencia,
-      mes_viagem: mesViagem,
-      quantidade_pessoas: quantidadePessoas,
-      destinos: destinosSelecionados,
+    // Rastreia tempo no último step antes de submeter
+    if (stepStartTimeRef.current[currentStep]) {
+      const timeSpent = Math.round((Date.now() - stepStartTimeRef.current[currentStep]) / 1000);
+      pushGTMEvent("custom_itinerary_step_completed", {
+        step: currentStep,
+        time_seconds: timeSpent,
+        step_name: getStepName(currentStep),
+      });
+    }
+
+    // Calcula tempo total do formulário
+    const totalTime = Object.values(stepStartTimeRef.current).reduce((acc, startTime) => {
+      return acc + (Date.now() - startTime);
+    }, 0) / 1000;
+
+    pushGTMEvent("custom_itinerary_form_submit", {
+      source: "custom_itinerary_page",
+      experience_level: getExperienceLevelInEnglish(nivelExperiencia),
+      travel_month: mesViagem,
+      people_count: quantidadePessoas,
+      destinations: destinosSelecionados,
+      total_time_seconds: Math.round(totalTime),
+      total_steps_completed: totalSteps,
     });
 
     window.open(whatsappUrl, "_blank");
@@ -126,8 +217,9 @@ export default function RoteiroPersonalizado() {
     <>
       <SEO
         title="Monte seu Roteiro Personalizado | Guia Marquinhos - Chapada Diamantina"
-        description="Responda 5 perguntas rápidas para montarmos o roteiro ideal para seu nível físico e interesse na Chapada Diamantina."
+        description="Responda 5 perguntas rápidas para montarmos o roteiro ideal para seu nível físico e interesse na Chapada Diamantina. Roteiros 100% personalizados com guia experiente."
         url="/roteiro-personalizado"
+        keywords="roteiro personalizado Chapada Diamantina, orçamento trilhas, planejamento viagem Chapada, roteiro sob medida Lençóis, guia personalizado Bahia"
       />
       <main className="min-h-screen bg-[#F6F6EE] flex flex-col">
         <div className="flex-1 flex flex-col items-center justify-center py-20 px-6">
@@ -150,6 +242,12 @@ export default function RoteiroPersonalizado() {
                   variant="primary"
                   size="lg"
                   className="w-full sm:w-[484px] !bg-[#FFC737] !text-[#322F30]"
+                  gtmEvent={{
+                    eventName: "custom_itinerary_continue_navigation",
+                    eventData: {
+                      source: "custom_itinerary_success",
+                    },
+                  }}
                 >
                   Continuar Navegando
                 </Button>
@@ -203,7 +301,17 @@ export default function RoteiroPersonalizado() {
                         type="text"
                         id="nome"
                         value={nome}
-                        onChange={(e) => setNome(e.target.value)}
+                        onChange={(e) => {
+                          setNome(e.target.value);
+                          // Rastreia início do formulário quando usuário começa a digitar
+                          if (!hasTrackedFormStart.current && e.target.value.length > 0) {
+                            hasTrackedFormStart.current = true;
+                            pushGTMEvent("custom_itinerary_form_started", {
+                              step: 1,
+                            });
+                            stepStartTimeRef.current[1] = Date.now();
+                          }
+                        }}
                         placeholder="Seu nome completo"
                         className="w-full px-4 py-3 rounded-full border border-[#322F30] bg-transparent text-[#322F30] placeholder-[#888888] focus:outline-none focus:ring-2 focus:ring-[#322F30]/50"
                         required
@@ -241,7 +349,17 @@ export default function RoteiroPersonalizado() {
                         <select
                           id="mes"
                           value={mesViagem}
-                          onChange={(e) => setMesViagem(e.target.value)}
+                          onChange={(e) => {
+                            setMesViagem(e.target.value);
+                            // Rastreia seleção de mês
+                            if (e.target.value) {
+                              pushGTMEvent("custom_itinerary_option_selected", {
+                                step: currentStep,
+                                option_type: "travel_month",
+                                option_value: e.target.value,
+                              });
+                            }
+                          }}
                           className="w-full px-4 py-3 rounded-full border border-[#322F30] bg-transparent text-[#322F30] focus:outline-none focus:ring-2 focus:ring-[#322F30]/50 appearance-none cursor-pointer pr-10"
                           required
                         >
@@ -280,7 +398,17 @@ export default function RoteiroPersonalizado() {
                         type="number"
                         id="quantidade"
                         value={quantidadePessoas}
-                        onChange={(e) => setQuantidadePessoas(e.target.value)}
+                        onChange={(e) => {
+                          setQuantidadePessoas(e.target.value);
+                          // Rastreia seleção de quantidade de pessoas
+                          if (e.target.value) {
+                            pushGTMEvent("custom_itinerary_option_selected", {
+                              step: currentStep,
+                              option_type: "people_count",
+                              option_value: e.target.value,
+                            });
+                          }
+                        }}
                         placeholder="Ex: 2"
                         min="1"
                         className="w-full px-4 py-3 rounded-full border border-[#322F30] bg-transparent text-[#322F30] placeholder-[#888888] focus:outline-none focus:ring-2 focus:ring-[#322F30]/50"
@@ -303,7 +431,14 @@ export default function RoteiroPersonalizado() {
                       <div className="flex flex-col sm:flex-row gap-3">
                         <button
                           type="button"
-                          onClick={() => setNivelExperiencia("Iniciante")}
+                          onClick={() => {
+                            setNivelExperiencia("Iniciante");
+                            pushGTMEvent("custom_itinerary_option_selected", {
+                              step: currentStep,
+                              option_type: "experience_level",
+                              option_value: "beginner",
+                            });
+                          }}
                           className={`flex items-center gap-2 px-4 py-3 rounded-full border text-[#322F30] transition ${
                             nivelExperiencia === "Iniciante"
                               ? "bg-[#FFC737]/50 border-[#FFC737]"
@@ -315,7 +450,14 @@ export default function RoteiroPersonalizado() {
                         </button>
                         <button
                           type="button"
-                          onClick={() => setNivelExperiencia("Médio")}
+                          onClick={() => {
+                            setNivelExperiencia("Médio");
+                            pushGTMEvent("custom_itinerary_option_selected", {
+                              step: currentStep,
+                              option_type: "experience_level",
+                              option_value: "intermediate",
+                            });
+                          }}
                           className={`flex items-center gap-2 px-4 py-3 rounded-full border text-[#322F30] transition ${
                             nivelExperiencia === "Médio"
                               ? "bg-[#FFC737]/50 border-[#FFC737]"
@@ -327,7 +469,14 @@ export default function RoteiroPersonalizado() {
                         </button>
                         <button
                           type="button"
-                          onClick={() => setNivelExperiencia("Experiente")}
+                          onClick={() => {
+                            setNivelExperiencia("Experiente");
+                            pushGTMEvent("custom_itinerary_option_selected", {
+                              step: currentStep,
+                              option_type: "experience_level",
+                              option_value: "advanced",
+                            });
+                          }}
                           className={`flex items-center gap-2 px-4 py-3 rounded-full border text-[#322F30] transition ${
                             nivelExperiencia === "Experiente"
                               ? "bg-[#FFC737]/50 border-[#FFC737]"
@@ -418,7 +567,14 @@ export default function RoteiroPersonalizado() {
                   ) : (
                     <button
                       type="button"
-                      onClick={() => router.back()}
+                      onClick={() => {
+                        pushGTMEvent("custom_itinerary_form_abandoned", {
+                          step: currentStep,
+                          step_name: getStepName(currentStep),
+                          has_data: nome.trim() !== "" || email.trim() !== "",
+                        });
+                        router.back();
+                      }}
                       className="flex items-center gap-2 px-6 py-3 rounded-full border border-[#322F30] bg-transparent text-[#322F30] hover:bg-[#322F30]/5 transition"
                     >
                       <ChevronLeft className="w-5 h-5" />

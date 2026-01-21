@@ -25,10 +25,10 @@ export default function CachoeiraMosquitoPoco() {
     <>
       <SEO
         title="Cachoeira do Mosquito e Poço do Diabo | Chapada Diamantina"
-        description="Viva a experiência da Cachoeira do Mosquito com 40m de queda e mergulhe no Poço do Diabo com suas águas escuras e fortes corredeiras. Passeio leve de 3km com guia experiente."
+        description="Viva a experiência da Cachoeira do Mosquito com 40m de queda e mergulhe no Poço do Diabo com suas águas escuras e fortes corredeiras. Passeio leve de 3km com guia experiente há mais de 19 anos."
         url="/aventuras/cachoeira-mosquito-poco"
-        image="/imgs/mosquito.png"
-        keywords="Cachoeira do Mosquito, Poço do Diabo, Chapada Diamantina, Lençóis, Bahia, ecoturismo"
+        image="/images/mosquito_e_poco_do_diabo/mosquito_e_poco_do_diabo_01.webp"
+        keywords="Cachoeira do Mosquito, Poço do Diabo, Chapada Diamantina, Lençóis, Bahia, ecoturismo, trilha leve, cachoeiras Bahia, guia Chapada Diamantina"
       />
       <OrganizationSchema />
       <TouristAttractionSchema
