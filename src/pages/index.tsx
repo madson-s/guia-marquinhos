@@ -62,7 +62,7 @@ export default function Home() {
               Especialista em resgate e trilhas da Chapada. A experiência local que você quer, com a tranquilidade que sua família precisa.
             </p>
             <Button
-              href={WHATSAPP_LINK}
+              href="/roteiro-personalizado"
               variant="primary"
               size="lg"
               className="sm:w-[484px] w-full max-w-[350px] !bg-[#FFC737] !text-[#322F30]"
