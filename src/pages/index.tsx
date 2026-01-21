@@ -1,5 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
+import { useState, useEffect, useRef } from "react";
 import Navbar from "@/components/Navbar";
 import Dobra from "@/components/Dobra";
 import Footer from "@/components/Footer";
@@ -18,6 +19,32 @@ import Shield from "./../../public/icons/shield.svg";
 export default function Home() {
   useScrollDepth();
   useTimeOnPage();
+  const [showWhatsAppButton, setShowWhatsAppButton] = useState(false);
+  const heroRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          // Se nenhuma parte da hero section estiver visível, mostra o botão
+          setShowWhatsAppButton(!entry.isIntersecting);
+        });
+      },
+      {
+        threshold: 0.0, // Detecta quando qualquer parte da hero sai da viewport
+      }
+    );
+
+    if (heroRef.current) {
+      observer.observe(heroRef.current);
+    }
+
+    return () => {
+      if (heroRef.current) {
+        observer.unobserve(heroRef.current);
+      }
+    };
+  }, []);
   return (
     <>
       <SEO
@@ -31,7 +58,7 @@ export default function Home() {
       <LocalBusinessSchema />
       <PersonSchema />
       <main className="min-h-screen flex flex-col items-center justify-center bg-[#f6f6ee]">
-        <div className="w-full h-[calc(100vh-32px)] relative flex flex-col items-center justify-around">
+        <div ref={heroRef} id="hero-section" className="w-full h-[calc(100vh-32px)] relative flex flex-col items-center justify-around">
           <Image
             src="/images/main_background.webp"
             alt="Background"
@@ -582,6 +609,25 @@ export default function Home() {
         <div className="bg-[#36322B] w-full flex items-center justify-center">
           <Footer />
         </div>
+
+        {/* Botão flutuante do WhatsApp */}
+        {showWhatsAppButton && (
+          <a
+            href={WHATSAPP_LINK}
+            target="_blank"
+            rel="noreferrer"
+            className="fixed bottom-6 right-6 z-50 transition-all duration-300 hover:scale-110"
+            aria-label="Fale conosco no WhatsApp"
+          >
+            <Image
+              src="/images/whatsapp.webp"
+              alt="WhatsApp"
+              width={64}
+              height={64}
+              className="w-16 h-16 md:w-20 md:h-20 rounded-full"
+            />
+          </a>
+        )}
       </main>
     </>
   );
