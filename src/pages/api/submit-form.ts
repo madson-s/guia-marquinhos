@@ -91,21 +91,24 @@ export default async function handler(
       destinations: destinosSelecionados || undefined,
     };
 
-    // Salva os dados no MongoDB
-    try {
-      const db = await getDatabase();
-      const collection = db.collection("form_submissions");
-      
-      await collection.insertOne(formData);
-    } catch (dbError) {
-      // Silenciosamente ignora erros do banco - usuário será redirecionado mesmo assim
-      // Em produção, você pode querer logar isso em um serviço de monitoramento
-    }
-
-    return res.status(200).json({ 
+    // Retorna resposta imediatamente sem esperar a inserção
+    res.status(200).json({ 
       success: true, 
       message: "Dados salvos com sucesso" 
     });
+
+    // Insere os dados no MongoDB de forma assíncrona (fire and forget)
+    // A conexão permanece aberta e é reutilizada
+    getDatabase()
+      .then((db) => {
+        const collection = db.collection("form_submissions");
+        return collection.insertOne(formData);
+      })
+      .catch((dbError) => {
+        // Silenciosamente ignora erros do banco
+        // Em produção, você pode querer logar isso em um serviço de monitoramento
+        console.error("Erro ao inserir dados no MongoDB (assíncrono):", dbError);
+      });
   } catch (error) {
     console.error("Erro ao salvar dados do formulário:", error);
     return res.status(500).json({ 
