@@ -25,21 +25,26 @@ export default function Form() {
     e.preventDefault();
     setIsSubmitting(true);
     
-    // Inicia a requisição em segundo plano (não espera a resposta)
-    fetch("/api/submit-form", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        nome,
-        email,
-        celular,
-        page: window.location.pathname,
-      }),
-    }).catch(() => {
-      // Silenciosamente ignora erros - requisição roda em segundo plano
-    });
+    try {
+      // Aguarda a resposta da API antes de redirecionar
+      const response = await fetch("/api/submit-form", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          nome,
+          email,
+          celular,
+          page: window.location.pathname,
+        }),
+      });
+
+      await response.json();
+    } catch (error) {
+      // Continua mesmo se houver erro - não bloqueia o usuário
+      console.error("Erro ao enviar formulário:", error);
+    }
     
     // Formata a mensagem para o WhatsApp usando formatação de texto simples
     let mensagem = `Olá! Gostaria de solicitar um orçamento.
@@ -66,17 +71,24 @@ export default function Form() {
       page: window.location.pathname,
     });
     
-    // Aguarda pelo menos 2 segundos antes de redirecionar
-    setTimeout(() => {
-      setIsSubmitting(false);
-      // Redireciona para o WhatsApp usando a constante base e substituindo apenas o texto
-      const whatsappUrl = WHATSAPP_LINK.replace(/text=[^&]*/, `text=${mensagemEncoded}`);
-      window.open(whatsappUrl, '_blank');
-    }, 2000);
+    // Redireciona para o WhatsApp após salvar os dados
+    const whatsappUrl = WHATSAPP_LINK.replace(/text=[^&]*/, `text=${mensagemEncoded}`);
+    window.location.href = whatsappUrl;
   };
 
   return (
-    <div className="flex flex-col md:flex-row justify-between items-center md:items-start mt-12 w-full max-w-[1138px] gap-10">
+    <>
+      {/* Overlay de loading */}
+      {isSubmitting && (
+        <div className="fixed inset-0 bg-black/50 z-50 flex items-center justify-center">
+          <div className="bg-white rounded-lg p-8 flex flex-col items-center gap-4">
+            <div className="w-12 h-12 border-4 border-[#322F30] border-t-transparent rounded-full animate-spin"></div>
+            <p className="text-[#322F30] text-lg font-medium">Enviando...</p>
+          </div>
+        </div>
+      )}
+      
+      <div className="flex flex-col md:flex-row justify-between items-center md:items-start mt-12 w-full max-w-[1138px] gap-10">
       <div className="flex-col flex items-start justify-center gap-4 w-full md:w-1/2">
         {iconesContato.map((icone, index) => (
           <div key={index} className="flex items-center gap-5">
@@ -166,5 +178,6 @@ export default function Form() {
         </form>
       </div>
     </div>
+    </>
   );
 }

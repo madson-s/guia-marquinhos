@@ -91,26 +91,28 @@ export default async function handler(
       destinations: destinosSelecionados || undefined,
     };
 
-    // Retorna resposta imediatamente sem esperar a inserção
-    res.status(200).json({ 
-      success: true, 
-      message: "Dados salvos com sucesso" 
-    });
-
-    // Salva os dados no Vercel Blob Storage de forma assíncrona (fire and forget)
+    // Salva os dados no Vercel Blob Storage de forma síncrona
     // Cria um nome de arquivo único baseado no timestamp
     const timestamp = Date.now();
     const fileName = `form-submissions/${formType}/${timestamp}-${nome.trim().replace(/\s+/g, '-').toLowerCase()}.json`;
     const fileContent = JSON.stringify(formData, null, 2);
 
-    put(fileName, fileContent, { access: 'public' })
-      .then(() => {
-        // Sucesso - dados salvos
-      })
-      .catch((blobError: unknown) => {
-        // Silenciosamente ignora erros do blob storage
-        console.error("Erro ao salvar dados no Vercel Blob (assíncrono):", blobError);
+    try {
+      await put(fileName, fileContent, { access: 'public' });
+      
+      // Retorna resposta após salvar com sucesso
+      return res.status(200).json({ 
+        success: true, 
+        message: "Dados salvos com sucesso" 
       });
+    } catch (blobError) {
+      console.error("Erro ao salvar dados no Vercel Blob:", blobError);
+      // Retorna sucesso mesmo com erro para não bloquear o usuário
+      return res.status(200).json({ 
+        success: true, 
+        message: "Dados recebidos" 
+      });
+    }
   } catch (error) {
     console.error("Erro ao salvar dados do formulário:", error);
     return res.status(500).json({ 

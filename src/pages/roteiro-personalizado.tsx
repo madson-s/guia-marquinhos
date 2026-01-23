@@ -159,25 +159,30 @@ export default function RoteiroPersonalizado() {
     e.preventDefault();
     setIsSubmitting(true);
 
-    // Inicia a requisição em segundo plano (não espera a resposta)
-    fetch("/api/submit-form", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        nome,
-        celular,
-        page: window.location.pathname,
-        nivelExperiencia,
-        mesViagem,
-        quantidadePessoas,
-        destinosSelecionados,
-        formType: "custom_itinerary",
-      }),
-    }).catch(() => {
-      // Silenciosamente ignora erros - requisição roda em segundo plano
-    });
+    try {
+      // Aguarda a resposta da API antes de redirecionar
+      const response = await fetch("/api/submit-form", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          nome,
+          celular,
+          page: window.location.pathname,
+          nivelExperiencia,
+          mesViagem,
+          quantidadePessoas,
+          destinosSelecionados,
+          formType: "custom_itinerary",
+        }),
+      });
+
+      await response.json();
+    } catch (error) {
+      // Continua mesmo se houver erro - não bloqueia o usuário
+      console.error("Erro ao enviar formulário:", error);
+    }
 
     let mensagem = `Olá! Gostaria de solicitar um roteiro personalizado.
 
@@ -231,16 +236,23 @@ export default function RoteiroPersonalizado() {
       total_steps_completed: totalSteps,
     });
 
-    // Aguarda pelo menos 2 segundos antes de redirecionar
-    setTimeout(() => {
-      setIsSubmitting(false);
-      window.open(whatsappUrl, "_blank");
-      setIsSubmitted(true);
-    }, 2000);
+    // Redireciona para o WhatsApp após salvar os dados
+    window.location.href = whatsappUrl;
+    setIsSubmitted(true);
   };
 
   return (
     <>
+      {/* Overlay de loading */}
+      {isSubmitting && (
+        <div className="fixed inset-0 bg-black/50 z-50 flex items-center justify-center">
+          <div className="bg-white rounded-lg p-8 flex flex-col items-center gap-4">
+            <div className="w-12 h-12 border-4 border-[#322F30] border-t-transparent rounded-full animate-spin"></div>
+            <p className="text-[#322F30] text-lg font-medium">Enviando...</p>
+          </div>
+        </div>
+      )}
+      
       <SEO
         title="Monte seu Roteiro Personalizado | Guia Marquinhos - Chapada Diamantina"
         description="Responda 5 perguntas rápidas para montarmos o roteiro ideal para seu nível físico e interesse na Chapada Diamantina. Roteiros 100% personalizados com guia experiente."
