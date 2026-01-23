@@ -41,8 +41,6 @@ export default function Navbar() {
         <div className="flex items-center gap-4 ms-10">
           <a 
             href="https://instagram.com/chapadadiamantinaguiamarcos" 
-            target="_blank" 
-            rel="noreferrer"
             onClick={() => trackInstagramClick("navbar_desktop")}
           >
             <Image src={Insta} alt="Instagram" className="w-6 h-6" />
@@ -107,8 +105,6 @@ export default function Navbar() {
           </Link>
           <a
             href={WHATSAPP_LINK}
-            target="_blank"
-            rel="noreferrer"
             className="w-12 h-12 rounded-full border border-white flex items-center justify-center hover:bg-white/10 transition"
             onClick={() => {
               setIsOpen(false);
@@ -120,8 +116,6 @@ export default function Navbar() {
           </a>
           <a
             href="https://instagram.com/chapadadiamantinaguiamarcos"
-            target="_blank"
-            rel="noreferrer"
             className="w-12 h-12 rounded-full border border-white flex items-center justify-center hover:bg-white/10 transition"
             onClick={() => {
               setIsOpen(false);

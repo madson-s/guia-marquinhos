@@ -87,8 +87,6 @@ export default function Footer() {
             <div className="flex items-center justify-center gap-4 sm:hidden">
               <a
                 href={WHATSAPP_LINK}
-                target="_blank"
-                rel="noreferrer"
                 className="w-12 h-12 rounded-full border border-white flex items-center justify-center hover:bg-white/10 transition"
                 aria-label="WhatsApp"
                 onClick={() => trackWhatsAppClick("footer")}
@@ -111,8 +109,6 @@ export default function Footer() {
               </a>
               <a
                 href="https://instagram.com/chapadadiamantinaguiamarcos"
-                target="_blank"
-                rel="noreferrer"
                 className="w-12 h-12 rounded-full border border-white flex items-center justify-center hover:bg-white/10 transition"
                 aria-label="Instagram"
                 onClick={() => trackInstagramClick("footer")}
@@ -125,8 +121,6 @@ export default function Footer() {
               <li>
                 <a
                   href={WHATSAPP_LINK}
-                  target="_blank"
-                  rel="noreferrer"
                   className="hover:text-white/80 transition"
                   onClick={() => trackWhatsAppClick("footer")}
                 >
@@ -136,8 +130,6 @@ export default function Footer() {
               <li>
                 <a
                   href="https://instagram.com/chapadadiamantinaguiamarcos"
-                  target="_blank"
-                  rel="noreferrer"
                   className="hover:text-white/80 transition"
                   onClick={() => trackInstagramClick("footer")}
                 >

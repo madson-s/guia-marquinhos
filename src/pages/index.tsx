@@ -603,8 +603,6 @@ export default function Home() {
             </div>
             <a 
               href={WHATSAPP_LINK} 
-              target="_blank" 
-              rel="noreferrer" 
               className="flex items-center gap-5 w-full"
               onClick={() => trackWhatsAppClick("contact_section")}
             >
@@ -617,8 +615,6 @@ export default function Home() {
             </a>
             <a 
               href="https://instagram.com/chapadadiamantinaguiamarcos" 
-              target="_blank" 
-              rel="noreferrer" 
               className="flex items-center gap-5 w-full"
               onClick={() => trackInstagramClick("contact_section")}
             >
@@ -648,8 +644,6 @@ export default function Home() {
         {showWhatsAppButton && (
           <a
             href={`https://api.whatsapp.com/send?phone=557598859612&text=${encodeURIComponent("Olá! Gostaria de solicitar um roteiro personalizado.\n\nAguardo retorno!")}`}
-            target="_blank"
-            rel="noreferrer"
             className="fixed bottom-6 right-6 z-50 transition-all duration-300 hover:scale-110"
             aria-label="Fale conosco no WhatsApp"
             onClick={() => trackWhatsAppClick("floating_button")}

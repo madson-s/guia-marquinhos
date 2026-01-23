@@ -91,8 +91,6 @@ export default function Button({
     <Link
       className={baseClasses}
       href={href}
-      target={href.startsWith("http") ? "_blank" : undefined}
-      rel={href.startsWith("http") ? "noreferrer" : undefined}
       onClick={handleClick}
     >
       {content}
