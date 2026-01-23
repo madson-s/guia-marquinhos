@@ -19,9 +19,27 @@ export default function Form() {
   const [nome, setNome] = useState("");
   const [email, setEmail] = useState("");
   const [celular, setCelular] = useState("");
+  const [isSubmitting, setIsSubmitting] = useState(false);
   
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    setIsSubmitting(true);
+    
+    // Inicia a requisição em segundo plano (não espera a resposta)
+    fetch("/api/submit-form", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        nome,
+        email,
+        celular,
+        page: window.location.pathname,
+      }),
+    }).catch(() => {
+      // Silenciosamente ignora erros - requisição roda em segundo plano
+    });
     
     // Formata a mensagem para o WhatsApp usando formatação de texto simples
     let mensagem = `Olá! Gostaria de solicitar um orçamento.
@@ -48,9 +66,13 @@ export default function Form() {
       page: window.location.pathname,
     });
     
-    // Redireciona para o WhatsApp usando a constante base e substituindo apenas o texto
-    const whatsappUrl = WHATSAPP_LINK.replace(/text=[^&]*/, `text=${mensagemEncoded}`);
-    window.open(whatsappUrl, '_blank');
+    // Aguarda pelo menos 2 segundos antes de redirecionar
+    setTimeout(() => {
+      setIsSubmitting(false);
+      // Redireciona para o WhatsApp usando a constante base e substituindo apenas o texto
+      const whatsappUrl = WHATSAPP_LINK.replace(/text=[^&]*/, `text=${mensagemEncoded}`);
+      window.open(whatsappUrl, '_blank');
+    }, 2000);
   };
 
   return (
@@ -128,6 +150,7 @@ export default function Form() {
             variant="secondary"
             size="sm"
             className="mt-6 w-[173px] h-[42px] text-[18px] md:text-[20px] self-center md:self-start"
+            disabled={isSubmitting}
             gtmEvent={{
               eventName: "form_submit",
               eventData: {
@@ -138,7 +161,7 @@ export default function Form() {
               },
             }}
           >
-            Enviar
+            {isSubmitting ? "Enviando..." : "Enviar"}
           </Button>
         </form>
       </div>

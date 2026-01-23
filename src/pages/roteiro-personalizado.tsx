@@ -13,12 +13,13 @@ export default function RoteiroPersonalizado() {
   const router = useRouter();
   const [currentStep, setCurrentStep] = useState(1);
   const [nome, setNome] = useState("");
-  const [email, setEmail] = useState("");
+  const [celular, setCelular] = useState("");
   const [nivelExperiencia, setNivelExperiencia] = useState("");
   const [mesViagem, setMesViagem] = useState("");
   const [quantidadePessoas, setQuantidadePessoas] = useState("");
   const [destinosSelecionados, setDestinosSelecionados] = useState<string[]>([]);
   const [isSubmitted, setIsSubmitted] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
   const hasTrackedFormStart = useRef(false);
   const stepStartTimeRef = useRef<{ [key: number]: number }>({});
 
@@ -95,7 +96,7 @@ export default function RoteiroPersonalizado() {
   const canProceedToNextStep = () => {
     switch (currentStep) {
       case 1:
-        return nome.trim() !== "" && email.trim() !== "";
+        return nome.trim() !== "" && celular.trim() !== "";
       case 2:
         return mesViagem !== "" && quantidadePessoas !== "";
       case 3:
@@ -154,14 +155,35 @@ export default function RoteiroPersonalizado() {
     }
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    setIsSubmitting(true);
+
+    // Inicia a requisição em segundo plano (não espera a resposta)
+    fetch("/api/submit-form", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        nome,
+        celular,
+        page: window.location.pathname,
+        nivelExperiencia,
+        mesViagem,
+        quantidadePessoas,
+        destinosSelecionados,
+        formType: "custom_itinerary",
+      }),
+    }).catch(() => {
+      // Silenciosamente ignora erros - requisição roda em segundo plano
+    });
 
     let mensagem = `Olá! Gostaria de solicitar um roteiro personalizado.
 
 *Dados do contato:*
 *Nome:* ${nome}
-*E-mail:* ${email}`;
+*Celular:* ${celular}`;
 
     if (nivelExperiencia) {
       mensagem += `\n*Nível de experiência em trilhas:* ${nivelExperiencia}`;
@@ -209,8 +231,12 @@ export default function RoteiroPersonalizado() {
       total_steps_completed: totalSteps,
     });
 
-    window.open(whatsappUrl, "_blank");
-    setIsSubmitted(true);
+    // Aguarda pelo menos 2 segundos antes de redirecionar
+    setTimeout(() => {
+      setIsSubmitting(false);
+      window.open(whatsappUrl, "_blank");
+      setIsSubmitted(true);
+    }, 2000);
   };
 
   return (
@@ -319,15 +345,15 @@ export default function RoteiroPersonalizado() {
                     </div>
 
                     <div className="flex flex-col gap-2">
-                      <label htmlFor="email" className="text-[#322F30] text-base">
-                        E-mail
+                      <label htmlFor="celular" className="text-[#322F30] text-base">
+                        Celular
                       </label>
                       <input
-                        type="email"
-                        id="email"
-                        value={email}
-                        onChange={(e) => setEmail(e.target.value)}
-                        placeholder="seu_melhor@email.com"
+                        type="tel"
+                        id="celular"
+                        value={celular}
+                        onChange={(e) => setCelular(e.target.value)}
+                        placeholder="(99) 9 9999-9999"
                         className="w-full px-4 py-3 rounded-full border border-[#322F30] bg-transparent text-[#322F30] placeholder-[#888888] focus:outline-none focus:ring-2 focus:ring-[#322F30]/50"
                         required
                       />
@@ -540,9 +566,9 @@ export default function RoteiroPersonalizado() {
                     variant="primary"
                     size="lg"
                     className="w-full sm:w-auto md:w-[420px] lg:w-[484px] !bg-[#FFC737] !text-[#322F30]"
-                    disabled={!canProceedToNextStep()}
+                    disabled={!canProceedToNextStep() || isSubmitting}
                   >
-                    Quero meu roteiro
+                    {isSubmitting ? "Enviando..." : "Quero meu roteiro"}
                   </Button>
                   <button
                     type="button"
@@ -571,7 +597,7 @@ export default function RoteiroPersonalizado() {
                         pushGTMEvent("custom_itinerary_form_abandoned", {
                           step: currentStep,
                           step_name: getStepName(currentStep),
-                          has_data: nome.trim() !== "" || email.trim() !== "",
+                          has_data: nome.trim() !== "" || celular.trim() !== "",
                         });
                         router.back();
                       }}
