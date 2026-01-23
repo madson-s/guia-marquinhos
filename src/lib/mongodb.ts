@@ -5,21 +5,31 @@ if (!process.env.MONGODB_URI) {
 }
 
 const uri = process.env.MONGODB_URI;
-const options = {};
+const options = {
+  maxPoolSize: 10,
+  serverSelectionTimeoutMS: 5000,
+  socketTimeoutMS: 45000,
+};
+
+declare global {
+  var _mongoClientPromise: Promise<MongoClient> | undefined;
+}
 
 let client: MongoClient;
 let clientPromise: Promise<MongoClient>;
 
-// Reutiliza conexão tanto em desenvolvimento quanto em produção
-let globalWithMongo = global as typeof globalThis & {
-  _mongoClientPromise?: Promise<MongoClient>;
-};
-
-if (!globalWithMongo._mongoClientPromise) {
+if (process.env.NODE_ENV === "development") {
+  // Em desenvolvimento, use uma variável global para não criar múltiplas conexões
+  if (!global._mongoClientPromise) {
+    client = new MongoClient(uri, options);
+    global._mongoClientPromise = client.connect();
+  }
+  clientPromise = global._mongoClientPromise;
+} else {
+  // Em produção (Vercel), cria uma nova conexão por invocação mas reutiliza se possível
   client = new MongoClient(uri, options);
-  globalWithMongo._mongoClientPromise = client.connect();
+  clientPromise = client.connect();
 }
-clientPromise = globalWithMongo._mongoClientPromise;
 
 export default clientPromise;
 

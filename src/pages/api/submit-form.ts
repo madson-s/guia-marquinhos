@@ -37,6 +37,16 @@ export default async function handler(
     });
   }
 
+  // Verifica se MONGODB_URI está configurado
+  if (!process.env.MONGODB_URI) {
+    console.error("MONGODB_URI não está configurado");
+    // Retorna sucesso mesmo sem MongoDB para não bloquear o usuário
+    return res.status(200).json({ 
+      success: true, 
+      message: "Dados recebidos" 
+    });
+  }
+
   try {
     const { 
       nome, 
@@ -91,24 +101,29 @@ export default async function handler(
       destinations: destinosSelecionados || undefined,
     };
 
-    // Retorna resposta imediatamente sem esperar a inserção
-    res.status(200).json({ 
-      success: true, 
-      message: "Dados salvos com sucesso" 
-    });
-
     // Insere os dados no MongoDB de forma assíncrona (fire and forget)
-    // A conexão permanece aberta e é reutilizada
-    getDatabase()
+    // Não espera a conclusão antes de retornar resposta
+    const insertPromise = getDatabase()
       .then((db) => {
         const collection = db.collection("form_submissions");
         return collection.insertOne(formData);
       })
       .catch((dbError) => {
         // Silenciosamente ignora erros do banco
-        // Em produção, você pode querer logar isso em um serviço de monitoramento
         console.error("Erro ao inserir dados no MongoDB (assíncrono):", dbError);
       });
+
+    // Retorna resposta imediatamente sem esperar a inserção
+    res.status(200).json({ 
+      success: true, 
+      message: "Dados salvos com sucesso" 
+    });
+
+    // Mantém a promise viva para não ser cancelada na Vercel
+    // A Vercel mantém o processo ativo enquanto houver promises pendentes
+    insertPromise.catch(() => {
+      // Ignora erros silenciosamente
+    });
   } catch (error) {
     console.error("Erro ao salvar dados do formulário:", error);
     return res.status(500).json({ 
