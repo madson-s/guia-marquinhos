@@ -44,6 +44,9 @@ export default function Form() {
     } catch (error) {
       // Continua mesmo se houver erro - não bloqueia o usuário
       console.error("Erro ao enviar formulário:", error);
+    } finally {
+      // Remove o overlay quando a requisição terminar (sucesso ou erro)
+      setIsSubmitting(false);
     }
     
     // Formata a mensagem para o WhatsApp usando formatação de texto simples
