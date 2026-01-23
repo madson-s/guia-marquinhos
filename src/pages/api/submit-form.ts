@@ -1,5 +1,5 @@
 import type { NextApiRequest, NextApiResponse } from "next";
-import { getDatabase } from "@/lib/mongodb";
+import { put } from "@vercel/blob";
 
 type FormData = {
   name: string;
@@ -34,16 +34,6 @@ export default async function handler(
     return res.status(405).json({ 
       success: false, 
       error: "Método não permitido" 
-    });
-  }
-
-  // Verifica se MONGODB_URI está configurado
-  if (!process.env.MONGODB_URI) {
-    console.error("MONGODB_URI não está configurado");
-    // Retorna sucesso mesmo sem MongoDB para não bloquear o usuário
-    return res.status(200).json({ 
-      success: true, 
-      message: "Dados recebidos" 
     });
   }
 
@@ -101,29 +91,26 @@ export default async function handler(
       destinations: destinosSelecionados || undefined,
     };
 
-    // Insere os dados no MongoDB de forma assíncrona (fire and forget)
-    // Não espera a conclusão antes de retornar resposta
-    const insertPromise = getDatabase()
-      .then((db) => {
-        const collection = db.collection("form_submissions");
-        return collection.insertOne(formData);
-      })
-      .catch((dbError) => {
-        // Silenciosamente ignora erros do banco
-        console.error("Erro ao inserir dados no MongoDB (assíncrono):", dbError);
-      });
-
     // Retorna resposta imediatamente sem esperar a inserção
     res.status(200).json({ 
       success: true, 
       message: "Dados salvos com sucesso" 
     });
 
-    // Mantém a promise viva para não ser cancelada na Vercel
-    // A Vercel mantém o processo ativo enquanto houver promises pendentes
-    insertPromise.catch(() => {
-      // Ignora erros silenciosamente
-    });
+    // Salva os dados no Vercel Blob Storage de forma assíncrona (fire and forget)
+    // Cria um nome de arquivo único baseado no timestamp
+    const timestamp = Date.now();
+    const fileName = `form-submissions/${formType}/${timestamp}-${nome.trim().replace(/\s+/g, '-').toLowerCase()}.json`;
+    const fileContent = JSON.stringify(formData, null, 2);
+
+    put(fileName, fileContent, { access: 'public' })
+      .then(() => {
+        // Sucesso - dados salvos
+      })
+      .catch((blobError: unknown) => {
+        // Silenciosamente ignora erros do blob storage
+        console.error("Erro ao salvar dados no Vercel Blob (assíncrono):", blobError);
+      });
   } catch (error) {
     console.error("Erro ao salvar dados do formulário:", error);
     return res.status(500).json({ 

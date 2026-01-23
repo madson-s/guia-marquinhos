@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "@next/third-parties": "^16.0.0",
+    "@vercel/blob": "^0.25.1",
     "google": "link:@next/third-parties/google",
     "lucide-react": "^0.540.0",
     "mongodb": "^6.0.0",
