@@ -26,6 +26,15 @@ export default function Form() {
     setIsSubmitting(true);
     
     try {
+      // Evento GTM - Requisição enviada para API
+      pushGTMEvent("form_api_request_sent", {
+        page: window.location.pathname,
+        form_type: "simple",
+        source: "form",
+        has_email: !!email,
+        has_phone: !!celular,
+      });
+      
       // Aguarda a resposta da API antes de redirecionar
       const response = await fetch("/api/submit-form", {
         method: "POST",
@@ -41,6 +50,17 @@ export default function Form() {
       });
 
       await response.json();
+      
+      // Evento GTM - API respondeu com sucesso
+      if (response.ok) {
+        pushGTMEvent("form_api_success", {
+          page: window.location.pathname,
+          form_type: "simple",
+          source: "form",
+          has_email: !!email,
+          has_phone: !!celular,
+        });
+      }
     } catch (error) {
       // Continua mesmo se houver erro - não bloqueia o usuário
       console.error("Erro ao enviar formulário:", error);

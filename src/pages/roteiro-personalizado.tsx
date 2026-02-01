@@ -160,6 +160,17 @@ export default function RoteiroPersonalizado() {
     setIsSubmitting(true);
 
     try {
+      // Evento GTM - Requisição enviada para API
+      pushGTMEvent("form_api_request_sent", {
+        page: window.location.pathname,
+        form_type: "custom_itinerary",
+        source: "custom_itinerary_page",
+        experience_level: getExperienceLevelInEnglish(nivelExperiencia),
+        travel_month: mesViagem,
+        people_count: quantidadePessoas,
+        destinations_count: destinosSelecionados?.length || 0,
+      });
+      
       // Aguarda a resposta da API antes de redirecionar
       const response = await fetch("/api/submit-form", {
         method: "POST",
@@ -179,6 +190,19 @@ export default function RoteiroPersonalizado() {
       });
 
       await response.json();
+      
+      // Evento GTM - API respondeu com sucesso
+      if (response.ok) {
+        pushGTMEvent("form_api_success", {
+          page: window.location.pathname,
+          form_type: "custom_itinerary",
+          source: "custom_itinerary_page",
+          experience_level: getExperienceLevelInEnglish(nivelExperiencia),
+          travel_month: mesViagem,
+          people_count: quantidadePessoas,
+          destinations_count: destinosSelecionados?.length || 0,
+        });
+      }
     } catch (error) {
       // Continua mesmo se houver erro - não bloqueia o usuário
       console.error("Erro ao enviar formulário:", error);
