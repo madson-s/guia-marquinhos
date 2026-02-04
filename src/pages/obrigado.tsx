@@ -7,7 +7,7 @@ import Button from "@/components/Button";
 import { getAndClearWhatsAppRedirectUrl } from "@/lib/whatsapp-redirect";
 
 const REDIRECT_DELAY_MS = 1000;
-const SHOW_BUTTON_BEFORE_MS = 50; // Botão aparece 50ms antes do redirect
+const SHOW_BUTTON_BEFORE_MS = 10; // Botão aparece 10ms antes do redirect
 
 export default function Obrigado() {
   const router = useRouter();
