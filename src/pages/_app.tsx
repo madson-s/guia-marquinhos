@@ -1,10 +1,19 @@
 import "@/styles/globals.css";
 import type { AppProps } from "next/app";
 import Script from "next/script";
+import { useRouter } from "next/router";
+import { useEffect } from "react";
+import { captureGclidFromUrl } from "@/lib/gclid";
 
 const GA_ADS_ID = "AW-17598254239";
 
 export default function App({ Component, pageProps }: AppProps) {
+  const router = useRouter();
+
+  useEffect(() => {
+    captureGclidFromUrl();
+  }, [router.asPath]);
+
   return (
     <>
       <Script

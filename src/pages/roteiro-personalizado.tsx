@@ -6,6 +6,8 @@ import Image from "next/image";
 import SEO from "@/components/SEO";
 import Button from "@/components/Button";
 import { WHATSAPP_LINK } from "@/constants";
+import { getGclid } from "@/lib/gclid";
+import { setWhatsAppRedirectUrl } from "@/lib/whatsapp-redirect";
 import { Circle, ChevronLeft, ChevronRight } from "lucide-react";
 
 export default function RoteiroPersonalizado() {
@@ -17,7 +19,6 @@ export default function RoteiroPersonalizado() {
   const [mesViagem, setMesViagem] = useState("");
   const [quantidadePessoas, setQuantidadePessoas] = useState("");
   const [destinosSelecionados, setDestinosSelecionados] = useState<string[]>([]);
-  const [isSubmitted, setIsSubmitted] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const hasTrackedFormStart = useRef(false);
   const stepStartTimeRef = useRef<{ [key: number]: number }>({});
@@ -119,15 +120,14 @@ export default function RoteiroPersonalizado() {
           quantidadePessoas,
           destinosSelecionados,
           formType: "custom_itinerary",
+          gclid: getGclid() || undefined,
         }),
       });
 
       await response.json();
     } catch (error) {
-      // Continua mesmo se houver erro - não bloqueia o usuário
       console.error("Erro ao enviar formulário:", error);
     } finally {
-      // Remove o overlay quando a requisição terminar (sucesso ou erro)
       setIsSubmitting(false);
     }
 
@@ -140,25 +140,21 @@ export default function RoteiroPersonalizado() {
     if (nivelExperiencia) {
       mensagem += `\n*Nível de experiência em trilhas:* ${nivelExperiencia}`;
     }
-
     if (mesViagem) {
       mensagem += `\n*Mês previsto para a viagem:* ${mesViagem}`;
     }
-
     if (quantidadePessoas) {
       mensagem += `\n*Quantidade de pessoas:* ${quantidadePessoas}`;
     }
-
     if (destinosSelecionados.length > 0) {
       mensagem += `\n*Destinos de interesse:* ${destinosSelecionados.join(", ")}`;
     }
-
     mensagem += `\n\nAguardo retorno!`;
 
     const mensagemEncoded = encodeURIComponent(mensagem);
     const whatsappUrl = WHATSAPP_LINK.replace(/text=[^&]*/, `text=${mensagemEncoded}`);
-    window.location.href = whatsappUrl;
-    setIsSubmitted(true);
+    setWhatsAppRedirectUrl(whatsappUrl);
+    window.location.href = "/obrigado";
   };
 
   return (
@@ -182,30 +178,7 @@ export default function RoteiroPersonalizado() {
       <main className="min-h-screen bg-[#F6F6EE] flex flex-col">
         <div className="flex-1 flex flex-col items-center justify-center py-20 px-6">
           <div className="w-full max-w-[600px]">
-            {isSubmitted ? (
-              <div className="flex flex-col items-center justify-center gap-8 text-center">
-                <div className="w-20 h-20 bg-[#FFC737] rounded-full flex items-center justify-center mb-4">
-                  <svg className="w-12 h-12 text-[#322F30]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                  </svg>
-                </div>
-                <h1 className="text-[#322F30] text-4xl sm:text-5xl md:text-6xl font-bold mb-4">
-                  Obrigado!
-                </h1>
-                <p className="text-[#888888] text-lg sm:text-xl mb-8">
-                  Recebi suas informações e vou preparar o roteiro ideal para você. Em breve entrarei em contato pelo WhatsApp!
-                </p>
-                <Button
-                  href="/"
-                  variant="primary"
-                  size="lg"
-                  className="w-full sm:w-[484px] !bg-[#FFC737] !text-[#322F30]"
-                >
-                  Continuar Navegando
-                </Button>
-              </div>
-            ) : (
-              <>
+            <>
                 <h1 className="text-[#322F30] text-4xl sm:text-5xl md:text-6xl font-bold mb-4 text-center">
                   Vamos planejar sua aventura na Chapada?
                 </h1>
@@ -498,8 +471,7 @@ export default function RoteiroPersonalizado() {
                 </div>
               )}
                 </form>
-              </>
-            )}
+            </>
           </div>
         </div>
       </main>

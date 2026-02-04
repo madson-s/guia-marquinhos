@@ -6,6 +6,8 @@ import Image from "next/image";
 import { useState } from "react";
 import Button from "./Button";
 import { WHATSAPP_LINK } from "@/constants";
+import { getGclid } from "@/lib/gclid";
+import { setWhatsAppRedirectUrl } from "@/lib/whatsapp-redirect";
 
 export default function Form() {
   const iconesContato = [
@@ -35,6 +37,7 @@ export default function Form() {
           email,
           celular,
           page: window.location.pathname,
+          gclid: getGclid() || undefined,
         }),
       });
 
@@ -43,11 +46,10 @@ export default function Form() {
       // Continua mesmo se houver erro - não bloqueia o usuário
       console.error("Erro ao enviar formulário:", error);
     } finally {
-      // Remove o overlay quando a requisição terminar (sucesso ou erro)
       setIsSubmitting(false);
     }
-    
-    // Formata a mensagem para o WhatsApp usando formatação de texto simples
+
+    // Formata a mensagem para o WhatsApp
     let mensagem = `Olá! Gostaria de solicitar um orçamento.
 
 *Dados do contato:*
@@ -56,17 +58,15 @@ export default function Form() {
     if (email) {
       mensagem += `\n*E-mail:* ${email}`;
     }
-    
     if (celular) {
       mensagem += `\n*Celular:* ${celular}`;
     }
-
     mensagem += `\n\nAguardo retorno!`;
 
-    // Codifica a mensagem para URL
     const mensagemEncoded = encodeURIComponent(mensagem);
     const whatsappUrl = WHATSAPP_LINK.replace(/text=[^&]*/, `text=${mensagemEncoded}`);
-    window.location.href = whatsappUrl;
+    setWhatsAppRedirectUrl(whatsappUrl);
+    window.location.href = "/obrigado";
   };
 
   return (

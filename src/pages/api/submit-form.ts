@@ -12,6 +12,7 @@ type FormData = {
   form_location?: string;
   has_email?: boolean;
   has_phone?: boolean;
+  gclid?: string;
   // Campos específicos do roteiro personalizado
   experience_level?: string;
   travel_month?: string;
@@ -43,6 +44,7 @@ export default async function handler(
       email, 
       celular, 
       page,
+      gclid,
       nivelExperiencia,
       mesViagem,
       quantidadePessoas,
@@ -84,6 +86,7 @@ export default async function handler(
       form_location: formType === "custom_itinerary" ? "custom_itinerary_page" : "home",
       has_email: !!email,
       has_phone: !!celular,
+      gclid: gclid?.trim() || undefined,
       // Campos do roteiro personalizado
       experience_level: nivelExperiencia ? getExperienceLevelInEnglish(nivelExperiencia.trim()) : undefined,
       travel_month: mesViagem?.trim() || undefined,
