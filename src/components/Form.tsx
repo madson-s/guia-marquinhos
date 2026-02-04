@@ -8,6 +8,7 @@ import Button from "./Button";
 import { WHATSAPP_LINK } from "@/constants";
 import { getGclid } from "@/lib/gclid";
 import { setWhatsAppRedirectUrl } from "@/lib/whatsapp-redirect";
+import { formatPhone } from "@/lib/phone-mask";
 
 export default function Form() {
   const iconesContato = [
@@ -143,7 +144,7 @@ export default function Form() {
               type="tel"
               id="celular"
               value={celular}
-              onChange={(e) => setCelular(e.target.value)}
+              onChange={(e) => setCelular(formatPhone(e.target.value))}
               placeholder="(99) 9 9999-9999"
               className="mt-1 px-4 py-2 border-2 border-[#322F30] rounded-full text-[#322F30]"
             />

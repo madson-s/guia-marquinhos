@@ -8,6 +8,7 @@ import Button from "@/components/Button";
 import { WHATSAPP_LINK } from "@/constants";
 import { getGclid } from "@/lib/gclid";
 import { setWhatsAppRedirectUrl } from "@/lib/whatsapp-redirect";
+import { formatPhone } from "@/lib/phone-mask";
 import { Circle, ChevronLeft, ChevronRight, Plus, Minus } from "lucide-react";
 
 export default function RoteiroPersonalizado() {
@@ -18,7 +19,7 @@ export default function RoteiroPersonalizado() {
   const [nivelExperiencia, setNivelExperiencia] = useState("");
   const [mesViagem, setMesViagem] = useState("");
   const [quantidadePessoas, setQuantidadePessoas] = useState("");
-  const [quantidadeRange, setQuantidadeRange] = useState(0); // 0: 1-5, 1: 6-9, 2: 10-13, 3: 14-18
+  const [quantidadeRange, setQuantidadeRange] = useState(0); // 0: 1-4, 1: 5-7, 2: 8-10, 3: 11-13, 4: 14-17
   const [destinosSelecionados, setDestinosSelecionados] = useState<string[]>([]);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const hasTrackedFormStart = useRef(false);
@@ -59,15 +60,16 @@ export default function RoteiroPersonalizado() {
   };
 
   const getRangeForQuantity = (val: number) => {
-    if (val <= 5) return 0;
-    if (val <= 9) return 1;
-    if (val <= 13) return 2;
-    return 3;
+    if (val <= 4) return 0;
+    if (val <= 7) return 1;
+    if (val <= 10) return 2;
+    if (val <= 13) return 3;
+    return 4;
   };
 
   const handleQuantidadePlus = () => {
     const current = quantidadePessoas ? parseInt(quantidadePessoas, 10) : 0;
-    const next = Math.min(18, current + 1);
+    const next = Math.min(17, current + 1);
     setQuantidadePessoas(String(next));
     setQuantidadeRange(getRangeForQuantity(next));
   };
@@ -269,7 +271,7 @@ export default function RoteiroPersonalizado() {
                         type="tel"
                         id="celular"
                         value={celular}
-                        onChange={(e) => setCelular(e.target.value)}
+                        onChange={(e) => setCelular(formatPhone(e.target.value))}
                         placeholder="(99) 9 9999-9999"
                         className="w-full px-4 py-3 rounded-full border border-[#322F30] bg-transparent text-[#322F30] placeholder-[#888888] focus:outline-none focus:ring-2 focus:ring-[#322F30]/50"
                         required
@@ -340,10 +342,13 @@ export default function RoteiroPersonalizado() {
                         )}
                         {(
                           quantidadeRange === 0
-                            ? [1, 2, 3, 4, 5]
-                            : quantidadeRange === 3
-                              ? [14, 15, 16, 17, 18]
-                              : Array.from({ length: 4 }, (_, i) => 6 + (quantidadeRange - 1) * 4 + i)
+                            ? [1, 2, 3, 4]
+                            : quantidadeRange === 4
+                              ? [14, 15, 16, 17]
+                              : Array.from(
+                                  { length: 3 },
+                                  (_, i) => 5 + (quantidadeRange - 1) * 3 + i
+                                )
                         ).map((num) => {
                           const value = String(num);
                           return (
@@ -361,7 +366,7 @@ export default function RoteiroPersonalizado() {
                             </button>
                           );
                         })}
-                        {quantidadeRange < 3 && (
+                        {quantidadeRange < 4 && (
                           <button
                             type="button"
                             onClick={handleQuantidadePlus}
