@@ -251,6 +251,14 @@ export function WebSiteSchema({
     url,
     description,
     potentialAction,
+    // Sugere ao Google as páginas principais para possíveis sitelinks
+    hasPart: [
+      { "@type": "WebPage", name: "Aventuras", url: `${url}/aventuras` },
+      { "@type": "WebPage", name: "Roteiro Personalizado", url: `${url}/roteiro-personalizado` },
+      { "@type": "WebPage", name: "Vale do Pati 3 dias", url: `${url}/aventuras/vale-do-pati-3-dias` },
+      { "@type": "WebPage", name: "Vale do Pati 5 dias", url: `${url}/aventuras/vale-do-pati-5-dias` },
+      { "@type": "WebPage", name: "Grutas", url: `${url}/aventuras/grutas` },
+    ],
   };
 
   return (
