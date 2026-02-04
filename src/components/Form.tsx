@@ -4,7 +4,6 @@ import Insta from "./../../public/imgs/insta-guia.png";
 import Gmail from "./../../public/imgs/contato-gmail.png";
 import Image from "next/image";
 import { useState } from "react";
-import { pushGTMEvent } from "./GTM";
 import Button from "./Button";
 import { WHATSAPP_LINK } from "@/constants";
 
@@ -26,16 +25,6 @@ export default function Form() {
     setIsSubmitting(true);
     
     try {
-      // Evento GTM - Requisição enviada para API
-      pushGTMEvent("form_api_request_sent", {
-        page: window.location.pathname,
-        form_type: "simple",
-        source: "form",
-        has_email: !!email,
-        has_phone: !!celular,
-      });
-      
-      // Aguarda a resposta da API antes de redirecionar
       const response = await fetch("/api/submit-form", {
         method: "POST",
         headers: {
@@ -50,17 +39,6 @@ export default function Form() {
       });
 
       await response.json();
-      
-      // Evento GTM - API respondeu com sucesso
-      if (response.ok) {
-        pushGTMEvent("form_api_success", {
-          page: window.location.pathname,
-          form_type: "simple",
-          source: "form",
-          has_email: !!email,
-          has_phone: !!celular,
-        });
-      }
     } catch (error) {
       // Continua mesmo se houver erro - não bloqueia o usuário
       console.error("Erro ao enviar formulário:", error);
@@ -87,14 +65,6 @@ export default function Form() {
 
     // Codifica a mensagem para URL
     const mensagemEncoded = encodeURIComponent(mensagem);
-    
-    // Evento GTM - WhatsApp Click (via form)
-    pushGTMEvent("whatsapp_click", {
-      source: "form",
-      page: window.location.pathname,
-    });
-    
-    // Redireciona para o WhatsApp após salvar os dados
     const whatsappUrl = WHATSAPP_LINK.replace(/text=[^&]*/, `text=${mensagemEncoded}`);
     window.location.href = whatsappUrl;
   };
@@ -186,15 +156,6 @@ export default function Form() {
             size="sm"
             className="mt-6 w-[173px] h-[42px] text-[18px] md:text-[20px] self-center md:self-start"
             disabled={isSubmitting}
-            gtmEvent={{
-              eventName: "form_submit",
-              eventData: {
-                form_location: "home",
-                has_email: !!email,
-                has_phone: !!celular,
-                source: "form",
-              },
-            }}
           >
             {isSubmitting ? "Enviando..." : "Enviar"}
           </Button>

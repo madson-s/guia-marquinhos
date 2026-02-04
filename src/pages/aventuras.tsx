@@ -20,11 +20,7 @@ import Dobra from "@/components/Dobra";
 import Footer from "@/components/Footer";
 import SEO from "@/components/SEO";
 import { OrganizationSchema, BreadcrumbListSchema } from "@/components/Schema";
-import { useScrollDepth, useTimeOnPage } from "@/hooks/useGTMEvents";
-
 export default function Aventuras() {
-  useScrollDepth();
-  useTimeOnPage();
   const destinos = [
     {
       img: ValeDoPati,

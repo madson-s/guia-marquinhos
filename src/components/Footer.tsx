@@ -6,7 +6,6 @@ import Whatsapp from "./../../public/icons/whatsapp.svg";
 import PhoneIcon from "./../../public/icons/location.svg";
 import Link from "next/link";
 import { WHATSAPP_LINK } from "@/constants";
-import { trackWhatsAppClick, trackInstagramClick } from "@/hooks/useGTMEvents";
 
 export default function Footer() {
   return (
@@ -89,7 +88,6 @@ export default function Footer() {
                 href={WHATSAPP_LINK}
                 className="w-12 h-12 rounded-full border border-white flex items-center justify-center hover:bg-white/10 transition"
                 aria-label="WhatsApp"
-                onClick={() => trackWhatsAppClick("footer")}
               >
                 <Image src={Whatsapp} alt="WhatsApp" className="w-6 h-6" />
               </a>
@@ -111,7 +109,6 @@ export default function Footer() {
                 href="https://instagram.com/chapadadiamantinaguiamarcos"
                 className="w-12 h-12 rounded-full border border-white flex items-center justify-center hover:bg-white/10 transition"
                 aria-label="Instagram"
-                onClick={() => trackInstagramClick("footer")}
               >
                 <Image src={Insta} alt="Instagram" className="w-6 h-6" />
               </a>
@@ -122,7 +119,6 @@ export default function Footer() {
                 <a
                   href={WHATSAPP_LINK}
                   className="hover:text-white/80 transition"
-                  onClick={() => trackWhatsAppClick("footer")}
                 >
                   WhatsApp
                 </a>
@@ -131,7 +127,6 @@ export default function Footer() {
                 <a
                   href="https://instagram.com/chapadadiamantinaguiamarcos"
                   className="hover:text-white/80 transition"
-                  onClick={() => trackInstagramClick("footer")}
                 >
                   Instagram
                 </a>

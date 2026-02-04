@@ -7,17 +7,7 @@ import Button from "@/components/Button";
 import ChecklistTrekking from "@/components/Checklist";
 import SEO from "@/components/SEO";
 import { TouristAttractionSchema, OrganizationSchema, BreadcrumbListSchema } from "@/components/Schema";
-import { useScrollDepth, useTimeOnPage, trackDestinationView } from "@/hooks/useGTMEvents";
-import { useEffect } from "react";
-
 export default function ValeDoPati5Dias() {
-  useScrollDepth();
-  useTimeOnPage();
-
-  useEffect(() => {
-    trackDestinationView("Vale do Pati 5 dias", "trekking");
-  }, []);
-
   return (
     <>
       <SEO

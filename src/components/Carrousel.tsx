@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import Image from "next/image";
 import Aspas from "./../../public/imgs/aspas.png";
 import Tripadvisor from "./../../public/imgs/tripadvisor.png";
-import { pushGTMEvent } from "./GTM";
 
 const testimonials = [
   {
@@ -90,19 +89,11 @@ const Carousel = () => {
 
   const next = () => {
     setCurrentIndex((prev) => (prev + cardsPerPage) % testimonials.length);
-    pushGTMEvent("carousel_interaction", {
-      action: "next",
-      current_index: (currentIndex + cardsPerPage) % testimonials.length,
-    });
   };
 
   const prev = () => {
     const newIndex = (currentIndex - cardsPerPage + testimonials.length) % testimonials.length;
     setCurrentIndex(newIndex);
-    pushGTMEvent("carousel_interaction", {
-      action: "prev",
-      current_index: newIndex,
-    });
   };
 
   const visibleTestimonials = [];

@@ -1,14 +1,29 @@
 import "@/styles/globals.css";
 import type { AppProps } from "next/app";
-import GTM from "@/components/GTM";
+import Script from "next/script";
 
-// GTM Container ID
-const GTM_ID = process.env.NEXT_PUBLIC_GTM_ID || "GTM-PVNWJWK3";
+const GA_ADS_ID = "AW-17598254239";
 
 export default function App({ Component, pageProps }: AppProps) {
   return (
     <>
-      {GTM_ID && <GTM gtmId={GTM_ID} />}
+      <Script
+        id="gtag-init"
+        strategy="afterInteractive"
+        dangerouslySetInnerHTML={{
+          __html: `
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', '${GA_ADS_ID}');
+          `,
+        }}
+      />
+      <Script
+        id="gtag-script"
+        src={`https://www.googletagmanager.com/gtag/js?id=${GA_ADS_ID}`}
+        strategy="afterInteractive"
+      />
       <Component {...pageProps} />
     </>
   );

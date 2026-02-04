@@ -10,16 +10,7 @@ import Footer from "@/components/Footer";
 import Button from "@/components/Button";
 import SEO from "@/components/SEO";
 import { TouristAttractionSchema, OrganizationSchema, BreadcrumbListSchema } from "@/components/Schema";
-import { useScrollDepth, useTimeOnPage, trackDestinationView } from "@/hooks/useGTMEvents";
-import { useEffect } from "react";
-
 export default function CachoeiraSossegoRibeirao() {
-  useScrollDepth();
-  useTimeOnPage();
-
-  useEffect(() => {
-    trackDestinationView("Cachoeira do Sossego e Ribeirão do Meio", "cachoeira");
-  }, []);
   return (
     <>
       <SEO

@@ -10,17 +10,9 @@ import Image from "next/image";
 import Footer from "@/components/Footer";
 import SEO from "@/components/SEO";
 import { TouristAttractionSchema, OrganizationSchema, BreadcrumbListSchema } from "@/components/Schema";
-import { useScrollDepth, useTimeOnPage, trackDestinationView } from "@/hooks/useGTMEvents";
-import { useEffect } from "react";
 import Button from "@/components/Button";
 
 export default function CachoeiraFumacaRiachinho() {
-  useScrollDepth();
-  useTimeOnPage();
-
-  useEffect(() => {
-    trackDestinationView("Cachoeira da Fumaça e Riachinho", "cachoeira");
-  }, []);
   return (
     <>
       <SEO

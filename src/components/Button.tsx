@@ -1,7 +1,6 @@
 import Link from "next/link";
 import Image from "next/image";
 import Seta from "./../../public/imgs/seta-orcamento.svg";
-import { pushGTMEvent } from "./GTM";
 
 interface ButtonProps {
   href?: string;
@@ -10,10 +9,6 @@ interface ButtonProps {
   variant?: "primary" | "secondary" | "with-border";
   size?: "sm" | "md" | "lg";
   className?: string;
-  gtmEvent?: {
-    eventName: string;
-    eventData?: Record<string, unknown>;
-  };
   showArrow?: boolean;
   as?: "link" | "button";
   type?: "button" | "submit" | "reset";
@@ -27,7 +22,6 @@ export default function Button({
   variant = "primary",
   size = "lg",
   className = "",
-  gtmEvent,
   showArrow = true,
   as = "link",
   type = "button",
@@ -54,17 +48,7 @@ export default function Button({
   const baseClasses = `group ${variantClasses[variant]} ${sizeClasses[size]} ${widthClasses[size]} rounded-[100px] flex items-center justify-center gap-3 sm:gap-4 text-black overflow-hidden ${className}`;
 
   const handleClick = () => {
-    if (gtmEvent) {
-      if (typeof window !== "undefined") {
-        pushGTMEvent(gtmEvent.eventName, {
-          ...gtmEvent.eventData,
-          page: window.location.pathname,
-        });
-      }
-    }
-    if (onClick) {
-      onClick();
-    }
+    onClick?.();
   };
 
   const content = (

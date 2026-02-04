@@ -11,16 +11,7 @@ import Footer from "@/components/Footer";
 import Button from "@/components/Button";
 import SEO from "@/components/SEO";
 import { TouristAttractionSchema, OrganizationSchema, BreadcrumbListSchema } from "@/components/Schema";
-import { useScrollDepth, useTimeOnPage, trackDestinationView } from "@/hooks/useGTMEvents";
-import { useEffect } from "react";
-
 export default function PocoAzulEncantado() {
-  useScrollDepth();
-  useTimeOnPage();
-
-  useEffect(() => {
-    trackDestinationView("Poço Encantado e Poço Azul", "gruta");
-  }, []);
   return (
     <>
       <SEO

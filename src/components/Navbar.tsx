@@ -10,7 +10,6 @@ import Image from "next/image";
 import { Menu, X } from "lucide-react";
 import Link from "next/link";
 import { WHATSAPP_LINK } from "@/constants";
-import { trackWhatsAppClick, trackInstagramClick } from "@/hooks/useGTMEvents";
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
@@ -39,10 +38,7 @@ export default function Navbar() {
         </div>
 
         <div className="flex items-center gap-4 ms-10">
-          <a 
-            href="https://instagram.com/chapadadiamantinaguiamarcos" 
-            onClick={() => trackInstagramClick("navbar_desktop")}
-          >
+          <a href="https://instagram.com/chapadadiamantinaguiamarcos">
             <Image src={Insta} alt="Instagram" className="w-6 h-6" />
           </a>
           <a href="mailto:contato@guiamarquinhos.com">
@@ -106,10 +102,7 @@ export default function Navbar() {
           <a
             href={WHATSAPP_LINK}
             className="w-12 h-12 rounded-full border border-white flex items-center justify-center hover:bg-white/10 transition"
-            onClick={() => {
-              setIsOpen(false);
-              trackWhatsAppClick("navbar_mobile");
-            }}
+            onClick={() => setIsOpen(false)}
             aria-label="WhatsApp"
           >
             <Image src={Whatsapp} alt="WhatsApp" className="w-6 h-6" />
@@ -117,10 +110,7 @@ export default function Navbar() {
           <a
             href="https://instagram.com/chapadadiamantinaguiamarcos"
             className="w-12 h-12 rounded-full border border-white flex items-center justify-center hover:bg-white/10 transition"
-            onClick={() => {
-              setIsOpen(false);
-              trackInstagramClick("navbar_mobile");
-            }}
+            onClick={() => setIsOpen(false)}
             aria-label="Instagram"
           >
             <Image src={Insta} alt="Instagram" className="w-6 h-6" />
