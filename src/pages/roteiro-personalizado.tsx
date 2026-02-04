@@ -8,7 +8,7 @@ import Button from "@/components/Button";
 import { WHATSAPP_LINK } from "@/constants";
 import { getGclid } from "@/lib/gclid";
 import { setWhatsAppRedirectUrl } from "@/lib/whatsapp-redirect";
-import { Circle, ChevronLeft, ChevronRight } from "lucide-react";
+import { Circle, ChevronLeft, ChevronRight, Plus, Minus } from "lucide-react";
 
 export default function RoteiroPersonalizado() {
   const router = useRouter();
@@ -18,6 +18,7 @@ export default function RoteiroPersonalizado() {
   const [nivelExperiencia, setNivelExperiencia] = useState("");
   const [mesViagem, setMesViagem] = useState("");
   const [quantidadePessoas, setQuantidadePessoas] = useState("");
+  const [quantidadeRange, setQuantidadeRange] = useState(0); // 0: 1-5, 1: 6-9, 2: 10-13, 3: 14-18
   const [destinosSelecionados, setDestinosSelecionados] = useState<string[]>([]);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const hasTrackedFormStart = useRef(false);
@@ -55,6 +56,27 @@ export default function RoteiroPersonalizado() {
     } else {
       setDestinosSelecionados(destinosSelecionados.filter((d) => d !== destino));
     }
+  };
+
+  const getRangeForQuantity = (val: number) => {
+    if (val <= 5) return 0;
+    if (val <= 9) return 1;
+    if (val <= 13) return 2;
+    return 3;
+  };
+
+  const handleQuantidadePlus = () => {
+    const current = quantidadePessoas ? parseInt(quantidadePessoas, 10) : 0;
+    const next = Math.min(18, current + 1);
+    setQuantidadePessoas(String(next));
+    setQuantidadeRange(getRangeForQuantity(next));
+  };
+
+  const handleQuantidadeMinus = () => {
+    const current = quantidadePessoas ? parseInt(quantidadePessoas, 10) : 1;
+    const prev = Math.max(1, current - 1);
+    setQuantidadePessoas(String(prev));
+    setQuantidadeRange(getRangeForQuantity(prev));
   };
 
   const getExperienceLevelInEnglish = (level: string): string => {
@@ -302,19 +324,54 @@ export default function RoteiroPersonalizado() {
                     </div>
 
                     <div className="flex flex-col gap-2">
-                      <label htmlFor="quantidade" className="text-[#322F30] text-base">
+                      <label className="text-[#322F30] text-base">
                         Quantidade de pessoas:
                       </label>
-                      <input
-                        type="number"
-                        id="quantidade"
-                        value={quantidadePessoas}
-                          onChange={(e) => setQuantidadePessoas(e.target.value)}
-                        placeholder="Ex: 2"
-                        min="1"
-                        className="w-full px-4 py-3 rounded-full border border-[#322F30] bg-transparent text-[#322F30] placeholder-[#888888] focus:outline-none focus:ring-2 focus:ring-[#322F30]/50"
-                        required
-                      />
+                      <div className="flex flex-wrap gap-3">
+                        {quantidadeRange > 0 && (
+                          <button
+                            type="button"
+                            onClick={handleQuantidadeMinus}
+                            className="flex items-center justify-center w-12 h-12 rounded-full border border-[#322F30] bg-transparent text-[#322F30] hover:bg-[#322F30]/5 transition"
+                            aria-label="Diminuir"
+                          >
+                            <Minus className="w-5 h-5" />
+                          </button>
+                        )}
+                        {(
+                          quantidadeRange === 0
+                            ? [1, 2, 3, 4, 5]
+                            : quantidadeRange === 3
+                              ? [14, 15, 16, 17, 18]
+                              : Array.from({ length: 4 }, (_, i) => 6 + (quantidadeRange - 1) * 4 + i)
+                        ).map((num) => {
+                          const value = String(num);
+                          return (
+                            <button
+                              key={value}
+                              type="button"
+                              onClick={() => setQuantidadePessoas(value)}
+                              className={`flex items-center justify-center w-12 h-12 rounded-full border text-[#322F30] transition shrink-0 ${
+                                quantidadePessoas === value
+                                  ? "bg-[#FFC737]/50 border-[#FFC737]"
+                                  : "bg-transparent border-[#322F30] hover:bg-[#322F30]/5"
+                              }`}
+                            >
+                              {value}
+                            </button>
+                          );
+                        })}
+                        {quantidadeRange < 3 && (
+                          <button
+                            type="button"
+                            onClick={handleQuantidadePlus}
+                            className="flex items-center justify-center w-12 h-12 rounded-full border border-[#322F30] bg-transparent text-[#322F30] hover:bg-[#322F30]/5 transition"
+                            aria-label="Aumentar"
+                          >
+                            <Plus className="w-5 h-5" />
+                          </button>
+                        )}
+                      </div>
                     </div>
                   </div>
                 </div>
